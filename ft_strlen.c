@@ -10,6 +10,7 @@ size_t	ft_strlen(char *s)
 	return (len);
 }
 
+/*
 #include <stdio.h>
 
 int	main(int ac, char **av)
@@ -25,3 +26,4 @@ int	main(int ac, char **av)
 	}
 	return (0);
 }
+*/
