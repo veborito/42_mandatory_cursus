@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-size_t ft_strlen(const char *s);
+#include "../libft.h"
 
 int main()
 {

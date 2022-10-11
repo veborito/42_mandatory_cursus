@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 17:05:24 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/10/10 17:08:16 by bverdeci         ###   ########.fr       */
+/*   Created: 2022/10/10 14:49:25 by bverdeci          #+#    #+#             */
+/*   Updated: 2022/10/11 10:42:59 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-void	*ft_memset(void *b, int c, size_t len)
+size_t	ft_strlen(const char *s)
 {
+	size_t	len;
 
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
 }
