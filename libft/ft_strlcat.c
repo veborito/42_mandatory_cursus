@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 12:27:41 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/10/13 19:47:44 by bverdeci         ###   ########.fr       */
+/*   Created: 2022/10/13 21:58:47 by bverdeci          #+#    #+#             */
+/*   Updated: 2022/10/13 23:41:55 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
+#include <stdio.h>
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	const char	*temp;
-	size_t		i;
+	size_t	i;
+	size_t	j;
+	size_t	x;
 
-	temp = (const char *) src;
 	i = 0;
-	while (i < len)
-	{
-		((char *)dst)[i] = temp[i];
+	j = 0;
+	while (dst[i])
 		i++;
+	x = i - 1;
+	if (i < dstsize)
+	{
+		while (src[j])
+		{
+			if (j < dstsize - (i + 1))
+				dst[i + j] = src[j];
+			j++;
+		}
+		return (i + j);
 	}
-	return (dst);
+	return (x + dstsize);
 }
-
-/*Attention si faute de norme probablement 
-le prototype man iterm -> len internet -> n
-*/
