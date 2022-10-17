@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 08:52:51 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/10/16 21:01:03 by bverdeci         ###   ########.fr       */
+/*   Created: 2022/10/17 01:39:47 by bverdeci          #+#    #+#             */
+/*   Updated: 2022/10/17 01:45:27 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_toupper(int c)
+#include <string.h>
+
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	if (c >= 97 && c <= 122)
-		return (c - 32);
-	else
-		return (c);
+
 }

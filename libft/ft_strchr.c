@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 08:52:51 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/10/16 21:01:03 by bverdeci         ###   ########.fr       */
+/*   Created: 2022/10/16 21:34:29 by bverdeci          #+#    #+#             */
+/*   Updated: 2022/10/16 22:09:18 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_toupper(int c)
+char	*ft_strchr(const char *s, int c)
 {
-	if (c >= 97 && c <= 122)
-		return (c - 32);
-	else
-		return (c);
+	int		i;
+	char	*str;
+
+	i = 0;
+	str = (char *)s;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (&str[i]);
+		i++;
+	}
+	if (c == 0)
+		return (&str[i]);
+	return (0);
 }
