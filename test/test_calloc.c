@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "../libft.h"
+#include "../libft/libft.h"
 
 void printArray(int *tab, int len)
 {
@@ -18,6 +18,7 @@ int main()
 {
 	int		*tab1;
 	int		*tab2;
+	int		*tab3 = (int *)calloc(0, 10);
 	int		i = 1;
 	int		n = 9;
 	tab1 = (int *)calloc(n, sizeof(int));
@@ -32,5 +33,6 @@ int main()
 
 	printArray(tab1, n);
 	printArray(tab2, n);
+	printArray(tab3, 1);
 	return 0;
 }

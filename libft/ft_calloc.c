@@ -6,7 +6,7 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 13:09:29 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/10/19 13:47:41 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/10/23 15:15:49 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,17 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	unsigned char	*var;
+	char	*var;
+	size_t	i;
 
-	var = malloc(sizeof(size) * count);
-	while (*var++)
-		*var = 0;
+	var = (char *)malloc(size * count);
+	if (!var)
+		return (NULL);
+	i = 0;
+	while (var[i])
+	{
+		var[i] = 0;
+		i++;
+	}
 	return (var);
 }

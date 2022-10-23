@@ -6,13 +6,21 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 14:32:55 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/10/21 00:44:42 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/10/23 15:55:41 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
+
+static size_t	my_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -20,16 +28,24 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	i;
 	size_t	j;
 
-	str = malloc(sizeof(str) * len);
-	if (!str)
-		return (NULL);
 	i = start;
 	j = 0;
-	while (j < len)
+	if (start < my_strlen(s))
 	{
-		str[j] = s[i];
-		i++;
-		j++;
+		if (len > my_strlen(s))
+			len = my_strlen(s);
+		str = (char *)malloc(sizeof(char) * (len + 1));
+		if (!str)
+			return (NULL);
+		while (j < len && s[i])
+		{
+			str[j] = s[i];
+			i++;
+			j++;
+		}
 	}
+	else
+		str = (char *)malloc(sizeof(char) * 1);
+	str[j] = '\0';
 	return (str);
 }
