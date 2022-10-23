@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/17 00:49:27 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/10/23 04:12:22 by bverdeci         ###   ########.fr       */
+/*   Created: 2022/10/17 23:05:56 by bverdeci          #+#    #+#             */
+/*   Updated: 2022/10/18 00:59:49 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-
-void	*ft_memchr(const void *s, int c, size_t n)
+int	ft_atoi(const char *str)
 {
-	unsigned char	*str;
-	unsigned char	chr;
-	size_t			i;
+	int	i;
+	int	sign;
+	int	res;
 
-	str = (unsigned char *)s;
-	chr = c;
 	i = 0;
-	while (i < n)
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	while (str[i] == '+' || str[i] == '-')
+		i++;
+	if (str[i - 2] == '+' || str[i - 2] == '-')
+		return (0);
+	sign = 1;
+	if (str[i - 1] == '-')
+		sign = -1;
+	res = 0;
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		if (str[i] == chr)
-			return (&str[i]);
+		res += str[i] - 48;
+		if (str[i + 1] >= '0' && str[i + 1] <= '9')
+			res *= 10;
 		i++;
 	}
-	return (0);
+	return (res * sign);
 }

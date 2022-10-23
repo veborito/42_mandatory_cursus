@@ -6,11 +6,11 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 19:56:22 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/10/13 21:53:50 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/10/21 18:35:24 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
@@ -28,6 +28,9 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 		}
 		i++;
 	}
-	dst[j] = '\0';
+	if (dstsize == 0)
+		return (i);
+	else
+		dst[j] = '\0';
 	return (i);
 }

@@ -6,33 +6,45 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 21:58:47 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/10/13 23:41:55 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/10/22 17:45:00 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdio.h>
+#include "libft.h"
+
+static size_t	my_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
-	size_t	j;
-	size_t	x;
+	size_t	ldst;
+	size_t	lsrc;
 
-	i = 0;
-	j = 0;
-	while (dst[i])
-		i++;
-	x = i - 1;
-	if (i < dstsize)
+	ldst = my_strlen(dst);
+	lsrc = my_strlen(src);
+	i = ldst;
+	if (ldst < dstsize)
 	{
-		while (src[j])
+		while (*src && (i < dstsize - 1))
 		{
-			if (j < dstsize - (i + 1))
-				dst[i + j] = src[j];
-			j++;
+			dst[i] = *src;
+			src++;
+			i++;
 		}
-		return (i + j);
 	}
-	return (x + dstsize);
+	if (dstsize > 0 && ldst <= dstsize)
+	{
+		dst[i] = '\0';
+		return (ldst + lsrc);
+	}
+	else
+		return (lsrc + dstsize);
 }

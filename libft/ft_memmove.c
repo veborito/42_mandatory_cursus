@@ -6,27 +6,37 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 12:27:41 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/10/13 19:47:44 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/10/23 02:16:42 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	const char	*temp;
 	size_t		i;
+	char		*ndst;
+	const char	*nsrc;
 
-	temp = (const char *) src;
 	i = 0;
-	while (i < len)
+	ndst = (char *)dst;
+	nsrc = (const char *)src;
+	if (dst == 0 && src == 0)
+		return (0);
+	if (dst < src)
 	{
-		((char *)dst)[i] = temp[i];
-		i++;
+		while (i < len)
+		{
+			ndst[i] = nsrc[i];
+			i++;
+		}
+	}
+	else
+	{
+		while (len--)
+		{
+			ndst[len] = nsrc[len];
+		}
 	}
 	return (dst);
 }
-
-/*Attention si faute de norme probablement 
-le prototype man iterm -> len internet -> n
-*/

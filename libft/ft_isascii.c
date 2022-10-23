@@ -6,13 +6,13 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:02:40 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/10/10 14:24:51 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/10/21 14:33:29 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isascii(int c)
 {
-	if (c <= 127)
+	if (c >= 0 && c <= 127)
 		return (1);
 	return (0);
 }
