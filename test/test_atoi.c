@@ -16,5 +16,6 @@ int main()
 	printf("%d, %d\n", atoi("23343495959696502"), ft_atoi("23343495959696502"));
 	printf("%d, %d\n", atoi("23.3"), ft_atoi("23.3"));
 	printf("%d, %d\n", atoi("0"), ft_atoi("0"));
+	printf("%d, %d\n", atoi("-2147483648."), ft_atoi("-2147483648."));
 	return 0;
 }
