@@ -6,7 +6,7 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:49:25 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/10/11 10:42:59 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/10/26 16:19:07 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlen(const char *s)
 	size_t	len;
 
 	len = 0;
-	while (s[len])
+	while (s[len] != '\0')
 		len++;
 	return (len);
 }

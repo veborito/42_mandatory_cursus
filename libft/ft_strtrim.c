@@ -6,7 +6,7 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 17:32:24 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/10/23 20:35:47 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/10/25 18:49:03 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static	size_t	get_end(char const *s, char const *set)
 	size_t	i;
 
 	i = my_strlen(s) - 1;
-	while (is_in(s[i], set))
+	while (is_in(s[i], set) && s[i])
 		i--;
 	return (i + 1);
 }
@@ -69,13 +69,11 @@ char	*ft_strtrim(char const *s1, char const *set)
 	i = get_start(s1, set);
 	j = get_end(s1, set);
 	if (j > i)
-	{
 		str = (char *)malloc(sizeof(char) * (j - i + 1));
-		if (!str)
-			return (NULL);
-	}
 	else
 		str = (char *)malloc(sizeof(char) * 1);
+	if (!str)
+		return (NULL);
 	k = 0;
 	while (i < j)
 	{

@@ -6,46 +6,50 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 14:32:55 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/10/23 15:55:41 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/10/25 18:32:18 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	my_strlen(const char *s)
+static char	*add_ch(char const *s, char *s2, size_t start, size_t len)
 {
 	size_t	i;
+	size_t	j;
+	char	*str;
 
 	i = 0;
-	while (s[i])
+	j = 0;
+	str = s2;
+	while (s[i] && j < len)
+	{
+		if (i >= start)
+		{
+			str[j] = s[i];
+			j++;
+		}
 		i++;
-	return (i);
+	}
+	str[j] = '\0';
+	return (str);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*str;
-	size_t	i;
-	size_t	j;
+	char		*str;
+	size_t		slen;
+	long long	possible;
 
-	i = start;
-	j = 0;
-	if (start < my_strlen(s))
-	{
-		if (len > my_strlen(s))
-			len = my_strlen(s);
-		str = (char *)malloc(sizeof(char) * (len + 1));
-		if (!str)
-			return (NULL);
-		while (j < len && s[i])
-		{
-			str[j] = s[i];
-			i++;
-			j++;
-		}
-	}
-	else
-		str = (char *)malloc(sizeof(char) * 1);
-	str[j] = '\0';
+	possible = ft_strlen(s) - start;
+	if (possible > 0)
+		slen = ft_strlen(s + start);
+	if (possible <= 0)
+		slen = 0;
+	if (len > slen)
+		len = slen;
+	str = malloc(sizeof(*s) * (len + 1));
+	if (!str)
+		return (NULL);
+	str = add_ch(s, str, start, len);
 	return (str);
 }

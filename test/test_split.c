@@ -4,16 +4,17 @@
 
 int	main()
 {
-	char	str[] ="ttttttthellottttt";
-	char	c = 't';
-	char	**splited;
+	char	str1[] = "split  ||this|for|me|||||!|";
+	char	c1 = '|';
+	char	**splited1;
 	int		i;
 	
 	i = 0;
-	splited = ft_split(str, c); 
-	while (splited[i])
+	splited1 = ft_split(str1, c1); 
+	while (splited1[i])
 	{
-		printf("%s\n", splited[i]);
+		printf("%s\n", splited1[i]);
+		printf("--------\n");
 		i++;
 	}
 	return 0;

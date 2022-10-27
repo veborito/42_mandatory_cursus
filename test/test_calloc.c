@@ -18,11 +18,11 @@ int main()
 {
 	int		*tab1;
 	int		*tab2;
-	int		*tab3 = (int *)calloc(0, 10);
+	int		*tab3 = (int *)calloc(0, 0);
 	int		i = 1;
-	int		n = 9;
-	tab1 = (int *)calloc(n, sizeof(int));
-	tab2= (int *)ft_calloc(n, sizeof(int));
+	int		n = 0;
+	tab1 = (int *)calloc(n, 0);
+	tab2= (int *)ft_calloc(n, 0);
 
 	while (i < n - 3)
 	{

@@ -6,31 +6,24 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 20:54:14 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/10/24 01:44:55 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/10/26 23:43:17 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
+//#include <stdio.h>
 
-static size_t	my_strlen(char const *s)
+static void	ft_free(char **split)
 {
 	size_t	i;
 
 	i = 0;
-	while (s[i])
+	while (split[i])
+	{
+		free(split[i]);
 		i++;
-	return (i);
-}
-
-static	int	is_in(char const s, char c)
-{
-	int	flag;
-
-	flag = 0;
-	if (s == c)
-		flag = 1;
-	return (flag);
+	}
+	free(split);
 }
 
 static char	*my_strdup(const char *s1, size_t start, size_t end)
@@ -54,7 +47,7 @@ static char	*my_strdup(const char *s1, size_t start, size_t end)
 	return (s_copy);
 }
 
-static size_t	nbel(char const *str, char c)
+static size_t	nbel(char const *str, char c, int *j, int *k)
 {
 	size_t	i;
 	size_t	x;
@@ -62,12 +55,14 @@ static size_t	nbel(char const *str, char c)
 
 	i = 0;
 	nbel = 0;
+	*j = 0;
+	*k = 0;
 	while (str[i])
 	{
-		while (is_in(str[i], c) && str[i])
+		while (str[i] == c && str[i])
 			i++;
 		x = i;
-		while (!(is_in(str[i], c)) && str[i])
+		while (str[i] != c && str[i])
 			i++;
 		if (i > x)
 			nbel++;
@@ -75,27 +70,38 @@ static size_t	nbel(char const *str, char c)
 	return (nbel);
 }
 
+static void	get_size(char const *s, char c, int *i, int *start )
+{
+	while (s[*i] == c && s[*i])
+	(*i)++;
+	*start = *i;
+	while (s[*i] != c && s[*i])
+		(*i)++;
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**split;
-	size_t	i;
-	size_t	start;
-	size_t	k;
+	int		i;
+	int		start;
+	int		k;
 
-	split = (char **)malloc(sizeof(char *) * (nbel(s, c) + 1));
+	split = (char **)malloc(sizeof(char *) * (nbel(s, c, &i, &k) + 1));
 	if (!split || !s)
 		return (NULL);
-	i = 0;
-	k = 0;
-	while (i <= my_strlen(s))
+	while (i <= (int)ft_strlen(s))
 	{
-		while (is_in(s[i], c) && s[i])
-			i++;
-		start = i;
-		while (!(is_in(s[i], c)) && s[i])
-			i++;
+		get_size(s, c, &i, &start);
 		if (i > start)
-			split[k++] = my_strdup(s, start, i);
+		{
+			split[k] = my_strdup(s, start, i);
+			if (!split[k])
+			{
+				ft_free(split);
+				return (NULL);
+			}
+			k++;
+		}
 		i++;
 	}
 	split[k] = NULL;
