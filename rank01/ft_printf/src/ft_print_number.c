@@ -6,7 +6,7 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 15:34:27 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/11/02 01:07:24 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/11/08 16:29:19 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_print_unsigned(unsigned int nb, int *len)
 	{
 		c = nb + 48;
 		write(1, &c, 1);
+		(*len)++;
 	}
 	if (nb > 9)
 	{

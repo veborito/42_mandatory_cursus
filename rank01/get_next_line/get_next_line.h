@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_string.c                                  :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/01 15:59:01 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/11/08 16:27:08 by bverdeci         ###   ########.fr       */
+/*   Created: 2022/11/04 11:37:28 by bverdeci          #+#    #+#             */
+/*   Updated: 2022/11/05 16:32:54 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include "../ft_printf.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int	ft_print_string(char *s)
-{
-	int		len;
-	int		i;
+# include <stdlib.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <unistd.h>
 
-	if (s == NULL)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	i = 0;
-	while (s[i])
-	{
-		ft_print_char(s[i]);
-		i++;
-	}
-	len = i;
-	return (len);
-}
+char	*get_next_line(int fd);
+size_t	ft_strlen(char const *s);
+
+#endif

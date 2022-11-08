@@ -1,34 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_string.c                                  :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/01 15:59:01 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/11/08 16:27:08 by bverdeci         ###   ########.fr       */
+/*   Created: 2022/11/05 13:57:41 by bverdeci          #+#    #+#             */
+/*   Updated: 2022/11/05 14:11:40 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include "../ft_printf.h"
+#include "get_next_line.h"
 
-int	ft_print_string(char *s)
+size_t	ft_strlen(char const *s)
 {
-	int		len;
-	int		i;
+	int	i;
 
-	if (s == NULL)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
 	i = 0;
 	while (s[i])
+		i++;
+	return (i);
+}
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	while (src[i])
 	{
-		ft_print_char(s[i]);
+		if (dstsize && i < dstsize - 1)
+		{
+			dst[i] = src[i];
+			j++;
+		}
 		i++;
 	}
-	len = i;
-	return (len);
+	if (dstsize == 0)
+		return (i);
+	else
+		dst[j] = '\0';
+	return (i);
 }
