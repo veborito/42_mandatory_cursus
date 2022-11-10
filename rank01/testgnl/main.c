@@ -17,4 +17,15 @@ int main()
 	i = 1;
 	s = get_next_line(fd);
 	printf("ligne %d : %s", i, s);
+	free(s);
+	while (1)
+	{
+		s = get_next_line(fd);
+		i++;
+		if (s == NULL)
+			break;
+		printf("ligne %d : %s", i, s);
+		free(s);
+	}
+	return (0);
 }

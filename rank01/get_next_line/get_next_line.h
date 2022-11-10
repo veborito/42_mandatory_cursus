@@ -6,7 +6,7 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:37:28 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/11/08 22:00:02 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/11/10 00:44:05 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,21 @@
 # include <unistd.h>
 # include <stddef.h>
 
-
-typedef struct	s_list 
+typedef struct s_list
 {
-		char			*content;
-		struct s_list	*next;
-}						t_list;
+	char			*content;
+	struct s_list	*next;
+}					t_list;
 
 char	*get_next_line(int fd);
-size_t	ft_strlen(char const *s);
+int		ft_is_in(char *s);
+int		ft_count_from_list(t_list *stock);
+void	ft_clearlst(t_list **stock);
+void	ft_read_and_add(int fd, t_list **stock, int *output);
+void	ft_add_link(t_list **stock, char *buff);
+t_list	*ft_lstlast(t_list *stock);
+void	ft_add_from_list(t_list *stock, char *line);
+void	ft_update_stock(t_list **stock);
+size_t	ft_strlen(char *s);
 
 #endif

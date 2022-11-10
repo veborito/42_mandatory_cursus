@@ -6,27 +6,41 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:49:48 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/11/08 22:44:37 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/11/10 01:01:49 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stddef.h>
 #include <stdio.h>
 
-// regarde s'il y a un \n dans le contenu du nouvel élément de la liste
-
-int	ft_is_in(char *s)
+// ajouter le contenu de stock (jusqu'à \n) dans line 
+void	ft_add_from_list(t_list *stock, char *line)
 {
 	int	i;
+	int	j;
+	int	flag;
 
-	i = 0;
-	while (s[i])
+	flag = 0;
+	j = 0;
+	while (stock != NULL && flag == 0)
 	{
-		if (s[i] == '\n')
-			return (1);
-		i++;
+		i = 0;
+		while (stock->content[i] && stock->content[i] != '\n')
+		{
+			line[j] = stock->content[i];
+			i++;
+			j++;
+		}
+		if (stock->content[i] == '\n')
+		{
+			line[j] = '\n';
+			j++;
+			flag = 1;
+		}
+		stock = stock->next;
 	}
-	return (0);
+	line[j] = '\0';
 }
 
 // renvoie le dernier élément de la liste
@@ -35,16 +49,12 @@ t_list	*ft_lstlast(t_list *stock)
 {
 	t_list	*last;
 
+	if (stock == NULL)
+		return (NULL);
 	last = stock;
-	if (last) 
-	{
-		while (last->next != NULL)
-		{
-			last = last->next;
-		}
-		return (last);
-	}
-	return (NULL);
+	while (last->next != NULL)
+		last = last->next;
+	return (last);
 }
 
 /* Ajoute un nouvel élément de type char * à la fin de la liste
@@ -54,42 +64,66 @@ void	ft_add_link(t_list **stock, char *buff)
 {
 	t_list	*new;
 	t_list	*last;
+	int		len;
 
+	len = (int)ft_strlen(buff);
 	new = malloc(sizeof(t_list));
 	if (new == NULL)
 		return ;
-	new->content = buff;
-	last = ft_lstlast(*stock);
-	if (last == NULL)
+	new->content = malloc(sizeof(char) * (len + 1));
+	new->next = NULL;
+	if (new->content == NULL)
+		return ;
+	len = -1;
+	while (buff[++len])
+		new->content[len] = buff[len];
+	if (*stock == NULL)
+	{
 		*stock = new;
-	else
-		last->next = new;
+		return ;
+	}
+	last = ft_lstlast(*stock);
+	last->next = new;
 }
+
+// fonction qui affiche le contenu des el de la liste (pour debug)
+
+/*void	ft_printlist(t_list *stock)
+{
+	t_list *st;
+
+	st = stock;
+	while (st != NULL)
+	{
+		printf("%s\n", st->content);
+		st = st->next;
+	}
+}
+*/
 
 /* Cette fonction lis le fichier correspondant a fd.
  * Ajoute le contenu du buffer dans la liste si possible.
  * Continue d'ajouter une nouvel élément à la liste tant que le caractère \n
  * n'est pas rencontré*/
 
-void	ft_read_and_add(int fd, t_list **stock)
+void	ft_read_and_add(int fd, t_list **stock, int *output)
 {
 	char	*buff;
-	int		output;	
-	
+
 	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (buff == NULL)
 		return ;
-	output = read(fd, buff, BUFFER_SIZE);
-	if (output == 0 || output == -1)
+	*output = read(fd, buff, BUFFER_SIZE);
+	if (*output == 0 || *output == -1)
 		return ;
-	buff[output] = '\0';
+	buff[*output] = '\0';
 	ft_add_link(stock, buff);
 	while (!ft_is_in(buff))
 	{
-		output = read(fd, buff, BUFFER_SIZE);
-		if (output == 0 || output == -1)
+		*output = read(fd, buff, BUFFER_SIZE);
+		if (*output == 0 || *output == -1)
 			return ;
-		buff[output] = '\0';
+		buff[*output] = '\0';
 		ft_add_link(stock, buff);
 	}
 }
@@ -106,22 +140,27 @@ void	ft_read_and_add(int fd, t_list **stock)
 
 char	*get_next_line(int fd)
 {
-	char	*line;
-	t_list	*stock;
+	static t_list	*stock = NULL;
+	char			*line;
+	int				len;
+	int				output;
 
-	stock = NULL;
-	ft_read_and_add(fd, &stock);
-	if (stock == NULL)
+	if (fd == 0 || fd == -1)
 		return (NULL);
-
-	line = stock->content;
-	//1. lire ce qu'il y a dans le fichier.
-	//   jusqu'a ce qu'il y ait un \n.
-	//2. ajouter ce qui a été lu.
-	//3. ajouter ce qu'il faut à ligne. 
-	//4. nettoyer ce qui a été mis de côté.
-	//   cad enlever de ma reserve ce qui
-	//   a été mis dans la ligne.
-	//5. retourner la ligne.
+	ft_read_and_add(fd, &stock, &output);
+	if (output == 0 || output == -1)
+		return (NULL);
+	len = ft_count_from_list(stock);
+	line = malloc(sizeof(char) * (len + 1));
+	if (line == NULL)
+		return (NULL);
+	ft_add_from_list(stock, line);
+	if (line == NULL)
+	{
+		ft_clearlst(&stock);
+		free(line);
+		return (NULL);
+	}
+	ft_update_stock(&stock);
 	return (line);
 }
