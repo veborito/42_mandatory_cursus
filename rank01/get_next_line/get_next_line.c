@@ -6,7 +6,7 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:49:48 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/11/10 01:01:49 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/11/10 11:10:06 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,30 @@
 // ajouter le contenu de stock (jusqu'à \n) dans line 
 void	ft_add_from_list(t_list *stock, char *line)
 {
-	int	i;
-	int	j;
-	int	flag;
+	int		i;
+	int		j;
+	int		flag;
+	t_list *tmp;
 
 	flag = 0;
 	j = 0;
-	while (stock != NULL && flag == 0)
+	tmp = stock;
+	while (tmp != NULL && flag == 0)
 	{
 		i = 0;
-		while (stock->content[i] && stock->content[i] != '\n')
+		while (tmp->content[i] && tmp->content[i] != '\n')
 		{
-			line[j] = stock->content[i];
+			line[j] = tmp->content[i];
 			i++;
 			j++;
 		}
-		if (stock->content[i] == '\n')
+		if (tmp->content[i] == '\n')
 		{
 			line[j] = '\n';
 			j++;
 			flag = 1;
 		}
-		stock = stock->next;
+		tmp = tmp->next;
 	}
 	line[j] = '\0';
 }
@@ -88,18 +90,20 @@ void	ft_add_link(t_list **stock, char *buff)
 
 // fonction qui affiche le contenu des el de la liste (pour debug)
 
-/*void	ft_printlist(t_list *stock)
+void	ft_printlist(t_list *stock)
 {
 	t_list *st;
+	int		i;
 
+	i = 1;
 	st = stock;
 	while (st != NULL)
 	{
-		printf("%s\n", st->content);
+		printf("el numero %d : %s\n", i , st->content);
 		st = st->next;
+		i++;
 	}
 }
-*/
 
 /* Cette fonction lis le fichier correspondant a fd.
  * Ajoute le contenu du buffer dans la liste si possible.
@@ -113,19 +117,18 @@ void	ft_read_and_add(int fd, t_list **stock, int *output)
 	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (buff == NULL)
 		return ;
-	*output = read(fd, buff, BUFFER_SIZE);
-	if (*output == 0 || *output == -1)
-		return ;
-	buff[*output] = '\0';
-	ft_add_link(stock, buff);
 	while (!ft_is_in(buff))
 	{
 		*output = read(fd, buff, BUFFER_SIZE);
+		printf("ce qui a été lu -----> %s\n", buff);
 		if (*output == 0 || *output == -1)
 			return ;
 		buff[*output] = '\0';
 		ft_add_link(stock, buff);
 	}
+	printf("------------------------\n\n");
+	ft_printlist(*stock);
+	printf("------------------------\n\n");
 }
 
 // Affiche la prochaine ligne 
