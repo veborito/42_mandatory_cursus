@@ -6,43 +6,58 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:49:48 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/11/10 11:10:06 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/11/12 23:31:28 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stddef.h>
 #include <stdio.h>
+// fonction qui affiche le contenu des el de la liste (pour debug)
+/*
+void	ft_printlist(t_list *stock)
+{
+	t_list *st;
+	int		i;
+
+	i = 1;
+	st = stock;
+	while (st != NULL)
+	{
+		printf("el %d : %s\n", i, st->content);
+		st = st->next;
+		i++;
+	}
+}
+*/
 
 // ajouter le contenu de stock (jusqu'à \n) dans line 
-void	ft_add_from_list(t_list *stock, char *line)
+char	*ft_add_from_list(t_list *stock, int len)
 {
 	int		i;
 	int		j;
-	int		flag;
-	t_list *tmp;
+	t_list	*tmp;
+	char	*line;
 
-	flag = 0;
-	j = 0;
 	tmp = stock;
-	while (tmp != NULL && flag == 0)
+	line = malloc(sizeof(char) * (len + 1));
+	if (line == NULL)
+		return (NULL);
+	j = 0;
+	while (tmp != NULL)
 	{
 		i = 0;
-		while (tmp->content[i] && tmp->content[i] != '\n')
-		{
-			line[j] = tmp->content[i];
-			i++;
-			j++;
-		}
+		while ((tmp->content[i] != '\0') && (tmp->content[i] != '\n'))
+			line[j++] = tmp->content[i++];
 		if (tmp->content[i] == '\n')
 		{
 			line[j] = '\n';
-			j++;
-			flag = 1;
+			break ;
 		}
 		tmp = tmp->next;
 	}
-	line[j] = '\0';
+	line[len] = '\0';
+	return (line);
 }
 
 // renvoie le dernier élément de la liste
@@ -73,12 +88,13 @@ void	ft_add_link(t_list **stock, char *buff)
 	if (new == NULL)
 		return ;
 	new->content = malloc(sizeof(char) * (len + 1));
-	new->next = NULL;
 	if (new->content == NULL)
 		return ;
+	new->next = NULL;
 	len = -1;
-	while (buff[++len])
+	while (buff[++len] != '\0')
 		new->content[len] = buff[len];
+	new->content[len] = '\0';
 	if (*stock == NULL)
 	{
 		*stock = new;
@@ -88,47 +104,33 @@ void	ft_add_link(t_list **stock, char *buff)
 	last->next = new;
 }
 
-// fonction qui affiche le contenu des el de la liste (pour debug)
-
-void	ft_printlist(t_list *stock)
-{
-	t_list *st;
-	int		i;
-
-	i = 1;
-	st = stock;
-	while (st != NULL)
-	{
-		printf("el numero %d : %s\n", i , st->content);
-		st = st->next;
-		i++;
-	}
-}
-
 /* Cette fonction lis le fichier correspondant a fd.
  * Ajoute le contenu du buffer dans la liste si possible.
  * Continue d'ajouter une nouvel élément à la liste tant que le caractère \n
  * n'est pas rencontré*/
 
-void	ft_read_and_add(int fd, t_list **stock, int *output)
+void	ft_read_and_add(int fd, t_list **stock)
 {
 	char	*buff;
+	int		output;
 
-	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (buff == NULL)
-		return ;
-	while (!ft_is_in(buff))
+	while (!ft_is_in_list(*stock))
 	{
-		*output = read(fd, buff, BUFFER_SIZE);
-		printf("ce qui a été lu -----> %s\n", buff);
-		if (*output == 0 || *output == -1)
+		buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+		if (buff == NULL)
 			return ;
-		buff[*output] = '\0';
+		output = read(fd, buff, BUFFER_SIZE);
+		if (output == 0 || output == -1)
+		{
+			free(buff);
+			return ;
+		}
+		buff[output] = '\0';
 		ft_add_link(stock, buff);
+		free(buff);
+		if (*stock == NULL)
+			return ;
 	}
-	printf("------------------------\n\n");
-	ft_printlist(*stock);
-	printf("------------------------\n\n");
 }
 
 // Affiche la prochaine ligne 
@@ -145,25 +147,26 @@ char	*get_next_line(int fd)
 {
 	static t_list	*stock = NULL;
 	char			*line;
-	int				len;
-	int				output;
 
-	if (fd == 0 || fd == -1)
-		return (NULL);
-	ft_read_and_add(fd, &stock, &output);
-	if (output == 0 || output == -1)
-		return (NULL);
-	len = ft_count_from_list(stock);
-	line = malloc(sizeof(char) * (len + 1));
-	if (line == NULL)
-		return (NULL);
-	ft_add_from_list(stock, line);
-	if (line == NULL)
+	if (fd == -1 || BUFFER_SIZE <= 0 || read(fd, 0, 0) == -1)
 	{
 		ft_clearlst(&stock);
-		free(line);
+		stock = NULL;
 		return (NULL);
 	}
+	line = NULL;
+	ft_read_and_add(fd, &stock);
+	if (stock == NULL)
+		return (NULL);
+	line = ft_add_from_list(stock, ft_count_from_list(stock));
 	ft_update_stock(&stock);
+	if (stock == NULL || line[0] == '\0')
+	{
+		free(line);
+		line = NULL;
+		ft_clearlst(&stock);
+		stock = NULL;
+		return (NULL);
+	}
 	return (line);
 }

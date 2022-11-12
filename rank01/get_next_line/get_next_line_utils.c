@@ -6,13 +6,31 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 13:57:41 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/11/10 01:01:23 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/11/12 23:02:25 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stddef.h>
 #include <stdio.h>
+
+// fonction qui affiche le contenu des el de la liste (pour debug)
+/*
+void	ft_printlist(t_list *stock)
+{
+	t_list	*st;
+	int		i;
+
+	i = 1;
+	st = stock;
+	while (st != NULL)
+	{
+		printf("el %d : %s\n", i, st->content);
+		st = st->next;
+		i++;
+	}
+}
+*/
 
 size_t	ft_strlen(char *s)
 {
@@ -35,20 +53,22 @@ void	ft_update_stock(t_list **stock)
 	t_list	*last;
 
 	updt = malloc(sizeof(t_list));
-	if (updt == NULL)
-		return ;
 	last = ft_lstlast(*stock);
 	i = 0;
 	while (last->content[i] && last->content[i] != '\n')
 		i++;
 	if (last->content[i] == '\n')
 		i++;
-	updt->content = malloc(sizeof(char) * (ft_strlen(last->content) - i + 1));
-	if (updt->content == NULL)
-		return ;
+	j = i;
+	while (last->content[j])
+		j++;
+	updt->content = malloc(sizeof(char) * (j - i + 1));
+	updt->next = NULL;
 	j = 0;
 	while (last->content[i])
 		updt->content[j++] = last->content[i++];
+	updt->content[j] = '\0';
+	ft_clearlst(stock);
 	*stock = updt;
 }
 
@@ -56,12 +76,14 @@ void	ft_update_stock(t_list **stock)
 
 void	ft_clearlst(t_list **stock)
 {
+	t_list	*curr;
 	t_list	*tmp;
 
-	while (stock != NULL)
+	curr = *stock;
+	while (curr != NULL)
 	{
-		tmp = *stock;
-		*stock = (*stock)->next;
+		tmp = curr;
+		curr = curr->next;
 		free(tmp->content);
 		free(tmp);
 	}
@@ -72,42 +94,47 @@ void	ft_clearlst(t_list **stock)
 
 int	ft_count_from_list(t_list *stock)
 {
-	int	i;
-	int	j;
-	int	flag;
+	int		i;
+	int		j;
+	t_list	*tmp;
 
+	tmp = stock;
 	j = 0;
-	flag = 0;
-	while (stock != NULL && flag == 0)
+	while (tmp != NULL)
 	{
 		i = 0;
-		while (stock->content[i] && stock->content[i] != '\n')
+		while (tmp->content[i] && (tmp->content[i] != '\n'))
 		{
 			i++;
 			j++;
 		}
-		if (stock->content[i] == '\n')
+		if (tmp->content[i] == '\n')
 		{
-			flag = 1;
 			j++;
+			break ;
 		}
-		stock = stock->next;
+		tmp = tmp->next;
 	}
 	return (j);
 }
 
 // regarde s'il y a un \n dans le contenu du nouvel élément de la liste
 
-int	ft_is_in(char *s)
+int	ft_is_in_list(t_list *stock)
 {
-	int	i;
+	t_list	*last;
+	int		i;
 
+	last = ft_lstlast(stock);
 	i = 0;
-	while (s[i])
+	if (last)
 	{
-		if (s[i] == '\n')
-			return (1);
-		i++;
+		while (last->content[i])
+		{
+			if (last->content[i] == '\n')
+				return (1);
+			i++;
+		}
 	}
 	return (0);
 }

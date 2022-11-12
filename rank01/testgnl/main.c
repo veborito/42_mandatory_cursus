@@ -8,12 +8,7 @@ int main()
 	int	i;
 	char *s;
 	
-	fd = open("/Users/borito/42/rank01/testgnl/test.txt", O_RDONLY, S_IRUSR | S_IWUSR);
-	if (fd == -1)
-	{
-		printf("ERROR\n");
-		return (1);
-	}
+	fd = open("/Users/borito/42/rank01/testgnl/read_error.txt", O_RDONLY, S_IRUSR | S_IWUSR);
 	i = 1;
 	s = get_next_line(fd);
 	printf("ligne %d : %s", i, s);
