@@ -6,7 +6,7 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:49:48 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/11/13 17:23:48 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/11/13 19:47:59 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,23 +83,25 @@ void	ft_add_link(t_list **stock, char *buff, int output)
 	t_list	*last;
 
 	new = malloc(sizeof(t_list));
-	if (new == NULL)
-		return ;
-	new->content = malloc(sizeof(char) * (output + 1));
-	if (new->content == NULL)
-		return ;
-	new->next = NULL;
-	output = -1;
-	while (buff[++output] != '\0')
-		new->content[output] = buff[output];
-	new->content[output] = '\0';
-	if (*stock == NULL)
+	if (new)
 	{
-		*stock = new;
-		return ;
+		new->content = malloc(sizeof(char) * (output + 1));
+		if (new->content)
+		{
+			new->next = NULL;
+			output = -1;
+			while (buff[++output] != '\0')
+				new->content[output] = buff[output];
+			new->content[output] = '\0';
+			if (*stock == NULL)
+			{
+				*stock = new;
+				return ;
+			}
+			last = ft_lstlast(*stock);
+			last->next = new;
+		}
 	}
-	last = ft_lstlast(*stock);
-	last->next = new;
 }
 
 /* Cette fonction lis le fichier correspondant a fd.
