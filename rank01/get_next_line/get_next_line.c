@@ -6,7 +6,7 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:49:48 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/11/12 23:31:28 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/11/13 17:23:48 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,24 +77,22 @@ t_list	*ft_lstlast(t_list *stock)
 /* Ajoute un nouvel élément de type char * à la fin de la liste
  * (très important !!!!). */
 
-void	ft_add_link(t_list **stock, char *buff)
+void	ft_add_link(t_list **stock, char *buff, int output)
 {
 	t_list	*new;
 	t_list	*last;
-	int		len;
 
-	len = (int)ft_strlen(buff);
 	new = malloc(sizeof(t_list));
 	if (new == NULL)
 		return ;
-	new->content = malloc(sizeof(char) * (len + 1));
+	new->content = malloc(sizeof(char) * (output + 1));
 	if (new->content == NULL)
 		return ;
 	new->next = NULL;
-	len = -1;
-	while (buff[++len] != '\0')
-		new->content[len] = buff[len];
-	new->content[len] = '\0';
+	output = -1;
+	while (buff[++output] != '\0')
+		new->content[output] = buff[output];
+	new->content[output] = '\0';
 	if (*stock == NULL)
 	{
 		*stock = new;
@@ -114,7 +112,8 @@ void	ft_read_and_add(int fd, t_list **stock)
 	char	*buff;
 	int		output;
 
-	while (!ft_is_in_list(*stock))
+	output = 1;
+	while (!ft_is_in_list(*stock) && output > 0)
 	{
 		buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 		if (buff == NULL)
@@ -126,10 +125,8 @@ void	ft_read_and_add(int fd, t_list **stock)
 			return ;
 		}
 		buff[output] = '\0';
-		ft_add_link(stock, buff);
+		ft_add_link(stock, buff, output);
 		free(buff);
-		if (*stock == NULL)
-			return ;
 	}
 }
 

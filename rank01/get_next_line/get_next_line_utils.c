@@ -6,7 +6,7 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 13:57:41 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/11/12 23:02:25 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/11/13 16:08:16 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	ft_update_stock(t_list **stock)
 	while (last->content[j])
 		j++;
 	updt->content = malloc(sizeof(char) * (j - i + 1));
+	if (updt == NULL || updt->content == NULL)
+		return ;
 	updt->next = NULL;
 	j = 0;
 	while (last->content[i])
