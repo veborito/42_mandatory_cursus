@@ -6,11 +6,22 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 18:56:37 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/11/19 19:56:50 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/11/19 20:03:41 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+
+void	ft_putflag(int ch, t_data *frame)
+{
+	if (ch == 's')
+		frame->width = frame->width - ft_strlen(frame->va) + 1;
+	while (frame->width > 0)
+	{
+		ft_putchar(' ', frame);
+		(frame->width)--;
+	}
+}
 
 void	ft_width(const char *fmt, t_data *frame, int *i)
 {

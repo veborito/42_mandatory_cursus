@@ -6,7 +6,7 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 10:07:50 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/11/19 19:54:11 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/11/20 11:09:47 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,9 @@ void	ft_initialize(t_data *frame);
 void	ft_putstr(char *s, t_data *frame);
 void	ft_putnbr(int n, t_data *frame);
 void	ft_width(const char *fmt, t_data *frame, int *i);
+void	ft_putflag(int ch, t_data *frame);
+void	ft_putpointer(unsigned long int pointer, t_data *frame);
+void	ft_hexa_min(unsigned int pointer, t_data *frame);
+void	ft_hexa_maj(unsigned int pointer, t_data *frame);
+void	ft_putunsigned(unsigned int n, t_data *frame);
 #endif

@@ -6,7 +6,7 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 19:21:18 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/11/19 19:57:28 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/11/20 11:10:41 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,21 @@ void	ft_flags(const char *fmt, t_data *frame, int *i)
 
 void	ft_format(char ch, t_data *frame)
 {
-	if (ch == 's')
-		frame->width = frame->width - ft_strlen(frame->va) + 1;
-	while (frame->width > 0)
-	{
-		ft_putchar(' ', frame);
-		(frame->width)--;
-	}
+	ft_putflag(ch, frame);
 	if (ch == 'c')
 		ft_putchar(va_arg(frame->va, int), frame);
 	if (ch == 's')
 		ft_putstr(va_arg(frame->va, char *), frame);
-	if (ch == 'd')
+	if (ch == 'd' || ch == 'i')
 		ft_putnbr(va_arg(frame->va, int), frame);
+	if (ch == 'u')
+		ft_putunsigned(va_arg(frame->va, unsigned int), frame);
+	if (ch == 'p')
+		ft_putpointer(va_arg(frame->va, unsigned long int), frame);
+	if (ch == 'x')
+		ft_hexa_min(va_arg(frame->va, unsigned int), frame);
+	if (ch == 'X')
+		ft_hexa_maj(va_arg(frame->va, unsigned int), frame);
 }
 
 void	ft_iteration(t_data *frame, const char *fmt)
