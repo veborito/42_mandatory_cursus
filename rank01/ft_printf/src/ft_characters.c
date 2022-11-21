@@ -6,7 +6,7 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 11:30:12 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/11/19 17:43:42 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/11/21 20:59:36 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ void	ft_putstr(char *s, t_data *frame)
 {
 	int	len;
 
+	if (s == NULL)
+	{
+		len = ft_strlen("(null)");
+		if (write(1, "(null)", len) == -1)
+			frame->len = 0;
+		else
+			frame->len += len;
+		return ;
+	}
 	len = ft_strlen(s);
 	if (write (1, s, len) == -1)
 	{

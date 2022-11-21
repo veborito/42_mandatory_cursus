@@ -6,7 +6,7 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 10:31:03 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/11/20 11:12:25 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/11/21 19:18:03 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ft_putpointer(unsigned long int pointer, t_data *frame)
 		nb = base[pointer % 16];
 		ft_putchar(nb, frame);
 	}
+	free(base);
 }
 
 void	ft_hexa_min(unsigned int pointer, t_data *frame)
@@ -49,10 +50,11 @@ void	ft_hexa_min(unsigned int pointer, t_data *frame)
 	}
 	else
 	{
-		ft_putpointer(pointer / 16, frame);
+		ft_hexa_min(pointer / 16, frame);
 		nb = base[pointer % 16];
 		ft_putchar(nb, frame);
 	}
+	free(base);
 }
 
 void	ft_hexa_maj(unsigned int pointer, t_data *frame)
@@ -70,8 +72,9 @@ void	ft_hexa_maj(unsigned int pointer, t_data *frame)
 	}
 	else
 	{
-		ft_putpointer(pointer / 16, frame);
+		ft_hexa_maj(pointer / 16, frame);
 		nb = base[pointer % 16];
 		ft_putchar(nb, frame);
 	}
+	free(base);
 }

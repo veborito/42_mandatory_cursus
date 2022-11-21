@@ -6,7 +6,7 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 19:21:18 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/11/20 11:10:41 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/11/21 21:04:45 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,12 @@
 void	ft_initialize(t_data *frame)
 {
 	frame->len = 0;
-	frame->width = 0;
-}
-
-void	ft_flags(const char *fmt, t_data *frame, int *i)
-{
-	ft_width(fmt, frame, i);
 }
 
 void	ft_format(char ch, t_data *frame)
 {
-	ft_putflag(ch, frame);
+	if (ch == '%')
+		ft_putchar('%', frame);
 	if (ch == 'c')
 		ft_putchar(va_arg(frame->va, int), frame);
 	if (ch == 's')
@@ -54,7 +49,6 @@ void	ft_iteration(t_data *frame, const char *fmt)
 		if (fmt[i] == '%')
 		{
 			i++;
-			ft_flags(fmt + i, frame, &i);
 			ft_format(fmt[i], frame);
 		}
 		else
@@ -70,10 +64,9 @@ int	ft_printf(const char *fmt, ...)
 
 	frame = malloc(sizeof(t_data));
 	if (frame == NULL || fmt == NULL)
-		return (0);
+		return (-1);
 	ft_initialize(frame);
 	va_start(frame->va, fmt);
-	va_copy(frame->va_copy, frame->va);
 	ft_iteration(frame, fmt);
 	va_end(frame->va);
 	res = frame->len;
