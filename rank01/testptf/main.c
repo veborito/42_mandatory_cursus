@@ -1,45 +1,31 @@
-#include "ft_printf/ft_printf.h"
-#include "ft_printf/libft/libft.h"
-#include <stdio.h>
+#include "ft_printf.h"
 
 int main()
 {
-	int i;
-	int j;
-	int a;
-	int b;
-	int c;
-	int d;
-	int e;
-	int f;
-	int g;
-	int h;
-	char *s1 = "salut";
-	char *s2 = "Boris Verdecia Echarte";
+	int my_result;
+	int result;
 
-	ft_printf("NON c'est %c %c %c %c %c %s %d lettres c'est pas bien compliqué\n", 'b', 'o', 'r', 'i', 's', "t'as capté ou je dois repeter?",5);
-
-	ft_printf("Salut mec comment vas-tu ?\n");
+	my_result = ft_printf("tamer en %c %c %c %c %c %c string\n", 't', 't', 't', 't', 't', 't');
+	result = printf("tamer en %c %c %c %c %c %c string\n", 't', 't', 't', 't', 't', 't');
+	printf("my fonction = %d , off fonction = %d\n", my_result, result);
+	my_result = ft_printf("tamer en %10c string\n", 't');
+	result = printf("tamer en %10c string\n", 't');
+	printf("my fonction = %d , off fonction = %d\n", my_result, result);
+	my_result = ft_printf("Je suis %7s string\n", "boris");
+	result = printf("Je suis %7s string\n", "boris");
+	printf("my fonction = %d , off fonction = %d\n", my_result, result);
+	my_result = ft_printf("tamer en %d string\n", 10);
+	result = printf("tamer en %d string\n", 10);
+	printf("my fonction = %d , off fonction = %d\n", my_result, result);
+	my_result = ft_printf("tamer en %4d string\n", 10);
+	result = printf("tamer en %4d string\n", 10);
+	printf("my fonction = %d , off fonction = %d\n", my_result, result);
 	
-	i = ft_printf("%p\n", s1);
-	j = printf("%p\n", s1);
-	printf("ft_printf-> %d : %d <-printf\n", i, j);
+	char s[] = "je suis amoureux";
+	char *pointer = s;
 
-	a = ft_printf("%p\n", s2);
-	b = printf("%p\n", s2);
-	printf("ft_printf-> %d : %d <-printf\n", a, b);
-
-
-	c = ft_printf("%X, ", 42);
-	d = printf("%X\n", 42);
-	printf("ft_printf-> %d : %d <-printf\n", c, d);
-	
-	e = ft_printf("%x, ", 0);
-	f = printf("%x\n", 0);
-	printf("ft_printf-> %d : %d <-printf\n", e, f);
-
-	g = ft_printf("%u %%, ", 200000000);
-	h = printf("%u %%\n", 200000000);
-	printf("ft_printf-> %d : %d <-printf\n", g, h);
-
+	my_result = ft_printf("adresse de s: %p\n", s);
+	result = printf("adresse de s: %p\n", pointer);
+	printf("my fonction = %d , off fonction = %d\n", my_result, result);
+	return 0;
 }
