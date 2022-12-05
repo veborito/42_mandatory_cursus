@@ -6,12 +6,11 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:49:48 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/11/13 19:47:59 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/11/29 00:15:49 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stddef.h>
 #include <stdio.h>
 // fonction qui affiche le contenu des el de la liste (pour debug)
 /*
@@ -135,11 +134,10 @@ void	ft_read_and_add(int fd, t_list **stock)
 // Affiche la prochaine ligne 
 
 /* Affiche une par une les lignes d'un fichier. Lors de chaque appel de la 
- * fonction. Donc par exemple lorsqu'on appel la fonction dans une bouvle
- * jusqu'a ce que ce ne soit plus possible de lire le fichier. Les lignes
- * sont affichées une par une.
+ * fonction. Donc par exemple lorsqu'on appelle la fonction dans une boucle
+ * on affiche chaque ligne jusqu'a ce que ce ne soit plus possible de lire 
+ * le fichier. Les lignes sont affichées une par une.
  *
- * 
  * valeurs de retour : la ligne lue, NULL si erreur ou fin du fichier*/
 
 char	*get_next_line(int fd)

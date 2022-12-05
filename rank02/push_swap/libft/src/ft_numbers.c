@@ -6,11 +6,11 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 18:14:58 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/11/24 02:30:54 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/12/01 12:09:30 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "../libft.h"
 
 void	ft_putnbr(int n, t_data *frame)
 {

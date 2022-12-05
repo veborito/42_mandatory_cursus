@@ -6,12 +6,11 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 11:30:12 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/11/23 23:39:13 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/12/01 12:09:11 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
-#include "../libft/libft.h"
+#include "../libft.h"
 
 void	ft_putchar(int c, t_data *frame)
 {

@@ -1,43 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_numbers.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 18:14:58 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/11/24 02:30:54 by bverdeci         ###   ########.fr       */
+/*   Created: 2022/10/24 16:56:57 by bverdeci          #+#    #+#             */
+/*   Updated: 2022/10/24 17:13:31 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "libft.h"
 
-void	ft_putnbr(int n, t_data *frame)
+void	ft_putnbr_fd(int n, int fd)
 {
-	long	nb;
+	long long int	nb;
 
-	nb = (long)n;
+	nb = (long long int)n;
 	if (nb < 0)
 	{
-		ft_putchar('-', frame);
 		nb *= -1;
+		write(fd, "-", 1);
 	}
 	if (nb >= 0 && nb <= 9)
-		ft_putchar(nb + 48, frame);
-	else
 	{
-		ft_putnbr(nb / 10, frame);
-		ft_putchar((nb % 10) + 48, frame);
+		nb += 48;
+		write(fd, &nb, 1);
 	}
-}
-
-void	ft_putunsigned(unsigned int n, t_data *frame)
-{
-	if (n >= 0 && n <= 9)
-		ft_putchar(n + 48, frame);
 	else
 	{
-		ft_putunsigned(n / 10, frame);
-		ft_putchar((n % 10) + 48, frame);
+		ft_putnbr_fd((nb / 10), fd);
+		nb = (nb % 10) + 48;
+		write(fd, &nb, 1);
 	}
 }

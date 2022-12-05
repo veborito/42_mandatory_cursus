@@ -1,4 +1,4 @@
-#include "../get_next_line/get_next_line.h"
+#include "../get_next_line_2.0/get_next_line.h"
 #include <fcntl.h>
 #include <stdio.h>
 
@@ -8,19 +8,10 @@ int main()
 	int	i;
 	char *s;
 	
-	fd = open("/Users/borito/42/rank01/testgnl/test2.txt", O_RDONLY, S_IRUSR | S_IWUSR);
+	printf("start program\n");
+	fd = open("/Users/borito/42/rank01/testgnl/test1.txt", O_RDONLY, S_IRUSR | S_IWUSR);
 	i = 1;
 	s = get_next_line(fd);
 	printf("ligne %d : %s", i, s);
-	free(s);
-	while (1)
-	{
-		s = get_next_line(fd);
-		i++;
-		if (s == NULL)
-			break;
-		printf("ligne %d : %s", i, s);
-		free(s);
-	}
 	return (0);
 }

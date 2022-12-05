@@ -6,12 +6,11 @@
 /*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 13:57:41 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/11/13 16:08:16 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/11/29 00:15:41 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stddef.h>
 #include <stdio.h>
 
 // fonction qui affiche le contenu des el de la liste (pour debug)
