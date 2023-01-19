@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:23:53 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/12/05 22:37:45 by bverdeci         ###   ########.fr       */
+/*   Updated: 2022/12/11 18:20:25 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,5 @@ int	ft_initialize_stack(char **av, int ac, t_list **stack_a)
 	}
 	if (ac == 2)
 		free(numbers);
-	return (i + 1);
+	return (ft_lstsize(*stack_a));
 }

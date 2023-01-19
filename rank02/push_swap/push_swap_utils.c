@@ -6,11 +6,22 @@
 /*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 11:08:05 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/12/05 17:57:13 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/01/09 12:05:43 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_lenstring_tab(char **stab)
+{
+	int i;
+	
+	i = 0;
+	while (stab[i] != 0)
+		i++;
+	return i;
+}
+
 
 void	ft_printlst(t_list *lst)
 {

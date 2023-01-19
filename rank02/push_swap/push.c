@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:42:37 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/12/05 18:22:42 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/01/09 11:52:29 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "push_swap.h"
 
-void	ft_push(t_list **stack_a, t_list **stack_b)
+char	*ft_push_a(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*temp;
 
@@ -22,4 +22,16 @@ void	ft_push(t_list **stack_a, t_list **stack_b)
 	*stack_a = (*stack_a)->next;
 	temp->next = *stack_b;
 	*stack_b = temp;
+	return("pa");
+}
+
+char	*ft_push_b(t_list **stack_b, t_list **stack_a)
+{
+	t_list	*temp;
+
+	temp = *stack_b;
+	*stack_b = (*stack_b)->next;
+	temp->next = *stack_a;
+	*stack_a = temp;
+	return("pb");
 }

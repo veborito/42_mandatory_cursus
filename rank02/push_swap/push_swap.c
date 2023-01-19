@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:20:31 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/12/05 23:44:51 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/01/09 12:19:47 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	ft_doublons(t_list *stack)
 {
 	t_list	*curr;
 	t_list	*checker;
-	
+
 	curr = stack;
 	while (curr != NULL)
 	{
@@ -24,7 +24,7 @@ static int	ft_doublons(t_list *stack)
 		while (checker != NULL)
 		{
 			if (checker != curr && curr->content == checker->content)
-				return(1);
+				return (1);
 			checker = checker->next;
 		}
 		curr = curr->next;
@@ -46,10 +46,7 @@ int	main(int ac, char *av[])
 		ft_printf("Error\n");
 		exit (0);
 	}
-	ft_printlst(stack_a);
-	ft_printf("\n\n");
-	ft_sort3(&stack_a);
-	ft_printf("\n\n");
-	ft_printlst(stack_a);
+	if (ft_sort3(&stack_a) == 0)
+		exit(0);
 	return (0);
 }
