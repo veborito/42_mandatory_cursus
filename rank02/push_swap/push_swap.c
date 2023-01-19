@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:20:31 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/01/09 12:19:47 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/01/19 12:46:39 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,23 @@ static int	ft_doublons(t_list *stack)
 
 int	main(int ac, char *av[])
 {
-	t_list	*stack_a;
+	t_list		*stack_a;
 	//t_list	*stack_b;
-	int		initialized;
+	t_result	*res;
+	int			initialized;
 
 	stack_a = NULL;
 	//stack_b = NULL;
+	res = NULL;
 	initialized = ft_initialize_stack(av, ac, &stack_a);
 	if (initialized == -1 || ft_doublons(stack_a))
 	{
 		ft_printf("Error\n");
 		exit (0);
 	}
-	if (ft_sort3(&stack_a) == 0)
-		exit(0);
+	ft_sort3(&stack_a, &res);
+	ft_printlst(stack_a);
+	ft_clearlst(&stack_a);
+	check_leaks();
 	return (0);
 }

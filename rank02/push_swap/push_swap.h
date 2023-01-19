@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:19:38 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/01/09 12:10:08 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/01/19 12:23:57 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,24 @@ typedef struct	s_min_pos
 	int	pos;
 }		t_min_pos;
 
+//decla d'une liste chainnee pour le resultat
+
+typedef struct s_result
+{
+	char			*operation;
+	struct s_result	*next;
+}					t_result;
+
+
+// LEAKS
+
+void	check_leaks();
+
 // utils
 t_list	*ft_before_last(t_list *stack);
 void	ft_printlst(t_list *lst);
 int		ft_lenstring_tab(char **stab);
+void	ft_clearlst(t_list **stack);
 
 // instructions
 int		ft_initialize_stack(char **av, int ac, t_list **stack_a);
@@ -45,6 +59,6 @@ char	*ft_push_b(t_list **stack_b, t_list **stack_a);
 
 // sorting algo
 
-int		ft_sort3(t_list **s);
+void	ft_sort3(t_list **s, t_result **res);
 int		ft_sort5(t_list **s_a, t_list **s_b);
 #endif
