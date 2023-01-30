@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_5.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:31:57 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/01/09 12:21:38 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/01/30 10:05:20 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,11 @@ static t_min_pos	ft_minimum(t_list *stk_a)
 
 /*trouver les deux plus petits nombres et les faire passer sur la stack b sort la stack a avec le sort3 algo*/
 
-int	ft_sort5(t_list **s_a, t_list **s_b)
+int	ft_sort5(t_list **s_a, t_list **s_b, t_result **res)
 {
 	t_min_pos	minimum;
 
+	(void) res;
 	while (ft_lstsize(*s_b) < ft_lstsize(*s_a) / 2)
 	{
 		minimum = ft_minimum(*s_a);
@@ -58,7 +59,7 @@ int	ft_sort5(t_list **s_a, t_list **s_b)
 		}
 		ft_push_a(s_a, s_b);
 	}
-	ft_sort3(s_a);
+	//ft_sort3(s_a, res);
 	while(ft_lstsize(*s_b) > 0)
 		ft_push_b(s_b, s_a);
 	return (1);

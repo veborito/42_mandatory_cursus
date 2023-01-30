@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:23:53 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/01/19 12:46:42 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/01/30 12:24:51 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,19 @@ static int	ft_check_arg(char *str)
 		i++;
 	}
 	return (0);
+}
+
+static void	ft_clear_numbers(char **numbers)
+{
+	int	i;
+
+	i = 0;
+	while (numbers[i])
+	{
+		free(numbers[i]);
+		i++;
+	}
+	free(numbers);
 }
 
 /* initialisation de la stack A */
@@ -56,6 +69,6 @@ int	ft_initialize_stack(char **av, int ac, t_list **stack_a)
 		i++;
 	}
 	if (ac == 2)
-		free(numbers);
+		ft_clear_numbers(numbers);
 	return (ft_lstsize(*stack_a));
 }

@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:19:42 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/01/19 12:25:04 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/01/30 09:42:12 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_swap_a(t_list **stack)
 	first->next = second->next;
 	second->next = first;
 	*stack = second;
-	return("sa");
+	return(ft_strdup("sa"));
 }
 
 char	*ft_swap_b(t_list **stack)
@@ -35,5 +35,5 @@ char	*ft_swap_b(t_list **stack)
 	first->next = second->next;
 	second->next = first;
 	*stack = second;
-	return("sb");
+	return(ft_strdup("sb"));
 }

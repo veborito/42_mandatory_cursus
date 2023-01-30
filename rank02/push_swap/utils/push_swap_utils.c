@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 11:08:05 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/01/19 12:23:50 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/01/30 12:50:49 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	ft_printlst(t_list *lst)
 {
 	while (lst)
 	{
-		ft_printf("%d\n", lst->content);
+		ft_printf("%d", lst->content);
+		ft_printf("\n");
 		lst = lst->next;
 	}
 }
