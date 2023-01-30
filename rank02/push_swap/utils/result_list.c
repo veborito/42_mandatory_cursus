@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 09:55:17 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/01/30 10:23:02 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/01/30 13:43:19 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_result	*ft_lstnew_2(char *str)
 		list->operation = str;
 		list->next = NULL;
 	}
-	return (list);	
+	return (list);
 }
 
 void	ft_lstadd_back_2(t_result **lst, t_result *new_el)
@@ -53,12 +53,12 @@ void	ft_printres(t_result *lst)
 void	ft_clearres(t_result **res)
 {
 	t_result	*tmp;
-	
+
 	tmp = *res;
 	while (*res != NULL)
 	{
 		*res = (*res)->next;
-        free(tmp->operation);
+		free(tmp->operation);
 		free(tmp);
 		tmp = *res;
 	}

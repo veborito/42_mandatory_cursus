@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 23:00:03 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/01/30 12:59:28 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/01/30 13:48:44 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_sort3(t_list **s, t_result **res)
 	else
 	{
 		if ((*s)->content > last->content)
-			ft_lstadd_back_2(res, ft_lstnew_2(ft_reverse_rotate_a(s)));	
+			ft_lstadd_back_2(res, ft_lstnew_2(ft_reverse_rotate_a(s)));
 		else if ((*s)->next->content > last->content)
 		{
 			ft_lstadd_back_2(res, ft_lstnew_2(ft_swap_a(s)));

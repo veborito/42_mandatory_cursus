@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:19:38 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/01/30 10:21:21 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/01/30 13:48:13 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "libft/libft.h"
 
 //structs
-typedef struct	s_min_pos
+typedef struct s_min_pos
 {
 	int	min;
 	int	pos;
@@ -34,10 +34,9 @@ typedef struct s_result
 	struct s_result	*next;
 }					t_result;
 
-
 // LEAKS
 
-void		check_leaks();
+void		check_leaks(void);
 
 // utils
 t_list		*ft_before_last(t_list *stack);
@@ -59,8 +58,7 @@ char		*ft_reverse_rotate_b(t_list **stack);
 char		*ft_push_a(t_list **stack_a, t_list **stack_b);
 char		*ft_push_b(t_list **stack_b, t_list **stack_a);
 
-
 // sorting algo
 void		ft_sort3(t_list **s, t_result **res);
-int			ft_sort5(t_list **s_a, t_list **s_b, t_result **res);
+void		ft_sort5(t_list **s_a, t_list **s_b, t_result **res);
 #endif

@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:20:31 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/01/30 13:03:12 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/01/30 13:46:12 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ static int	ft_doublons(t_list *stack)
 int	main(int ac, char *av[])
 {
 	t_list		*stack_a;
-	//t_list	*stack_b;
+	t_list		*stack_b;
 	t_result	*res;
 	int			initialized;
 
 	stack_a = NULL;
-	//stack_b = NULL;
+	stack_b = NULL;
 	res = NULL;
 	initialized = ft_initialize_stack(av, ac, &stack_a);
 	if (initialized == -1 || ft_doublons(stack_a))
@@ -48,9 +48,9 @@ int	main(int ac, char *av[])
 		ft_printf("Error\n");
 		exit (0);
 	}
-	ft_sort3(&stack_a, &res);
+	ft_sort5(&stack_a, &stack_b, &res);
 	ft_printres(res);
-	//ft_printlst(stack_a);
+	ft_printlst(stack_a);
 	ft_clearlst(&stack_a);
 	ft_clearres(&res);
 	check_leaks();

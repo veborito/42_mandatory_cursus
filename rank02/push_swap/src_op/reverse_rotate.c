@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:20:00 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/01/30 09:42:27 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/01/30 13:39:18 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ char	*ft_reverse_rotate_b(t_list **stack)
 	last->next = first;
 	before_last->next = NULL;
 	*stack = last;
-	return(ft_strdup("rrb"));
+	return (ft_strdup("rrb"));
 }

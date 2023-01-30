@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:23:53 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/01/30 12:24:51 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/01/30 13:44:05 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 static int	ft_check_arg(char *str)
 {
 	int	i;
-	
+
 	i = 0;
 	while (str[i])
 	{
 		if (str[i] == '-' || str[i] == '+')
 			i++;
 		if (!ft_isdigit(str[i]))
-			return(1);
+			return (1);
 		i++;
 	}
 	return (0);
@@ -64,7 +64,7 @@ int	ft_initialize_stack(char **av, int ac, t_list **stack_a)
 	while (numbers[i])
 	{
 		if (ft_check_arg(numbers[i]))
-			return(-1);
+			return (-1);
 		ft_lstadd_back(stack_a, ft_lstnew(ft_atoi(numbers[i])));
 		i++;
 	}

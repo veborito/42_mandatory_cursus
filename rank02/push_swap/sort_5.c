@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:31:57 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/01/30 10:05:20 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/01/30 13:50:12 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ static t_min_pos	ft_minimum(t_list *stk_a)
 	return (minimum);
 }
 
-/*trouver les deux plus petits nombres et les faire passer sur la stack b sort la stack a avec le sort3 algo*/
+/*trouver les deux plus petits nombres et les faire passer sur la stack b, 
+sort la stack a avec le sort3 algo et repush sur a*/
 
-int	ft_sort5(t_list **s_a, t_list **s_b, t_result **res)
+void	ft_sort5(t_list **s_a, t_list **s_b, t_result **res)
 {
 	t_min_pos	minimum;
 
-	(void) res;
 	while (ft_lstsize(*s_b) < ft_lstsize(*s_a) / 2)
 	{
 		minimum = ft_minimum(*s_a);
@@ -52,15 +52,14 @@ int	ft_sort5(t_list **s_a, t_list **s_b, t_result **res)
 		{
 			if (minimum.pos >= (ft_lstsize(*s_a) / 2))
 			{
-				ft_reverse_rotate_a(s_a);
+				ft_lstadd_back_2(res, ft_lstnew_2(ft_reverse_rotate_a(s_a)));
 			}
 			else
-				ft_swap_a(s_a);
+				ft_lstadd_back_2(res, ft_lstnew_2(ft_swap_a(s_a)));
 		}
-		ft_push_a(s_a, s_b);
+		ft_lstadd_back_2(res, ft_lstnew_2(ft_push_b(s_a, s_b)));
 	}
-	//ft_sort3(s_a, res);
-	while(ft_lstsize(*s_b) > 0)
-		ft_push_b(s_b, s_a);
-	return (1);
+	ft_sort3(s_a, res);
+	while (ft_lstsize(*s_b) > 0)
+		ft_lstadd_back_2(res, ft_lstnew_2(ft_push_a(s_b, s_a)));
 }
