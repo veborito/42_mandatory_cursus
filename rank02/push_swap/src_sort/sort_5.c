@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sort_5.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:31:57 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/01/30 13:50:12 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/02/07 16:32:40 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 static t_min_pos	ft_minimum(t_list *stk_a)
 {
