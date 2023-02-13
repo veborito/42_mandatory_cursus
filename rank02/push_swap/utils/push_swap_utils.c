@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 11:08:05 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/01/30 13:41:40 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/02/13 12:13:21 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,30 @@ void	ft_clearlst(t_list **stack)
 		free(tmp);
 		tmp = *stack;
 	}
+}
+
+t_min_pos	ft_minimum(t_list *stk_a)
+{
+	t_list		*tmp;
+	t_list		*stk;
+	t_min_pos	minimum;
+
+	tmp = stk_a;
+	stk = stk_a;
+	minimum.min = tmp->content;
+	while (tmp != NULL)
+	{
+		if (minimum.min > tmp->content)
+			minimum.min = tmp->content;
+		tmp = tmp->next;
+	}
+	minimum.pos = 0;
+	while (stk != NULL)
+	{
+		if (minimum.min == stk->content && stk != NULL)
+			return (minimum);
+		(minimum.pos)++;
+		stk = stk->next;
+	}
+	return (minimum);
 }

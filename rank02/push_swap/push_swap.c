@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:20:31 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/01/30 13:46:12 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/02/13 14:08:05 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int ac, char *av[])
 		ft_printf("Error\n");
 		exit (0);
 	}
-	ft_sort5(&stack_a, &stack_b, &res);
+	ft_sort(&stack_a, &stack_b, &res);
 	ft_printres(res);
 	ft_printlst(stack_a);
 	ft_clearlst(&stack_a);

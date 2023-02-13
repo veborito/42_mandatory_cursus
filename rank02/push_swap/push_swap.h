@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:19:38 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/01/30 13:48:13 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/02/13 12:13:34 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ t_result	*ft_lstnew_2(char *str);
 void		ft_lstadd_back_2(t_result **lst, t_result *new_el);
 void		ft_printres(t_result *lst);
 void		ft_clearres(t_result **res);
+t_min_pos	ft_minimum(t_list *stk_a);
 // instructions
 int			ft_initialize_stack(char **av, int ac, t_list **stack_a);
 char		*ft_swap_a(t_list **stack);

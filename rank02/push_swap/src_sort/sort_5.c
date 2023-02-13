@@ -3,40 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sort_5.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:31:57 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/02/07 16:32:40 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/02/13 12:17:09 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-static t_min_pos	ft_minimum(t_list *stk_a)
-{
-	t_list		*tmp;
-	t_list		*stk;
-	t_min_pos	minimum;
-
-	tmp = stk_a;
-	stk = stk_a;
-	minimum.min = tmp->content;
-	while (tmp != NULL)
-	{
-		if (minimum.min > tmp->content)
-			minimum.min = tmp->content;
-		tmp = tmp->next;
-	}
-	minimum.pos = 0;
-	while (stk != NULL)
-	{
-		if (minimum.min == stk->content && stk != NULL)
-			return (minimum);
-		(minimum.pos)++;
-		stk = stk->next;
-	}
-	return (minimum);
-}
 
 /*trouver les deux plus petits nombres et les faire passer sur la stack b, 
 sort la stack a avec le sort3 algo et repush sur a*/
