@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:23:53 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/01/30 13:44:05 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/02/15 15:27:30 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	ft_clear_numbers(char **numbers)
 	int	i;
 
 	i = 0;
+	ft_printf("elle est ou la segfault\n");
 	while (numbers[i])
 	{
 		free(numbers[i]);
@@ -67,7 +68,7 @@ int	ft_initialize_stack(char **av, int ac, t_list **stack_a)
 			return (-1);
 		ft_lstadd_back(stack_a, ft_lstnew(ft_atoi(numbers[i])));
 		i++;
-	}
+	};
 	if (ac == 2)
 		ft_clear_numbers(numbers);
 	return (ft_lstsize(*stack_a));

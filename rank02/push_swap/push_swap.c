@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:20:31 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/02/15 14:50:09 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/02/15 15:33:49 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ int	main(int ac, char *av[])
 	t_result	*res;
 	int			initialized;
 
+	if (ac == 1)
+	{
+		ft_printf("Error\n");
+		exit(0);
+	}
 	stack_a = NULL;
 	stack_b = NULL;
 	res = NULL;
@@ -48,7 +53,7 @@ int	main(int ac, char *av[])
 		ft_printf("Error\n");
 		exit (0);
 	}
-	if (ac > 0 && ac <= 4)
+	if (ac > 1 && ac <= 4)
 		ft_sort3(&stack_a, &res);
 	else if (ac > 4 && ac <= 6)
 		ft_sort5(&stack_a, &stack_b, &res);
