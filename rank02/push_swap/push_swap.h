@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:19:38 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/02/13 12:13:34 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/02/15 13:33:43 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,5 @@ char		*ft_push_b(t_list **stack_b, t_list **stack_a);
 // sorting algo
 void		ft_sort3(t_list **s, t_result **res);
 void		ft_sort5(t_list **s_a, t_list **s_b, t_result **res);
+void		ft_sort(t_list **s_a, t_list **s_b, t_result **res);
 #endif
