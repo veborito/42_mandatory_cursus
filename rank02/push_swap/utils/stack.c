@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:23:53 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/02/15 15:27:30 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/02/17 15:02:47 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static void	ft_clear_numbers(char **numbers)
 	int	i;
 
 	i = 0;
-	ft_printf("elle est ou la segfault\n");
 	while (numbers[i])
 	{
 		free(numbers[i]);
