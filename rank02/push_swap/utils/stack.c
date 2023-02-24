@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:23:53 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/02/24 12:30:52 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/02/24 14:25:31 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static int	ft_check_arg(char *str)
 	int	i;
 
 	i = 0;
+	if (ft_atoil(str) > INT_MAX || ft_atoil(str) < INT_MIN)
+		return (1);
 	while (str[i])
 	{
 		if (str[i] == '-' || str[i] == '+')
@@ -50,9 +52,7 @@ int	ft_initialize_stack(char **av, int ac, t_list **stack_a)
 	char	**numbers;
 
 	i = 1;
-	if (ac == 1)
-		return (-1);
-	else if (ac == 2)
+	if (ac == 2)
 	{
 		i = 0;
 		numbers = ft_split(av[1], ' ');

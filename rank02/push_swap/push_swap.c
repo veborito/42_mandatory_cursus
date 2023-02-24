@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:20:31 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/02/24 12:41:27 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/02/24 13:23:11 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int ac, char *av[])
 	if (ac == 1)
 	{
 		write(2, "Error\n", 6);
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	stack_a = NULL;
 	stack_b = NULL;
@@ -53,7 +53,7 @@ int	main(int ac, char *av[])
 		if (stack_a)
 			ft_clearlst(&stack_a);
 		write(2, "Error\n", 6);
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	if (ft_lstsize(stack_a) == 1)
 	{
@@ -69,5 +69,5 @@ int	main(int ac, char *av[])
 	ft_clearlst(&stack_a);
 	ft_clearlst(&stack_b);
 	ft_clearres(&res);
-	return (0);
+	exit(EXIT_SUCCESS);
 }
