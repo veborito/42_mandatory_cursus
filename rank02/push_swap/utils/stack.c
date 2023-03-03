@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:23:53 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/03 15:40:24 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/03 17:26:42 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*check si l'argument est un nombre*/
 static int	ft_check_arg(char *str)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (str[i])
@@ -44,14 +44,34 @@ static void	ft_clear_numbers(char **numbers)
 
 static int	ft_parse(char **numbers, t_list **stack_a, int *i)
 {
+	char	**temp;
+	int		j;
+	
+	temp = NULL;
 	while (numbers[*i])
 	{
-		if (ft_check_arg(numbers[*i]))
+		if (ft_findspace(numbers[*i]))
 		{
-			ft_clear_numbers(numbers);
-			return (-1);
+			temp = ft_split(numbers[*i], ' ');
+			j = 0;
+			while (temp[j])
+			{
+				if (ft_check_arg(temp[j]))
+				{
+					ft_clear_numbers(temp);
+					return (-1);
+				}
+				ft_lstadd_back(stack_a, ft_lstnew(ft_atoi(temp[j])));
+				j++;
+			}
+			ft_clear_numbers(temp);
 		}
-		ft_lstadd_back(stack_a, ft_lstnew(ft_atoi(numbers[*i])));
+		else
+		{
+			if (ft_check_arg(numbers[*i]))
+				return (-1);
+			ft_lstadd_back(stack_a, ft_lstnew(ft_atoi(numbers[*i])));
+		}
 		(*i)++;
 	}
 	return (0);

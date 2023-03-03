@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:19:38 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/02/24 13:46:37 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/03 16:47:26 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void		ft_lstadd_back_2(t_result **lst, t_result *new_el);
 void		ft_printres(t_result *lst);
 void		ft_clearres(t_result **res);
 t_min_pos	ft_minimum(t_list *stk_a);
+int 		ft_findspace(char *str);
 // instructions
 int			ft_initialize_stack(char **av, int ac, t_list **stack_a);
 char		*ft_swap_a(t_list **stack);
