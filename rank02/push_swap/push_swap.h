@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:19:38 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/02/15 15:33:48 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/02/24 13:46:37 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include "libft/libft.h"
+
+// macros
+#	define INT_MIN -2147483648
+#	define INT_MAX 2147483647
 
 //structs
 typedef struct s_min_pos
