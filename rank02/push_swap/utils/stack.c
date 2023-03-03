@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:23:53 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/02/24 12:30:52 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/03 15:33:23 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,21 @@ static void	ft_clear_numbers(char **numbers)
 	free(numbers);
 }
 
+static int	ft_parse(char **numbers, t_list **stack_a, int *i)
+{
+	while (numbers[*i])
+	{
+		if (ft_check_arg(numbers[*i]))
+		{
+			ft_clear_numbers(numbers);
+			return (-1);
+		}
+		ft_lstadd_back(stack_a, ft_lstnew(ft_atoi(numbers[*i])));
+		(*i)++;
+	}
+	return (0);
+}
+
 /* initialisation de la stack A */
 
 int	ft_initialize_stack(char **av, int ac, t_list **stack_a)
@@ -61,14 +76,9 @@ int	ft_initialize_stack(char **av, int ac, t_list **stack_a)
 	}
 	else
 		numbers = av;
-	while (numbers[i])
-	{
-		if (ft_check_arg(numbers[i]))
-			return (-1);
-		ft_lstadd_back(stack_a, ft_lstnew(ft_atoi(numbers[i])));
-		i++;
-	};
-	if (ac == 2)
+	if(ft_parse(numbers, stack_a, &i) == -1)
+		return -1;
+	else if (ac == 2)
 		ft_clear_numbers(numbers);
 	return (ft_lstsize(*stack_a));
 }
