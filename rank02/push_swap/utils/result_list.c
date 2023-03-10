@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 09:55:17 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/02/24 11:14:47 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/10 09:50:09 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ void	ft_printres(t_result *lst)
 {
 	while (lst)
 	{
-		write(1, (lst->operation), ft_strlen(lst->operation));
-		write(1, "\n", 1);
+		ft_printf("%s\n", lst->operation);
 		lst = lst->next;
 	}
 }
