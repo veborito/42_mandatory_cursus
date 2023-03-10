@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 19:48:02 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/02/24 13:53:24 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/10 11:18:18 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
-
 
 // ft_printf
 typedef struct s_data
@@ -37,10 +36,10 @@ void	ft_hexa_min(unsigned int pointer, t_data *frame);
 void	ft_hexa_maj(unsigned int pointer, t_data *frame);
 void	ft_putunsigned(unsigned int n, t_data *frame);
 
-
 typedef struct s_list
 {
 	int				content;
+	int				index;
 	struct s_list	*next;
 }					t_list;
 

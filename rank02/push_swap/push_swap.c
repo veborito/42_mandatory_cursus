@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:20:31 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/10 10:00:45 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/10 16:55:10 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,8 @@ static void	ft_sorting(t_list **stack_a, t_list **stack_b, t_result **res)
 		ft_sort3(stack_a, res);
 	else if (ft_lstsize(*stack_a) > 3 && ft_lstsize(*stack_a) <= 5)
 		ft_sort5(stack_a, stack_b, res);
-	ft_printres(*res);
-	ft_clearlst(stack_a);
-	ft_clearlst(stack_b);
-	ft_clearres(res);
+	else
+		ft_sort(stack_a, stack_b, res);
 }
 
 int	main(int ac, char *av[])
@@ -57,10 +55,7 @@ int	main(int ac, char *av[])
 	int			initialized;
 
 	if (ac == 1)
-	{
-		write(2, "Error\n", 6);
-		exit(EXIT_FAILURE);
-	}
+		return (0);
 	stack_a = NULL;
 	stack_b = NULL;
 	res = NULL;
@@ -69,9 +64,14 @@ int	main(int ac, char *av[])
 	{
 		if (stack_a)
 			ft_clearlst(&stack_a);
-		write(2, "Error\n", 6);
-		exit(EXIT_FAILURE);
+		ft_putendl_fd("Error", 2);
+		exit(1);
 	}
+	ft_normalize(stack_a);
 	ft_sorting(&stack_a, &stack_b, &res);
-	exit(EXIT_SUCCESS);
+	ft_printres(res);
+	ft_clearlst(&stack_a);
+	ft_clearlst(&stack_b);
+	ft_clearres(&res);
+	exit(0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:19:38 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/06 16:51:49 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/10 17:06:09 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,6 @@ typedef struct s_result
 	struct s_result	*next;
 }					t_result;
 
-// LEAKS
-
-void		check_leaks(void);
-
 // utils
 t_list		*ft_before_last(t_list *stack);
 void		ft_printlst(t_list *lst);
@@ -53,6 +49,7 @@ void		ft_printres(t_result *lst);
 void		ft_clearres(t_result **res);
 t_min_pos	ft_minimum(t_list *stk_a);
 int			ft_findspace(char *str);
+void		ft_normalize(t_list *s);
 // instructions
 int			ft_initialize_stack(char **av, int ac, t_list **stack_a);
 char		*ft_swap_a(t_list **stack);
