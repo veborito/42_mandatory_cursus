@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:20:31 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/02/24 13:23:11 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/06 17:20:06 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,23 @@ static int	ft_doublons(t_list *stack)
 	return (0);
 }
 
+static void	ft_sorting(t_list **stack_a, t_list **stack_b, t_result **res)
+{
+	if (ft_lstsize(*stack_a) == 1)
+	{
+		ft_clearlst(stack_a);
+		return ;
+	}
+	else if (ft_lstsize(*stack_a) <= 3)
+		ft_sort3(stack_a, res);
+	else if (ft_lstsize(*stack_a) > 3 && ft_lstsize(*stack_a) <= 5)
+		ft_sort5(stack_a, stack_b, res);
+	ft_printres(*res);
+	ft_clearlst(stack_a);
+	ft_clearlst(stack_b);
+	ft_clearres(res);
+}
+
 int	main(int ac, char *av[])
 {
 	t_list		*stack_a;
@@ -41,7 +58,7 @@ int	main(int ac, char *av[])
 
 	if (ac == 1)
 	{
-		write(2, "Error\n", 6);
+		ft_putendl_fd(2, "Error");
 		exit(EXIT_FAILURE);
 	}
 	stack_a = NULL;
@@ -52,22 +69,9 @@ int	main(int ac, char *av[])
 	{
 		if (stack_a)
 			ft_clearlst(&stack_a);
-		write(2, "Error\n", 6);
+		ft_putendl_fd(2, "Error");
 		exit(EXIT_FAILURE);
 	}
-	if (ft_lstsize(stack_a) == 1)
-	{
-		ft_clearlst(&stack_a);
-		exit(1);
-	}
-	else if (ft_lstsize(stack_a) <= 3)
-		ft_sort3(&stack_a, &res);
-	else if (ft_lstsize(stack_a) > 3 && ft_lstsize(stack_a) <= 5)
-		ft_sort5(&stack_a, &stack_b, &res);
-	ft_printres(res);
-	//ft_printlst(stack_a);
-	ft_clearlst(&stack_a);
-	ft_clearlst(&stack_b);
-	ft_clearres(&res);
+	ft_sorting(&stack_a, &stack_b, &res);
 	exit(EXIT_SUCCESS);
 }

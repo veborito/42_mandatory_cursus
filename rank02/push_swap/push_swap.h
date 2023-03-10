@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:19:38 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/03 16:47:26 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/06 16:51:49 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include "libft/libft.h"
 
 // macros
-#	define INT_MIN -2147483648
-#	define INT_MAX 2147483647
+# define INT_MIN -2147483648
+# define INT_MAX 2147483647
 
 //structs
 typedef struct s_min_pos
@@ -52,7 +52,7 @@ void		ft_lstadd_back_2(t_result **lst, t_result *new_el);
 void		ft_printres(t_result *lst);
 void		ft_clearres(t_result **res);
 t_min_pos	ft_minimum(t_list *stk_a);
-int 		ft_findspace(char *str);
+int			ft_findspace(char *str);
 // instructions
 int			ft_initialize_stack(char **av, int ac, t_list **stack_a);
 char		*ft_swap_a(t_list **stack);

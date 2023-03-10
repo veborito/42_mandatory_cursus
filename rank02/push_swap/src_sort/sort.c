@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 16:37:19 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/02/13 15:39:36 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/06 20:25:11 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,6 @@
  - tout remetttre dans A ensuite. Tant que B n'est pas vide push_a*/
 void ft_sort(t_list **s_a, t_list **s_b, t_result **res)
 {
-	while(ft_lstsize(*s_a) > 0)
-	{
-		if ((*s_a)->content < (*s_a->next->content))
-			ft_lstadd_back_2(res, ft_lstnew_2(ft_push_b(s_a, s_b)));
-		else
-		{
-			ft_lstadd_back_2(res, ft_lstnew_2(ft_swap_a(s_a)));
-			ft_lstadd_back_2(res, ft_lstnew_2(ft_push_b(s_a, s_b)));
-		}
-	}
+	
+	return ;
 }

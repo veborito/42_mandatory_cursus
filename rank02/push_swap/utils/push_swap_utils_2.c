@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 16:44:32 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/03 17:18:56 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/06 16:54:49 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int ft_findspace(char *str)
+int	ft_findspace(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while(str[i])
-    {
-        if (str[i] == ' ')
-            return (1);
-        i++;
-    }
-    return (0);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == ' ')
+			return (1);
+		i++;
+	}
+	return (0);
 }
