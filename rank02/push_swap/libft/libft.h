@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 19:48:02 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/10 11:18:18 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/11 13:00:56 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_list
 	int				content;
 	int				index;
 	struct s_list	*next;
+	struct s_list	*prev;
+
 }					t_list;
 
 int		ft_isalnum(int c);

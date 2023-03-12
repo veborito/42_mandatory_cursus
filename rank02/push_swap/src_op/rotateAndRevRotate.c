@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   rotateAndRevRotate.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 00:19:53 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/01/30 13:39:51 by bverdeci         ###   ########.fr       */
+/*   Created: 2022/11/29 00:20:00 by bverdeci          #+#    #+#             */
+/*   Updated: 2023/03/12 23:03:13 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,34 @@ char	*ft_rotate_b(t_list **stack)
 	first->next = NULL;
 	*stack = second;
 	return (ft_strdup("rb"));
+}
+
+char	*ft_reverse_rotate_a(t_list **stack)
+{
+	t_list	*first;
+	t_list	*last;
+	t_list	*before_last;
+
+	first = *stack;
+	before_last = ft_before_last(*stack);
+	last = ft_lstlast(*stack);
+	last->next = first;
+	before_last->next = NULL;
+	*stack = last;
+	return (ft_strdup("rra"));
+}
+
+char	*ft_reverse_rotate_b(t_list **stack)
+{
+	t_list	*first;
+	t_list	*last;
+	t_list	*before_last;
+
+	first = *stack;
+	before_last = ft_before_last(*stack);
+	last = ft_lstlast(*stack);
+	last->next = first;
+	before_last->next = NULL;
+	*stack = last;
+	return (ft_strdup("rrb"));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:19:38 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/10 17:06:09 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/12 23:03:05 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ typedef struct s_min_pos
 	int	min;
 	int	pos;
 }		t_min_pos;
+typedef struct s_num_pos
+{
+	int	num;
+	int	pos;
+}		t_num_pos;
 
 //decla d'une liste chainnee pour le resultat
 
@@ -50,6 +55,9 @@ void		ft_clearres(t_result **res);
 t_min_pos	ft_minimum(t_list *stk_a);
 int			ft_findspace(char *str);
 void		ft_normalize(t_list *s);
+int			ft_scan_samller(t_list *s, int median);
+int			ft_getpos(t_list *s, int n);
+
 // instructions
 int			ft_initialize_stack(char **av, int ac, t_list **stack_a);
 char		*ft_swap_a(t_list **stack);
