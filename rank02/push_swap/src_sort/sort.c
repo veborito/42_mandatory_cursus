@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 16:37:19 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/13 22:35:54 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/15 17:51:56 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,29 @@
 // 		lst = lst->next;
 // 	}
 // }
+
+int	ft_is_sorted_a(t_list *s)
+{
+	while (s->next != NULL)
+	{
+		if (s->content > s->next->content)
+			return (0);
+		s = s->next;
+	}
+	return (1);
+}
+
+int	ft_is_sorted_b(t_list *s)
+{
+	while (s->next != NULL)
+	{
+		if (s->content < s->next->content)
+			return (0);
+		s = s->next;
+	}
+	return (1);
+}
+
 
 void	ft_under_pivot(t_list **s_a, t_list **s_b, t_result **res, int pivot)
 {
@@ -49,9 +72,24 @@ void	ft_under_pivot(t_list **s_a, t_list **s_b, t_result **res, int pivot)
 void	ft_sort(t_list **s_a, t_list **s_b, t_result **res)
 {
 	int	size_a;
+	int	i;
+	int	pivot;
 
+	pivot = ft_lstsize(*s_a) / 2;
 	size_a = ft_lstsize(*s_a);
-	ft_under_pivot(s_a, s_b, res, size_a / 2);
-	ft_under_pivot(s_a, s_b, res, (size_a / 2) + (size_a / 4));
-	ft_printlst(*s_a);
+	i = 2;
+	while (ft_lstsize(*s_a) > 3)
+	{
+		ft_under_pivot(s_a, s_b, res, pivot);
+		i += 2;
+		pivot += (size_a / i);
+	}
+	ft_sort3(s_a, res);
+	while (ft_lstsize(*s_a) != size_a && (*s_b)->next != NULL)
+	{
+		if ((*s_b)->content < (*s_b)->next->content)
+			ft_lstadd_back_2(res, ft_lstnew_2(ft_swap_b(s_b)));
+		ft_lstadd_back_2(res, ft_lstnew_2(ft_push_a(s_b, s_a)));
+	}
+	ft_lstadd_back_2(res, ft_lstnew_2(ft_push_a(s_b, s_a)));
 }
