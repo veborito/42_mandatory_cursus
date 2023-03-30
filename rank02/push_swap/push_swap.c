@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:20:31 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/12 23:03:07 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:40:12 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,9 @@ int	main(int ac, char *av[])
 	}
 	ft_normalize(stack_a);
 	ft_sorting(&stack_a, &stack_b, &res);
-	ft_printres(res);
+	// ft_printres(res);
+	// printf("----------------------\n");
+	// ft_printlst(stack_a);
 	ft_clearlst(&stack_a);
 	ft_clearlst(&stack_b);
 	ft_clearres(&res);

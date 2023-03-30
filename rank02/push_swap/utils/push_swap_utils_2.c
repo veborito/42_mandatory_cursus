@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 16:44:32 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/12 22:56:11 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/30 10:42:20 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	ft_getpos(t_list *s, int n)
 	while (front != NULL && back != NULL)
 	{
 		if (front->index == n)
+		
 			return (i);
 		if (back->index == n)
 			return (j);

@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:19:38 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/12 23:03:05 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:50:55 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ char		*ft_rotate_a(t_list **stack);
 char		*ft_rotate_b(t_list **stack);
 char		*ft_reverse_rotate_a(t_list **stack);
 char		*ft_reverse_rotate_b(t_list **stack);
-char		*ft_push_a(t_list **stack_a, t_list **stack_b);
-char		*ft_push_b(t_list **stack_b, t_list **stack_a);
+char		*ft_push_a(t_list **stack_b, t_list **stack_a);
+char		*ft_push_b(t_list **stack_a, t_list **stack_b);
 
 // sorting algo
 void		ft_sort3(t_list **s, t_result **res);

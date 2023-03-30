@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 16:37:19 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/15 17:51:56 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/30 11:10:06 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	ft_sort(t_list **s_a, t_list **s_b, t_result **res)
 	int	i;
 	int	pivot;
 
+		printf("\n----------------------------------- NEW -----------------------\n");
 	pivot = ft_lstsize(*s_a) / 2;
 	size_a = ft_lstsize(*s_a);
 	i = 2;
@@ -85,11 +86,20 @@ void	ft_sort(t_list **s_a, t_list **s_b, t_result **res)
 		pivot += (size_a / i);
 	}
 	ft_sort3(s_a, res);
-	while (ft_lstsize(*s_a) != size_a && (*s_b)->next != NULL)
+	while (ft_lstsize(*s_b) > 0)
 	{
-		if ((*s_b)->content < (*s_b)->next->content)
-			ft_lstadd_back_2(res, ft_lstnew_2(ft_swap_b(s_b)));
+		printf("\n----STACK B--------\n");
+		ft_printlst(*s_b);
+		if (((*s_b)->index < ft_lstlast(*s_a)->index) && (ft_lstlast(*s_a)->index == (*s_a)->index - 1))
+			ft_lstadd_back_2(res, ft_lstnew_2(ft_reverse_rotate_a(s_a)));
 		ft_lstadd_back_2(res, ft_lstnew_2(ft_push_a(s_b, s_a)));
+		if ((*s_a)->index + 1 != (*s_a)->next->index)
+			ft_lstadd_back_2(res, ft_lstnew_2(ft_rotate_a(s_a)));
+		printf("\n------STACK A------\n");
+		ft_printlst(*s_a);
 	}
-	ft_lstadd_back_2(res, ft_lstnew_2(ft_push_a(s_b, s_a)));
+	if (!ft_is_sorted_a(*s_a))
+		ft_lstadd_back_2(res, ft_lstnew_2(ft_reverse_rotate_a(s_a)));
+	printf("\n-----STACK SORTED-------\n");
+	ft_printlst(*s_a);
 }
