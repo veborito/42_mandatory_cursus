@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 09:55:17 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/10 10:16:20 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/30 19:03:13 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,20 @@ void	ft_clearres(t_result **res)
 		free(tmp);
 		tmp = *res;
 	}
+}
+
+int	ft_res_size(t_result *lst)
+{
+	int	i;
+
+	i = 0;
+	if (lst)
+	{
+		while (lst)
+		{
+			lst = lst->next;
+			i++;
+		}
+	}
+	return (i);
 }

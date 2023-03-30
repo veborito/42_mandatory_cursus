@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:19:38 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/29 16:50:55 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/30 19:13:10 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void		ft_printlst(t_list *lst);
 int			ft_lenstring_tab(char **stab);
 void		ft_clearlst(t_list **stack);
 t_result	*ft_lstnew_2(char *str);
+int			ft_res_size(t_result *lst);
 void		ft_lstadd_back_2(t_result **lst, t_result *new_el);
 void		ft_printres(t_result *lst);
 void		ft_clearres(t_result **res);
@@ -57,6 +58,7 @@ int			ft_findspace(char *str);
 void		ft_normalize(t_list *s);
 int			ft_scan_samller(t_list *s, int median);
 int			ft_getpos(t_list *s, int n);
+void		ft_remove_fromlst(t_list **s, int n);
 
 // instructions
 int			ft_initialize_stack(char **av, int ac, t_list **stack_a);

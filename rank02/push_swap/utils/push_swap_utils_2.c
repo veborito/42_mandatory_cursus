@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 16:44:32 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/30 10:42:20 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/30 19:12:49 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,25 +51,16 @@ void	ft_normalize(t_list *s)
 int	ft_getpos(t_list *s, int n)
 {
 	int		i;
-	int		j;
 	t_list	*front;
-	t_list	*back;
 
 	front = s;
-	back = ft_lstlast(s);
 	i = 1;
-	j = ft_lstsize(s);
-	while (front != NULL && back != NULL)
+	while (front != NULL)
 	{
 		if (front->index == n)
-		
 			return (i);
-		if (back->index == n)
-			return (j);
 		front = front->next;
-		back = back->prev;
 		i++;
-		j--;
 	}
 	return (0);
 }
@@ -77,18 +68,38 @@ int	ft_getpos(t_list *s, int n)
 int	ft_scan_samller(t_list *s, int median)
 {
 	t_list	*front;
-	t_list	*back;
+	int		i;
 
 	front = s;
-	back = ft_lstlast(s);
-	while (front != NULL && back != NULL)
+	i = 0;
+	while (i < ft_lstsize(s) / 2)
 	{
-		if (front->index < median)
+		if (front->index <= median)
 			return (front->index);
-		if (back->index < median)
-			return (back->index);
 		front = front->next;
-		back = back->prev;
+		i += 1;
 	}
 	return (0);
+}
+
+void	ft_remove_fromlst(t_list **s, int n)
+{
+	t_list	*tmp;
+	t_list	*first;
+
+	first = *s;
+	while ((*s)->content != n && *s != NULL)
+		*s = (*s)->next;
+	if ((*s)->content != first->content)
+	{
+		tmp = *s;
+		*s = tmp->prev;
+		(*s)->next = tmp->next;
+		*s = first;
+		free(tmp);
+		return ;
+	}
+	tmp = *s;
+	*s = (*s)->next;
+	free(tmp);
 }
