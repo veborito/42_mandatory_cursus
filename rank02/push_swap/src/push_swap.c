@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:20:31 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/31 00:39:10 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/31 14:46:19 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ static void	ft_error(t_list **stack_a, int initialized)
 {
 	if (initialized == -1 || ft_doublons(*stack_a))
 	{
-		if (*stack_a)
-			ft_clearlst(stack_a);
 		ft_putendl_fd("Error", 2);
 		exit(1);
 	}
@@ -84,14 +82,8 @@ int	main(int ac, char *av[])
 	initialized = ft_initialize_stack(av, ac, &stack_a);
 	ft_error(&stack_a, initialized);
 	if (ft_is_sorted_a(stack_a))
-	{
-		ft_clearlst(&stack_a);
 		exit(0);
-	}
 	ft_sorting(&stack_a, &stack_b, &res);
 	ft_printres(res);
-	ft_clearlst(&stack_a);
-	ft_clearlst(&stack_b);
-	ft_clearres(&res);
 	exit(0);
 }
