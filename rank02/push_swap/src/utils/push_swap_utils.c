@@ -6,11 +6,11 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 11:08:05 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/30 17:59:33 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/31 12:39:54 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 int	ft_lenstring_tab(char **stab)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_numbers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 18:14:58 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/12/01 12:09:30 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/31 10:53:17 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "libft.h"
 
 void	ft_putnbr(int n, t_data *frame)
 {

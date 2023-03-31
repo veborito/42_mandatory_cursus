@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pushAndSwap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:42:37 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/31 00:36:43 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/31 12:40:24 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* Push from stack A to stack B et vice versa */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 char	*ft_push_b(t_list **stack_a, t_list **stack_b)
 {

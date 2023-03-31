@@ -1,44 +1,90 @@
-FT = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c \
-	 ft_memmove.c ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_tolower.c ft_strchr.c ft_strrchr.c ft_strncmp.c ft_memchr.c \
-	 ft_memcmp.c ft_strnstr.c ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c \
-	 ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
+NAME		:= libft.a
+SRC_DIR		:= src
+SRCS		:= \
+	basic/ft_isalpha.c					\
+	basic/ft_isdigit.c					\
+	basic/ft_isalnum.c					\
+	basic/ft_isascii.c					\
+	basic/ft_isprint.c					\
+	basic/ft_atoi.c						\
+	basic/ft_bzero.c					\
+	memory/ft_memset.c					\
+	memory/ft_memcpy.c					\
+	memory/ft_memmove.c					\
+	memory/ft_memchr.c 					\
+	memory/ft_memcmp.c					\
+	memory/ft_calloc.c					\
+	str/ft_strlen.c						\
+	str/ft_strlcpy.c					\
+	str/ft_strlcat.c					\
+	str/ft_toupper.c					\
+	str/ft_tolower.c					\
+	str/ft_strchr.c						\
+	str/ft_strrchr.c					\
+	str/ft_strncmp.c					\
+	str/ft_strnstr.c					\
+	str/ft_strdup.c						\
+	str/ft_substr.c						\
+	str/ft_strjoin.c					\
+	str/ft_strtrim.c					\
+	str/ft_split.c						\
+	str/ft_itoa.c						\
+	str/ft_strmapi.c					\
+	str/ft_striteri.c					\
+	fd/ft_putchar_fd.c					\
+	fd/ft_putstr_fd.c					\
+	fd/ft_putendl_fd.c					\
+	fd/ft_putnbr_fd.c					\
+	linked_list/ft_lstnew_bonus.c		\
+	linked_list/ft_lstadd_front_bonus.c	\
+	linked_list/ft_lstsize_bonus.c		\
+	linked_list/ft_lstlast_bonus.c		\
+	linked_list/ft_lstadd_back_bonus.c	\
+	printf/ft_printf.c					\
+	printf/ft_characters.c				\
+	printf/ft_hexa_pointer.c			\
+	printf/ft_numbers.c
 
-BONUS = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c ft_lstadd_back_bonus.c 
+SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
 
-SRC = ft_characters ft_hexa_pointer ft_numbers
+BUILD_DIR	:= .build
+OBJS 		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
+DEPS		:= $(OBJS:.o=.d)
 
-MAIN = ft_printf.c
+CC			:= gcc
+CFLAGS		:= -Wall -Wextra -Werror
+CPPFLAGS	:= -MMD -MP -I include
+AR			:= ar
+ARFLAGS		:= -r -c -s
 
-SRCS = $(addsuffix .c, $(addprefix src/, $(SRC)))
-
-OBJSRC = $(SRCS:.c=.o)
-
-OBJM = $(MAIN:.c=.o)
-
-OBJS = $(FT:.c=.o)
-
-BOBJS =$(BONUS:.c=.o)
- 
-CC = gcc
-
-CFLAGS = -Wall -Wextra -Werror
-
-NAME = libft.a
-
-RM = rm -f
+RM 			:= rm -rf
+MAKEFLAGS	+= --no-print-directory
+DIR_DUP		= mkdir -p $(@D) 
 
 LIB = ar rcs
 
 all: $(NAME) 
 
-$(NAME): $(OBJS) $(OBJSRC) $(OBJM)
-					$(LIB) $(NAME) $(OBJS) $(OBJSRC) $(OBJM)
-bonus: $(NAME) $(BOBJS)
-					$(LIB) $(NAME) $(BOBJS)		
-clean:
-					$(RM) $(OBJS) $(BOBJS) $(OBJSRC) $(OBJM)
-fclean:	clean
-					$(RM) $(NAME)
-re:	fclean	all
+$(NAME): $(OBJS)
+	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+	$(info CREATED $(NAME))
 
-.PHONY:	all re clean fclean bonus
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
+	$(DIR_DUP)
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
+	$(info CREATED $@)
+
+-include $(DEPS)
+
+clean:
+	$(RM) $(OBJS) $(DEPS) $(BUILD_DIR)
+
+fclean:	clean
+	$(RM) $(NAME)
+
+re:
+	$(MAKE) fclean
+	$(MAKE) all
+
+.PHONY:	all clean fclean re
+.SILENT:

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rotateAndRevRotate.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:20:00 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/12 23:03:13 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/31 12:40:20 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 char	*ft_rotate_a(t_list **stack)
 {

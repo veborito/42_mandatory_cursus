@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sortThreeToFive.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 23:00:03 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/12 23:03:12 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/31 12:40:15 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 void	ft_sort3(t_list **s, t_result **res)
 {

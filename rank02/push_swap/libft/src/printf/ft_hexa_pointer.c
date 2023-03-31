@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_hexa_pointer.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 10:31:03 by bverdeci          #+#    #+#             */
-/*   Updated: 2022/12/01 12:10:05 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/31 10:53:08 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "libft.h"
 
 void	ft_putpointer(unsigned long int pointer, t_data *frame)
 {

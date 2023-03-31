@@ -6,11 +6,11 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 09:55:17 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/30 19:03:13 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/31 12:39:57 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 t_result	*ft_lstnew_2(char *str)
 {
