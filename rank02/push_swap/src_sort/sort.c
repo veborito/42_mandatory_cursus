@@ -3,48 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 16:37:19 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/30 19:37:08 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/31 01:05:35 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	ft_printindex(t_list *lst)
+void	ft_sort(t_list **s_a, t_list **s_b, t_result **res)
 {
-	while (lst)
-	{
-		ft_printf("%d", lst->index);
-		ft_printf("\n");
-		lst = lst->next;
-	}
-}
+	int	size;
+	int	nb_bits;
+	int	i;
+	int	j;
 
-int	ft_is_sorted_a(t_list *s)
-{
-	while (s->next != NULL)
+	size = ft_lstsize(*s_a);
+	nb_bits = 0;
+	while ((size >> nb_bits) != 0)
+		nb_bits++;
+	i = 0;
+	while (i < nb_bits)
 	{
-		if (s->content > s->next->content)
-			return (0);
-		s = s->next;
+		j = 0;
+		while (j < size)
+		{
+			if (((*s_a)->index >> i & 1) == 1)
+				ft_lstadd_back_2(res, ft_lstnew_2(ft_rotate_a(s_a)));
+			else
+				ft_lstadd_back_2(res, ft_lstnew_2(ft_push_b(s_a, s_b)));
+			j++;
+		}
+		while (ft_lstsize(*s_b) > 0)
+			ft_lstadd_back_2(res, ft_lstnew_2(ft_push_a(s_b, s_a)));
+		i++;
 	}
-	return (1);
-}
-
-int	ft_is_sorted_b(t_list *s)
-{
-	while (s->next != NULL)
-	{
-		if (s->content < s->next->content)
-			return (0);
-		s = s->next;
-	}
-	return (1);
-}
-
-void	ft_radix(t_list **s_a, t_list **s_b, t_result **res)
-{
-	
 }

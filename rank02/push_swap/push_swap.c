@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:20:31 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/30 19:17:15 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/31 00:39:10 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_is_sorted_a(t_list *s)
+{
+	while (s->next != NULL)
+	{
+		if (s->content > s->next->content)
+			return (0);
+		s = s->next;
+	}
+	return (1);
+}
 
 static int	ft_doublons(t_list *stack)
 {
@@ -47,6 +58,17 @@ static void	ft_sorting(t_list **stack_a, t_list **stack_b, t_result **res)
 		ft_sort(stack_a, stack_b, res);
 }
 
+static void	ft_error(t_list **stack_a, int initialized)
+{
+	if (initialized == -1 || ft_doublons(*stack_a))
+	{
+		if (*stack_a)
+			ft_clearlst(stack_a);
+		ft_putendl_fd("Error", 2);
+		exit(1);
+	}
+}
+
 int	main(int ac, char *av[])
 {
 	t_list		*stack_a;
@@ -55,24 +77,19 @@ int	main(int ac, char *av[])
 	int			initialized;
 
 	if (ac == 1)
-		return (0);
+		exit(0);
 	stack_a = NULL;
 	stack_b = NULL;
 	res = NULL;
 	initialized = ft_initialize_stack(av, ac, &stack_a);
-	if (initialized == -1 || ft_doublons(stack_a))
+	ft_error(&stack_a, initialized);
+	if (ft_is_sorted_a(stack_a))
 	{
-		if (stack_a)
-			ft_clearlst(&stack_a);
-		ft_putendl_fd("Error", 2);
-		exit(1);
+		ft_clearlst(&stack_a);
+		exit(0);
 	}
-	ft_normalize(stack_a);
 	ft_sorting(&stack_a, &stack_b, &res);
-	// printf("----------------------\n");
-	// ft_printres(res);
-	// printf("----------------------\n");
-	// printf("NOMBRE d'OPERATIONS %d\n\n", ft_res_size(res));
+	ft_printres(res);
 	ft_clearlst(&stack_a);
 	ft_clearlst(&stack_b);
 	ft_clearres(&res);

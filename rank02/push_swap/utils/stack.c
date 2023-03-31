@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 00:23:53 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/10 10:16:26 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/30 22:57:31 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,6 @@ int	ft_initialize_stack(char **av, int ac, t_list **stack_a)
 		return (-1);
 	else if (ac == 2 && ft_findspace(av[1]))
 		ft_clear_numbers(numbers);
+	ft_normalize(*stack_a);
 	return (ft_lstsize(*stack_a));
 }

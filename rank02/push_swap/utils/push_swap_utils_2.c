@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 16:44:32 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/30 19:12:49 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/03/31 01:05:56 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,40 +46,6 @@ void	ft_normalize(t_list *s)
 		curr->index = index;
 		curr = curr->next;
 	}
-}
-
-int	ft_getpos(t_list *s, int n)
-{
-	int		i;
-	t_list	*front;
-
-	front = s;
-	i = 1;
-	while (front != NULL)
-	{
-		if (front->index == n)
-			return (i);
-		front = front->next;
-		i++;
-	}
-	return (0);
-}
-
-int	ft_scan_samller(t_list *s, int median)
-{
-	t_list	*front;
-	int		i;
-
-	front = s;
-	i = 0;
-	while (i < ft_lstsize(s) / 2)
-	{
-		if (front->index <= median)
-			return (front->index);
-		front = front->next;
-		i += 1;
-	}
-	return (0);
 }
 
 void	ft_remove_fromlst(t_list **s, int n)
