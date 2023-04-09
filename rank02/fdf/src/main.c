@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 09:58:46 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/04/03 18:47:28 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/04/05 14:21:01 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_draw_v(t_pixel *data, int x, int y, int len)
 		my_mlx_pixel_put(data, x, i, 0x00FFFFFF);
 }
 
-void	ft_put_nextcoord(t_pixel *data, t_coord)
+void	ft_put_nextcoord(t_pixel *data, t_coord coord)
 {
 	
 }
