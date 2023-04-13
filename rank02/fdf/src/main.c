@@ -6,12 +6,13 @@
 /*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 09:58:46 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/04/05 14:21:01 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/04/13 14:18:19 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+/* Ajoute un pixel à l'image */
 void	my_mlx_pixel_put(t_pixel *data, int x, int y, int color)
 {
 	char	*dst;
@@ -20,6 +21,7 @@ void	my_mlx_pixel_put(t_pixel *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+/* Dessine une ligne horizontale */
 void	ft_draw_h(t_pixel *data, int x, int y, int len)
 {
 	int	i;
@@ -29,6 +31,7 @@ void	ft_draw_h(t_pixel *data, int x, int y, int len)
 		my_mlx_pixel_put(data, i, y, 0x00FFFFFF);
 }
 
+/* Dessine une ligne verticale */
 void	ft_draw_v(t_pixel *data, int x, int y, int len)
 {
 	int	i;
@@ -37,12 +40,6 @@ void	ft_draw_v(t_pixel *data, int x, int y, int len)
 	while (++i < len)
 		my_mlx_pixel_put(data, x, i, 0x00FFFFFF);
 }
-
-void	ft_put_nextcoord(t_pixel *data, t_coord coord)
-{
-	
-}
-
 
 int	main(void)
 {
