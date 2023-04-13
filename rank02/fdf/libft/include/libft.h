@@ -3,21 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 19:48:02 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/03/11 13:00:56 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/04/13 18:18:04 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+// includes
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <unistd.h>
+# include <stddef.h>
+# include <fcntl.h>
 
-// ft_printf
+/* -------- GET_NEXT_LINE -------- */
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
+typedef struct s_list
+{
+	char			*content;
+	struct s_list	*next;
+}					t_list;
+
+char	*get_next_line(int fd);
+int		ft_is_in_list(t_list *stock);
+int		ft_count_from_list(t_list *stock);
+void	ft_clearlst(t_list **stock);
+void	ft_read_and_add(int fd, t_list **stock);
+void	ft_add_link(t_list **stock, char *buff, int output);
+char	*ft_add_from_list(t_list *stock, int len);
+void	ft_update_stock(t_list **stock);
+
+/* -------- FT_PRINTF -------- */
 typedef struct s_data
 {
 	va_list	va;
@@ -35,16 +61,6 @@ void	ft_putpointer(unsigned long int pointer, t_data *frame);
 void	ft_hexa_min(unsigned int pointer, t_data *frame);
 void	ft_hexa_maj(unsigned int pointer, t_data *frame);
 void	ft_putunsigned(unsigned int n, t_data *frame);
-
-typedef struct s_list
-{
-	int				content;
-	int				index;
-	struct s_list	*next;
-	struct s_list	*prev;
-
-}					t_list;
-
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);
@@ -80,7 +96,7 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
-t_list	*ft_lstnew(int content);
+t_list	*ft_lstnew(char *content);
 void	ft_lstadd_front(t_list **lst, t_list *new_el);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);

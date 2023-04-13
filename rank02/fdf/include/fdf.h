@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 09:59:07 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/04/13 14:17:25 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/04/13 17:53:29 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 # include "mlx.h"
 # include <stdio.h>
 
-/* CONSTANTES */
+/* -------- CONSTANTES -------- */
 
 # define WIDTH 1440
 # define HEIGHT 720
 
-/* STRUCTURES */
+/* -------- STRUCTURES -------- */
 
 // IMAGE
 typedef struct s_pixel {
@@ -34,10 +34,25 @@ typedef struct s_pixel {
 }				t_pixel;
 
 // COORDONNÉES
-typedef struct s_coord {
+typedef struct s_point {
 	int		x;
 	int		y;
 	int		z;
-}				t_coord;
+}				t_point;
+
+// LISTE DE COORDONNÉES
+typedef struct s_pointList {
+	t_point				point;
+	struct s_pointList	*next;
+	struct s_pointList	*prev;
+	
+}				t_pointList;
+
+/* -------- FONCTIONS -------- */
+
+// LISTE UTILS
+t_pointList	*ft_pointlast(t_pointList *lst);
+t_pointList	*ft_pointnew(t_point *point);
+void		ft_pointadd_back(t_pointList **lst, t_pointList *new_el);
 
 #endif

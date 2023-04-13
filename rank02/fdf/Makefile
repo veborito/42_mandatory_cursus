@@ -9,8 +9,9 @@ INCS		:= 		\
 	libft/include	\
 
 SRC_DIR		:= src
-SRCS		:= \
-	main.c
+SRCS		:=			\
+	main.c				\
+	utils/list_utils.c	\
 
 SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
 

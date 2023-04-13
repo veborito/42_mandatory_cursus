@@ -43,7 +43,9 @@ SRCS		:= \
 	printf/ft_printf.c					\
 	printf/ft_characters.c				\
 	printf/ft_hexa_pointer.c			\
-	printf/ft_numbers.c
+	printf/ft_numbers.c					\
+	get_next_line/get_next_line.c		\
+	get_next_line/get_next_line_utils.c
 
 SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
 
