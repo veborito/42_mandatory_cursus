@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 09:59:07 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/04/13 19:27:42 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/04/14 13:47:23 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,12 @@ typedef struct s_pointList {
 
 /* -------- FONCTIONS -------- */
 
+// BRESENHAM
+void		draw(t_pixel *img, t_point p1, t_point p2);
+
 // LISTE UTILS
-t_pointList	*ft_pointlast(t_pointList *lst);
-t_pointList	*ft_pointnew(t_point *point);
-void		ft_pointadd_back(t_pointList **lst, t_pointList *new_el);
+t_pointList	*pointlast(t_pointList *lst);
+t_pointList	*pointnew(t_point *point);
+void		pointadd_back(t_pointList **lst, t_pointList *new_el);
 
 #endif

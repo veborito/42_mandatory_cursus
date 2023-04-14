@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 09:58:46 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/04/13 19:29:26 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/04/14 15:41:28 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,8 @@ void	my_mlx_pixel_put(t_pixel *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-/* Dessine une ligne horizontale */
-void	ft_draw_h(t_pixel *data, int x, int y, int len)
-{
-	int	i;
-
-	i = x - 1;
-	while (++i < len)
-		my_mlx_pixel_put(data, i, y, 0x00FFFFFF);
-}
-
-/* Dessine une ligne verticale */
-void	ft_draw_v(t_pixel *data, int x, int y, int len)
-{
-	int	i;
-
-	i = y - 1;
-	while (++i < len)
-		my_mlx_pixel_put(data, x, i, 0x00FFFFFF);
-}
-
 /* Utilise l'algorithme de Bresenham pour dessiner un ligne */
-void	ft_draw(t_pixel *img, t_point p1, t_point p2)
+void	draw(t_pixel *img, t_point p1, t_point p2)
 {
 	int	x;
 	int	y;
@@ -69,10 +49,103 @@ void	ft_draw(t_pixel *img, t_point p1, t_point p2)
 	}
 }
 
+void	clear_split(char **s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		free(s[i++]);
+	free(s);
+}
+
+int	strtab_len(char **s)
+{
+	int	len;
+	
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
+}
+
+int	matrix_len(int **matrix)
+{
+	int	len;
+
+	len = 0;
+	while (matrix[len])
+		len++;
+	return (len);
+}
+
+int		**copy_tab(int **matrix)
+{
+	int	**new_m;
+	int	*tab;
+	int	len;
+	int	i;
+	int	j;
+	len = matrix_len(matrix);
+	new_m = malloc(sizeof(int *) * len);
+	if(!new_m)
+		return (NULL);
+	i = 0;
+	while (matrix[i])
+	{
+		j = 0;
+		len = tab_len(matrix[i]);
+		tab = malloc(sizeof(int) * len);
+		while(matrix[i][j])
+		{
+			tab[j] = matrix[i][j]
+		}
+	}
+	
+}
+
+int	add_to_tab(char **s, int **matrix, int *i)
+{
+	int	len;
+	int	*tab;
+	int	**temp;
+
+	len = strtab_len(s);
+	temp = copy_tab(matrix);
+	matrix = malloc(sizeof(*int) + i);
+	if (!matrix)
+		return ;
+	
+}
+
+int	**parse_arg(char **av, int fd)
+{
+	char	*line;
+	char	**line_split;
+	int		**matrix;
+	int		i;
+	
+	line = get_next_line(fd);
+	matrix = NULL;
+	while (line != NULL)
+	{
+		line = get_next_line(fd);
+		line_split = ft_split(line, ' ');
+		if (add_to_tab(line_split, matrix) != 0)
+			return (NULL);		
+		clear_split(line_split);
+	}
+}
+
+void	throw_error(int error)
+{
+	perror("Error ");
+	exit(1)
+}
 int	main(int ac, char **av)
 {
 	int		fd;
-	char	*line;
+	int		**map;
 	void	*mlx;
 	void	*mlx_win;
 	t_pixel	img;
@@ -80,7 +153,12 @@ int	main(int ac, char **av)
 	if (ac == 2)
 	{
 		fd = open(av[1], O_RDONLY, S_IRUSR | S_IWUSR);
-		line = get_next_line(fd);
+		if (fd == -1)
+		{
+			perror("Error ");
+			exit(1);
+		}	
+		map = parse_arg(av, fd);
 		mlx = mlx_init();
 		mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "FIL DE FER");
 		img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
@@ -88,5 +166,6 @@ int	main(int ac, char **av)
 				&img.line_length, &img.endian);
 		mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 		mlx_loop(mlx);
+		exit(0);
 	}
 }
