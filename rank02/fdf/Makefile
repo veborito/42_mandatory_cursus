@@ -12,6 +12,7 @@ SRC_DIR		:= src
 SRCS		:=			\
 	main.c				\
 	utils/list_utils.c	\
+	utils/tabs_utils.c
 
 SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
 

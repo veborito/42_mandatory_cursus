@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 09:59:07 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/04/14 13:47:23 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/04/14 16:37:39 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,12 @@ void		draw(t_pixel *img, t_point p1, t_point p2);
 t_pointList	*pointlast(t_pointList *lst);
 t_pointList	*pointnew(t_point *point);
 void		pointadd_back(t_pointList **lst, t_pointList *new_el);
+
+// TABS UTILS
+int			strtab_len(char **s);
+void		strtab_clear(char **s);
+int			matrix_len(int **matrix);
+int			tab_len(int	*tab);
+void		add_to_tab(int *tab, char **s);
 
 #endif
