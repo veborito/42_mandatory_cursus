@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 09:58:46 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/04/13 18:24:56 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/04/13 19:29:26 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	ft_draw(t_pixel *img, t_point p1, t_point p2)
 	dx = p2.x - p1.x;
 	dy = p2.y - p1.y;
 	p = 2 * dy - dx;
-	
 	while (x <= p2.x)
 	{
 		my_mlx_pixel_put(img, x, y, 0x00FFFFFF);
@@ -65,7 +64,7 @@ void	ft_draw(t_pixel *img, t_point p1, t_point p2)
 		else
 		{
 			p = p + 2 * dy - 2 * dx;
-			y--;	
+			y--;
 		}
 	}
 }
@@ -85,8 +84,8 @@ int	main(int ac, char **av)
 		mlx = mlx_init();
 		mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "FIL DE FER");
 		img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
-		img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-				&img.endian);
+		img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
+				&img.line_length, &img.endian);
 		mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 		mlx_loop(mlx);
 	}

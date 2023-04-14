@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 09:59:07 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/04/13 17:53:29 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/04/13 19:27:42 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ typedef struct s_pointList {
 	t_point				point;
 	struct s_pointList	*next;
 	struct s_pointList	*prev;
-	
 }				t_pointList;
 
 /* -------- FONCTIONS -------- */
