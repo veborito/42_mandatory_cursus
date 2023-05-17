@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 09:58:46 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/04/14 16:46:19 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/05/17 12:04:07 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,44 +76,44 @@ int	**copy_tab(int **matrix)
 	return (new_m);
 }
 
-int	add_to_matrix(char **s, int **matrix, int *i)
-{
-	int	len;
-	int	*tab;
-	int	**temp;
+// int	add_to_matrix(char **s, int **matrix, int *i)
+// {
+// 	int	len;
+// 	int	*tab;
+// 	int	**temp;
 
-	len = strtab_len(s);
-	temp = copy_tab(matrix);
-	matrix = malloc(sizeof(int *) + *i);
-	if (!matrix)
-		return (1);
-	tab = malloc(sizeof(int) * len);
-	if (!tab)
-		return (1);
-	add_to_tab(tab, s);
-}
+// 	len = strtab_len(s);
+// 	temp = copy_tab(matrix);
+// 	matrix = malloc(sizeof(int *) + *i);
+// 	if (!matrix)
+// 		return (1);
+// 	tab = malloc(sizeof(int) * len);
+// 	if (!tab)
+// 		return (1);
+// 	add_to_tab(tab, s);
+// }
 
-int	**parse_arg(char **av, int fd)
-{
-	char	*line;
-	char	**line_split;
-	int		**matrix;
-	int		i;
+// int	**parse_arg(int fd)
+// {
+// 	char	*line;
+// 	char	**line_split;
+// 	int		**matrix;
+// 	int		i;
 
-	line = get_next_line(fd);
-	matrix = NULL;
-	i = 0;
-	while (line != NULL)
-	{
-		line_split = ft_split(line, ' ');
-		if (add_to_matrix(line_split, matrix, &i) == 1)
-			return (NULL);
-		strtab_clear(line_split);
-		free(line);
-		line = get_next_line(fd);
-		i++;
-	}
-}
+// 	line = get_next_line(fd);
+// 	matrix = NULL;
+// 	i = 0;
+// 	while (line != NULL)
+// 	{
+// 		line_split = ft_split(line, ' ');
+// 		if (add_to_matrix(line_split, matrix, &i) == 1)
+// 			return (NULL);
+// 		strtab_clear(line_split);
+// 		free(line);
+// 		line = get_next_line(fd);
+// 		i++;
+// 	}
+// }
 
 void	throw_error(void)
 {
@@ -124,24 +124,26 @@ void	throw_error(void)
 int	main(int ac, char **av)
 {
 	int		fd;
-	int		**map;
+	//int		**map;
 	void	*mlx;
 	void	*mlx_win;
 	t_pixel	img;
+	
+	(void)av;
+	(void)ac;
+		
+	fd = open(av[1], O_RDONLY, S_IRUSR | S_IWUSR);
+	if (fd == -1)
+		throw_error();
+	//map = parse_arg(fd);
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "FIL DE FER");
+	img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
+			&img.line_length, &img.endian);
 
-	if (ac == 2)
-	{
-		fd = open(av[1], O_RDONLY, S_IRUSR | S_IWUSR);
-		if (fd == -1)
-			throw_error();
-		map = parse_arg(av, fd);
-		mlx = mlx_init();
-		mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "FIL DE FER");
-		img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
-		img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
-				&img.line_length, &img.endian);
-		mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-		mlx_loop(mlx);
-		exit(0);
-	}
+	
+	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	mlx_loop(mlx);
+	exit(0);
 }

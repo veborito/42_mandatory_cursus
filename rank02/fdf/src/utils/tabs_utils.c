@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:16:12 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/04/14 16:45:21 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/05/17 11:50:59 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	add_to_tab(int *tab, char **s)
 	i = 0;
 	while (s[i])
 	{
-		tab[i] = atoi(s[i][0]);
+		tab[i] = atoi(s[i]);
 		i++;
 	}
 }
