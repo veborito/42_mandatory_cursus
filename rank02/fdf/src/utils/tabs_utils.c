@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:16:12 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/05/17 11:50:59 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/05/20 12:43:05 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,34 +32,32 @@ void	strtab_clear(char **s)
 	free(s);
 }
 
-int	matrix_len(int **matrix)
+char	**copy_strtab(char **tab)
 {
-	int	len;
+	char	**new_tab;
+	int		i;
 
-	len = 0;
-	while (matrix[len])
-		len++;
-	return (len);
+	i = 0;
+	new_tab = ft_calloc(sizeof(char *), strtab_len(tab) + 1);
+	if (!new_tab)
+		return (NULL);
+	while (tab[i])
+	{
+		new_tab[i] = ft_strdup(tab[i]);
+		i++;
+	}
+	return (new_tab);
 }
 
-int	tab_len(int	*tab)
-{
-	int	len;
-
-	len = 0;
-	while (tab[len])
-		len++;
-	return (len);
-}
-
-void	add_to_tab(int *tab, char **s)
+void	clear_map(char ***map)
 {
 	int	i;
 
 	i = 0;
-	while (s[i])
+	while (map[i])
 	{
-		tab[i] = atoi(s[i]);
+		strtab_clear(map[i]);
 		i++;
 	}
+	free(map);
 }

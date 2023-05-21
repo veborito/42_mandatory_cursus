@@ -53,8 +53,8 @@ BUILD_DIR	:= .build
 OBJS 		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 DEPS		:= $(OBJS:.o=.d)
 
-CC			:= gcc
-CFLAGS		:= -Wall -Wextra -Werror
+CC			:= gcc 
+CFLAGS		:= -g -Wall -Wextra -Werror
 CPPFLAGS	:= -MMD -MP -I include
 AR			:= ar
 ARFLAGS		:= -r -c -s
