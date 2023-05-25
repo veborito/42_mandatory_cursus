@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 09:59:07 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/05/20 12:43:02 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/05/25 19:33:14 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define WIDTH 1440
 # define HEIGHT 720
 # define ECART 5
+# define BASIC_COLOR 0x00FF0000
 
 /* -------- STRUCTURES -------- */
 
@@ -37,9 +38,10 @@ typedef struct s_pixel {
 
 // COORDONNÉES
 typedef struct s_point {
-	int		x;
-	int		y;
-	int		z;
+	int	x;
+	int	y;
+	int	z;
+	int	color;
 }				t_point;
 
 // LISTE DE COORDONNÉES
@@ -50,6 +52,9 @@ typedef struct s_pointList {
 }				t_pointList;
 
 /* -------- FONCTIONS -------- */
+
+// ERROR
+void		throw_error(void);
 
 // DRAW
 void		draw_line(t_pixel *img, t_point p1, t_point p2);
@@ -64,6 +69,16 @@ void		pointadd_back(t_pointList **lst, t_pointList *new_el);
 int			strtab_len(char **s);
 void		strtab_clear(char **s);
 char		**copy_strtab(char **tab);
+
+// MAP UTILS
 void		clear_map(char ***map);
+char		***copy_map(char ***map, int size);
+char		***realloc_strtab(char ***map, char **row, int size);
+char		***create_map(char **av);
+int			map_len(char ***map);
+
+// STR UTILS
+int			ft_in_str(char *str, char c);
+char		*str_upper(char *str);
 
 #endif

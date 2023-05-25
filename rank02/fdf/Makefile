@@ -11,9 +11,11 @@ INCS		:= 		\
 SRC_DIR		:= src
 SRCS		:=			\
 	main.c				\
-	utils/list_utils.c	\
-	utils/tabs_utils.c	\
-	utils/draw_utils.c
+	utils/list.c	\
+	utils/tabs.c	\
+	utils/draw.c	\
+	utils/str.c	\
+	utils/map.c
 
 SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
 
