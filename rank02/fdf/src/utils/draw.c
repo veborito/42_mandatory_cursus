@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:56:08 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/05/25 17:19:05 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/05/26 12:31:06 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,3 +61,5 @@ void	draw_line(t_pixel *img, t_point p1, t_point p2)
 		s.y = -1;
 	algorithm(img, p1, p2, s);
 }
+
+/*affiche ma carte*/

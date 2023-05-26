@@ -9,12 +9,13 @@ INCS		:= 		\
 	libft/include	\
 
 SRC_DIR		:= src
-SRCS		:=			\
-	main.c				\
+SRCS		:=		\
+	main.c			\
 	utils/list.c	\
 	utils/tabs.c	\
 	utils/draw.c	\
-	utils/str.c	\
+	utils/str.c		\
+	utils/points.c	\
 	utils/map.c
 
 SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
@@ -44,7 +45,7 @@ DIR_DUP		= mkdir -p $(@D)
 all: $(NAME) 
 
 $(NAME): $(OBJS) $(LIB_TARGET) $(MLX)
-	$(CC) $(LDFLAGS) $(MLX_LNK) $(OBJS) $(LDLIB) -lm -o $(NAME)
+	$(CC) $(LDFLAGS) -fsanitize=address -g3 $(MLX_LNK) $(OBJS) $(LDLIB) -lm -o $(NAME)
 	$(info CREATED $(NAME))
 
 $(LIB_TARGET):
