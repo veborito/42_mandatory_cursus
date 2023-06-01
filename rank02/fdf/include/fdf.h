@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 09:59:07 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/01 15:20:06 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/01 18:33:01 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,18 @@ typedef struct s_fdf {
 	t_point	**p_map;
 }				t_fdf;
 
+// MIN_MAX
+
+typedef struct s_min_max {
+	int	min;
+	int	max;
+}			t_min_max;
+
 /* -------- FONCTIONS -------- */
-
-// ERROR
-void		throw_error(void);
-
 // DRAW
 void		draw_line(t_pixel *img, t_point p1, t_point p2);
 void		my_mlx_pixel_put(t_pixel *data, int x, int y, int color);
+void		draw_map(t_point **p_map, char ***map, t_pixel img);
 
 // LISTE UTILS
 t_pointList	*pointlast(t_pointList *lst);
@@ -90,14 +94,14 @@ char		**copy_strtab(char **tab);
 void		clear_map(char ***map);
 char		***copy_map(char ***map, int size);
 char		***realloc_strtab(char ***map, char **row, int size);
-char		***create_map(char **av);
+char		***create_map(int fd);
 int			map_len(char ***map);
+t_min_max	min_max_z(t_point **p_map, char ***map);
 
 // POINTS UTILS
-
 void		add_point(t_point **p_map, char ***map, char **row, int line);
 t_point		**p_create_map(char ***map);
-t_point		set_point(t_point **p_map, int row, int col);
+t_point		set_point(t_point **p_map, int row, int col, t_min_max z_min_max);
 
 // STR UTILS
 int			ft_in_str(char *str, char c);
@@ -106,13 +110,9 @@ char		*str_upper(char *str);
 // TRANSFO
 void		iso_transfo(int *x, int *y, int z);
 
-
-
-
 // EVENTS
 int			close_win(t_fdf *fdf);
 int			key_event(int keycode, t_fdf *fdf);
-
 
 //EVENTS ENUM
 enum e_events {
@@ -169,6 +169,5 @@ enum e_keycode
 	KEYCODE_LSHIFT = 257,
 	KEYCODE_RSHIFT = 258,
 };
-
 
 #endif
