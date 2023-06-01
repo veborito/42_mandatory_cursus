@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 14:35:07 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/05/25 19:29:42 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:02:32 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ char	***create_map(char **av)
 			throw_error();
 		free(line);
 		line = get_next_line(fd);
+		printf("%p\n", line);	
 	}
 	return (map);
 }

@@ -35,7 +35,7 @@ MLX 		:=	$(DIR_MLX)libmlx.a
 CC			:= gcc
 CFLAGS		:= -Wall -Wextra -Werror
 CPPFLAGS	:= $(addprefix -I , $(INCS)) -MMD -MP
-LDFLAGS		:= $(addprefix -L, $(dir $(LIB_TARGET)))
+LDFLAGS		:= $(addprefix -L, $(dir $(LIB_TARGET))) #-fsanitize=address -g3
 LDLIB		:= $(addprefix -l, $(LIB))
 
 RM 			:= rm -rf
@@ -45,7 +45,7 @@ DIR_DUP		= mkdir -p $(@D)
 all: $(NAME) 
 
 $(NAME): $(OBJS) $(LIB_TARGET) $(MLX)
-	$(CC) $(LDFLAGS) -fsanitize=address -g3 $(MLX_LNK) $(OBJS) $(LDLIB) -lm -o $(NAME)
+	$(CC) $(LDFLAGS) $(MLX_LNK) $(OBJS) $(LDLIB) -lm -o $(NAME)
 	$(info CREATED $(NAME))
 
 $(LIB_TARGET):

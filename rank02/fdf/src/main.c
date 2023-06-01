@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 09:58:46 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/05/26 16:14:38 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:00:24 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,19 @@ void	draw_map(t_point **p_map, t_pixel img, int len)
 	}
 }
 
+int	key_event(int keycode, t_fdf *fdf)
+{
+	if (keycode == KEYCODE_ESC)
+		close_win(fdf);
+	return (0);
+}
+
+int	close_win(t_fdf *fdf)
+{
+	mlx_destroy_image(fdf->mlx, fdf->mlx_win);
+	exit (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_fdf	fdf;
@@ -64,6 +77,7 @@ int	main(int ac, char **av)
 	if (ac == 2)
 	{
 		ft_bzero(&fdf, sizeof(fdf));
+		printf("Hello1\n");
 		fdf.map = create_map(av);
 		fdf.p_map = p_create_map(fdf.map);
 		fdf.mlx = mlx_init();
@@ -73,7 +87,10 @@ int	main(int ac, char **av)
 				&img.line_length, &img.endian);
 		draw_map(fdf.p_map, img, strtab_len(fdf.map[0]));
 		mlx_put_image_to_window(fdf.mlx, fdf.mlx_win, img.img, 0, 0);
+		mlx_key_hook(fdf.mlx_win, key_event, &fdf);
+		mlx_hook(fdf.mlx_win, ON_DESTROY, 0, close_win, &fdf);
 		mlx_loop(fdf.mlx);
+		exit(0);
 	}
 	exit(0);
 }

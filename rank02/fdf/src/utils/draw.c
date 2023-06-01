@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:56:08 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/05/26 12:31:06 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/01 15:25:07 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	algorithm(t_pixel *img, t_point p1, t_point p2, t_point s)
 	curr = p1;
 	while (curr.x != p2.x || curr.y != p2.y)
 	{
-		my_mlx_pixel_put(img, curr.x, curr.y, 0x00FF0000);
+		my_mlx_pixel_put(img, curr.x, curr.y, curr.color);
 		error[1] = 2 * error[0];
 		if (error[1] > d.y)
 		{
