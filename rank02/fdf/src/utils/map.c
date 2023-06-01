@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 14:35:07 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/01 16:02:32 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:14:20 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ char	***create_map(char **av)
 	int		fd;
 	int		size;
 	char	*line;
+	char	*trim;
 	char	***map;
 
 	fd = open(av[1], O_RDONLY, S_IRUSR | S_IWUSR);
@@ -68,12 +69,13 @@ char	***create_map(char **av)
 	while (line != NULL)
 	{
 		size++;
-		map = realloc_strtab(map, ft_split(ft_strtrim(line, "\n"), ' '), size);
+		trim = ft_strtrim(line, "\n");
+		map = realloc_strtab(map, ft_split(trim, ' '), size);
 		if (!map)
 			throw_error();
 		free(line);
 		line = get_next_line(fd);
-		printf("%p\n", line);	
+		free(trim);
 	}
 	return (map);
 }

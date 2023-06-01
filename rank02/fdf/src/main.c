@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 09:58:46 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/01 16:00:24 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:07:22 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int	main(int ac, char **av)
 	if (ac == 2)
 	{
 		ft_bzero(&fdf, sizeof(fdf));
-		printf("Hello1\n");
 		fdf.map = create_map(av);
 		fdf.p_map = p_create_map(fdf.map);
 		fdf.mlx = mlx_init();
