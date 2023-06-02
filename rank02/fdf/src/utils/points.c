@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 12:27:31 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/05/26 17:12:06 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/01 18:54:07 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,16 +73,31 @@ t_point	**p_create_map(char ***map)
 	return (p_map);
 }
 
-t_point	set_point(t_point **p_map, int row, int col)
+t_point	set_point(t_point **p_map, int row, int col, t_min_max z_min_max)
 {
-	t_point	p;
+	t_point		p;
 
 	p.x = p_map[row][col].x;
 	p.y = p_map[row][col].y;
 	p.z = p_map[row][col].z;
+	if (z_min_max.max < 50 && z_min_max.min > -50)
+		p.z = p_map[row][col].z * 3;
+	if (z_min_max.max < 10 && z_min_max.min > -10)
+		p.z = p_map[row][col].z * 10;
 	p.color = p_map[row][col].color;
 	iso_transfo(&p.x, &p.y, p.z);
 	p.x += WIDTH / 3;
 	p.y += 200;
 	return (p);
+}
+
+void	iso_transfo(int *x, int *y, int z)
+{
+	int		old_x;
+	int		old_y;
+
+	old_x = *x;
+	old_y = *y;
+	*x = (old_x - old_y) * cos(0.523599);
+	*y = -z + (old_x + old_y) * sin(0.523599);
 }
