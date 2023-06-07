@@ -10,7 +10,8 @@ INCS		:= 		\
 
 SRC_DIR		:= src
 SRCS		:=		\
-	main.c
+	main.c			\
+	error.c
 
 SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
 
@@ -23,7 +24,7 @@ DEPS		:= $(OBJS:.o=.d)
 CC			:= gcc
 CFLAGS		:= -Wall -Wextra -Werror
 CPPFLAGS	:= $(addprefix -I , $(INCS)) -MMD -MP
-LDFLAGS		:= $(addprefix -L, $(dir $(LIB_TARGET))) #-fsanitize=address -g3
+LDFLAGS		:= $(addprefix -L, $(dir $(LIB_TARGET))) -fsanitize=address -g3
 LDLIB		:= $(addprefix -l, $(LIB))
 
 RM 			:= rm -rf
