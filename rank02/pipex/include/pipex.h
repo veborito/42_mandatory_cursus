@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:11:03 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/07 18:53:00 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/08 16:22:34 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 
 // ERROR
 
-void	throw_error(void);
+void	throw_error(char *error);
+void	free_split(char **split);
+
 
 // file descriptors
 

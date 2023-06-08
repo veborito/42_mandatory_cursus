@@ -3,17 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 18:28:31 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/07 18:29:36 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/08 16:22:23 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	throw_error(void)
+void	throw_error(char *error)
 {
-	perror(NULL);
+	perror(error);
 	exit(1);
+}
+
+void	free_split(char **split)
+{
+	int	i;
+
+	i = -1;
+	while (split[++i])
+		free(split[i]);
+	free(split);
 }
