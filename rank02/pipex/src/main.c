@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:12:33 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/08 17:01:01 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/09 02:01:19 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,16 @@ static void	process_exec(char **av, char **env, int pid)
 	if (pid == 0)
 	{
 		cmds = ft_split(av[2], ' ');
-		if (!cmds)
-			exit(1);
+		if (!cmds || !cmds[0])
+			throw_error(NULL);
 		paths = get_paths(env);
 		if (!paths)
 			exit(1);
 		exec_cmd(cmds, paths, env);
 	}
 	cmds = ft_split(av[3], ' ');
-	if (!cmds)
-		exit(1);
+	if (!cmds || !cmds[0])
+		throw_error("Invalid argument ");
 	paths = get_paths(env);
 	if (!paths)
 		exit(1);
