@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:12:33 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/09 02:01:19 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/13 11:43:27 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ static void	exec_cmd(char **cmds, char **paths, char **env)
 		free(path_cmd);
 	}
 	free(cmd);
-	throw_error("Command not found ");
+	ft_putendl_fd("Command not found", 2);
+	exit(1);
 }
 
 static void	process_exec(char **av, char **env, int pid)
@@ -79,7 +80,7 @@ static void	process_exec(char **av, char **env, int pid)
 	}
 	cmds = ft_split(av[3], ' ');
 	if (!cmds || !cmds[0])
-		throw_error("Invalid argument ");
+		throw_error(NULL);
 	paths = get_paths(env);
 	if (!paths)
 		exit(1);
@@ -88,26 +89,31 @@ static void	process_exec(char **av, char **env, int pid)
 
 static void	pipex(char **av, char **env, t_fds fds, int pid1)
 {
+	int	pid2;
+
 	if (pid1 == 0)
 	{
-		fds.infile = open(av[1], O_RDONLY);
-		if (fds.infile < 0)
-			throw_error(NULL);
+		dup2(fds.infile, STDIN_FILENO);
+		dup2(fds.fd[1], STDOUT_FILENO);
 		close(fds.fd[0]);
-		dup2(fds.infile, 0);
-		dup2(fds.fd[1], 1);
-		process_exec(av, env, pid1);
 		close(fds.fd[1]);
+		process_exec(av, env, pid1);
 	}
-	else
+	pid2 = fork();
+	if (pid2 < 0)
+		throw_error(NULL);
+	if (pid2 == 0)
 	{
-		close(fds.fd[1]);
-		dup2(fds.fd[0], 0);
-		dup2(fds.outfile, 1);
-		process_exec(av, env, pid1);
+		dup2(fds.fd[0], STDIN_FILENO);
+		dup2(fds.outfile, STDOUT_FILENO);
 		close(fds.fd[0]);
-		waitpid(pid1, NULL, 0);
+		close(fds.fd[1]);
+		process_exec(av, env, pid1);
 	}
+	close(fds.fd[0]);
+	close(fds.fd[1]);
+	waitpid(pid1, NULL, 0);
+	waitpid(pid2, NULL, 0);
 }
 
 int	main(int ac, char **av, char **env)
@@ -124,8 +130,14 @@ int	main(int ac, char **av, char **env)
 	fds.outfile = open(av[4], O_CREAT | O_RDWR | O_TRUNC, 0777);
 	if (fds.outfile < 0)
 		throw_error(NULL);
-	pipe(fds.fd);
+	fds.infile = open(av[1], O_RDONLY);
+	if (fds.infile < 0)
+		throw_error(NULL);
+	if (pipe(fds.fd) == -1)
+		throw_error(NULL);
 	pid1 = fork();
+	if (pid1 < 0)
+		throw_error(NULL);
 	pipex(av, env, fds, pid1);
 	exit(0);
 }
