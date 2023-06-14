@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:12:33 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/13 11:43:27 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/13 17:15:30 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,16 +87,16 @@ static void	process_exec(char **av, char **env, int pid)
 	exec_cmd(cmds, paths, env);
 }
 
-static void	pipex(char **av, char **env, t_fds fds, int pid1)
+static void	pipex(char **av, char **env, t_fds *fds, int pid1)
 {
 	int	pid2;
 
 	if (pid1 == 0)
 	{
-		dup2(fds.infile, STDIN_FILENO);
-		dup2(fds.fd[1], STDOUT_FILENO);
-		close(fds.fd[0]);
-		close(fds.fd[1]);
+		dup2(fds->infile, STDIN_FILENO);
+		dup2(fds->fd[1], STDOUT_FILENO);
+		close(fds->fd[0]);
+		close(fds->fd[1]);
 		process_exec(av, env, pid1);
 	}
 	pid2 = fork();
@@ -104,16 +104,16 @@ static void	pipex(char **av, char **env, t_fds fds, int pid1)
 		throw_error(NULL);
 	if (pid2 == 0)
 	{
-		dup2(fds.fd[0], STDIN_FILENO);
-		dup2(fds.outfile, STDOUT_FILENO);
-		close(fds.fd[0]);
-		close(fds.fd[1]);
+		dup2(fds->fd[0], STDIN_FILENO);
+		dup2(fds->outfile, STDOUT_FILENO);
+		close(fds->fd[0]);
+		close(fds->fd[1]);
 		process_exec(av, env, pid1);
 	}
-	close(fds.fd[0]);
-	close(fds.fd[1]);
+	close(fds->fd[0]);
+	close(fds->fd[1]);
 	waitpid(pid1, NULL, 0);
-	waitpid(pid2, NULL, 0);
+	waitpid(pid2, &fds->res, 0);
 }
 
 int	main(int ac, char **av, char **env)
@@ -127,7 +127,7 @@ int	main(int ac, char **av, char **env)
 		ft_putendl_fd("Incorrect number of arguments", 2);
 		exit(1);
 	}
-	fds.outfile = open(av[4], O_CREAT | O_RDWR | O_TRUNC, 0777);
+	fds.outfile = open(av[4], O_CREAT | O_RDWR | O_TRUNC, 0666);
 	if (fds.outfile < 0)
 		throw_error(NULL);
 	fds.infile = open(av[1], O_RDONLY);
@@ -138,6 +138,8 @@ int	main(int ac, char **av, char **env)
 	pid1 = fork();
 	if (pid1 < 0)
 		throw_error(NULL);
-	pipex(av, env, fds, pid1);
+	pipex(av, env, &fds, pid1);
+	if (fds.res != 0)
+		exit(1);
 	exit(0);
 }

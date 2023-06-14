@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/02 12:11:03 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/13 17:23:54 by bverdeci         ###   ########.fr       */
+/*   Created: 2023/06/14 12:58:01 by bverdeci          #+#    #+#             */
+/*   Updated: 2023/06/14 13:00:23 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PHILO_H
+# define PHILO_H
 
-# include "libft.h"
+# include <unistd.h>
+# include <pthread.h>
+# include <sys/time.h>
 # include <stdio.h>
-# include <sys/wait.h>
+# include <stdlib.h>
+# include <string.h>
 
-// ERROR
-
-void	throw_error(char *error);
-void	free_split(char **split);
-
-// file descriptors
-
-typedef struct s_fds {
-	int	infile;
-	int	outfile;
-	int	fd[2];
-	int	res;
-}	t_fds;
 
 #endif
