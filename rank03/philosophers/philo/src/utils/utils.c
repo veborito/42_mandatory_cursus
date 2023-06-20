@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   write_error.c                                      :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:34:46 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/20 12:44:51 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:49:14 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,14 @@ void	write_error(char *s)
 	len = my_strlen(s);
 	if (write(2, s, len) == -1 || write(2, "\n", 1) == -1)
 		return ;
+}
+
+long int	get_time(void)
+{
+	struct timeval	curr_time;
+	long int		time_in_ms;
+
+	gettimeofday(&curr_time, NULL);
+	time_in_ms = (curr_time.tv_sec * 1000) + (curr_time.tv_usec / 1000);
+	return (time_in_ms);
 }

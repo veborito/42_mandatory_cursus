@@ -6,7 +6,7 @@ INCS		:= 		\
 SRC_DIR		:= src
 SRCS		:=			\
 	main.c				\
-	utils/write_error.c \
+	utils/utils.c 		\
 	utils/numbers.c 	\
 	utils/philos.c 		\
 	utils/init.c 		\
@@ -17,7 +17,7 @@ BUILD_DIR	:= .build
 OBJS 		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 DEPS		:= $(OBJS:.o=.d)
 
-CC			:= gcc -fsanitize=address -g3
+CC			:= gcc
 CFLAGS		:= -Wall -Wextra -Werror -pthread
 CPPFLAGS	:= $(addprefix -I , $(INCS)) -MMD -MP
  
@@ -37,6 +37,9 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	$(info CREATED $@)
 
 -include $(DEPS)
+
+debug:
+	$(CC) -fsanitize=address -g $(OBJS) -o $(NAME)
 
 clean:
 	$(RM) $(OBJS) $(DEPS) $(BUILD_DIR)
