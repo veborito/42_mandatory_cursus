@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 12:58:01 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/14 13:00:23 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:42:09 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,46 @@
 # include <stdlib.h>
 # include <string.h>
 
+// CONSTANTS
+# define INT_MAX 2147483647
+# define ALIVE 10
+# define DEAD 11
+# define SLEEPS 12
+# define THINKS 13
+# define EAT 14
 
+// STRUCTS
+typedef struct s_philo
+{
+	int				id;
+	int				status;
+	pthread_t		philo;
+	pthread_mutex_t	fork;
+	pthread_mutex_t	*next_fork;
+	struct s_table	*table;
+	struct s_philo	*next;
+}				t_philo;
+
+typedef struct s_table
+{
+	t_philo			*philos;
+	int				t_eat;
+	int				t_die;
+	int				t_sleep;
+	int				foods;
+}					t_table;
+
+// write error
+int		my_strlen(char *s);
+void	write_error(char *s);
+
+// numbers
+int		my_isdigit(int c);
+int		my_atoi(char *str);
+
+// list
+void	add_philo(t_philo **philos, t_table *table, int i);
+
+// routine
+void	*routine(void *arg);
 #endif

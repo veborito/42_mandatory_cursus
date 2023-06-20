@@ -4,8 +4,11 @@ INCS		:= 		\
 	include			\
 
 SRC_DIR		:= src
-SRCS		:=		\
-	main.c			\
+SRCS		:=			\
+	main.c				\
+	utils/write_error.c \
+	utils/numbers.c 	\
+	utils/philos.c 	\
 
 SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
 
@@ -13,11 +16,10 @@ BUILD_DIR	:= .build
 OBJS 		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 DEPS		:= $(OBJS:.o=.d)
 
-CC			:= gcc
-CFLAGS		:= -Wall -Wextra -Werror
+CC			:= gcc -fsanitize=address -g3
+CFLAGS		:= -Wall -Wextra -Werror -pthread
 CPPFLAGS	:= $(addprefix -I , $(INCS)) -MMD -MP
-LDFLAGS		:= -pthread #-fsanitize=address -g3
-
+ 
 RM 			:= rm -rf
 MAKEFLAGS	+= --no-print-directory
 DIR_DUP		= mkdir -p $(@D) 
