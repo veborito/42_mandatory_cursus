@@ -8,7 +8,8 @@ SRCS		:=			\
 	main.c				\
 	utils/write_error.c \
 	utils/numbers.c 	\
-	utils/philos.c 	\
+	utils/philos.c 		\
+	utils/init.c 		\
 
 SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
 

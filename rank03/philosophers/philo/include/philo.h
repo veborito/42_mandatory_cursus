@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 12:58:01 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/20 16:42:09 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:10:45 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ typedef struct s_table
 	int				foods;
 }					t_table;
 
+// init
+int		init_table(t_table *table, t_philo **philos, char **av);
+int		check_args(char **av);
+
+
 // write error
 int		my_strlen(char *s);
 void	write_error(char *s);
@@ -58,7 +63,7 @@ int		my_isdigit(int c);
 int		my_atoi(char *str);
 
 // list
-void	add_philo(t_philo **philos, t_table *table, int i);
+int		add_philo(t_philo **philos, t_table *table, int i);
 
 // routine
 void	*routine(void *arg);
