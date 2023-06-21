@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 12:58:01 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/20 17:46:37 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/21 16:07:26 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct s_philo
 	int				id;
 	int				status;
 	pthread_t		philo;
+	pthread_mutex_t	lstmeal_m;
+	long int		lstmeal;
 	pthread_mutex_t	fork;
 	pthread_mutex_t	*next_fork;
 	struct s_table	*table;
@@ -43,9 +45,9 @@ typedef struct s_philo
 typedef struct s_table
 {
 	t_philo			*philos;
-	int				t_eat;
-	int				t_die;
-	int				t_sleep;
+	long int		t_eat;
+	long int		t_die;
+	long int		t_sleep;
 	int				foods;
 }					t_table;
 
@@ -53,11 +55,11 @@ typedef struct s_table
 int			init_table(t_table *table, t_philo **philos, char **av);
 int			check_args(char **av);
 
-
-// write error
+// utils
 int			my_strlen(char *s);
 void		write_error(char *s);
 long int	get_time(void);
+void		ms_sleep(long int time);
 
 // numbers
 int			my_isdigit(int c);

@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:34:46 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/20 17:49:14 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/21 16:07:38 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,14 @@ long int	get_time(void)
 	gettimeofday(&curr_time, NULL);
 	time_in_ms = (curr_time.tv_sec * 1000) + (curr_time.tv_usec / 1000);
 	return (time_in_ms);
+}
+
+
+void	ms_sleep(long int time)
+{
+	long int	acc_time;
+
+	acc_time = get_time();
+	while (get_time() - acc_time < time)
+		usleep(time / 10);
 }

@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 12:57:34 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/20 18:33:44 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/21 12:25:25 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,20 @@
 
 /*  --- DEBUG -------
 
+	t_philo *temp;
+
+	temp = philos;
 	while (temp)
 	{
 		printf("philo : %d -- table : %p -- fork : %p --\
-next_fork : %p -- status: %d\n",
+ next_fork : %p -- status: %d\n",
 			temp->id, temp->table, &temp->fork, temp->next_fork, temp->status);
 		temp = temp->next;
 	}
+	printf("time to die: %d -- time to eat : %d -- time to sleep : %d\n", table.t_die, table.t_eat, table.t_sleep);
+	printf("foods needed : %d\n", table.foods);
+	printf("------------------------\n");
+	printf("first philo : %d\n", table.philos->id);
 */
 
 /*
@@ -29,6 +36,31 @@ next_fork : %p -- status: %d\n",
 - faire une fonction pour sleep et checker si un philo meurs en meme temps qu'il fait une autre action.
 
 */
+
+int create_philos(t_philo *philos)
+{
+    t_philo *temp;
+    int i;
+    
+    temp = philos;
+    i = -1;
+    while (temp)
+    {
+        if (pthread_create(&philos->philo, 0, &routine, temp) == -1)
+            return (1);
+        temp = temp->next;
+    }
+    temp = philos;
+    i = -1;
+    usleep(10000);
+    while (temp)
+    {
+        if (pthread_join(philos->philo, NULL) == -1)
+            return (1);
+        temp = temp->next;
+    }
+    return (0);
+}
 
 int	main(int ac, char **av)
 {
@@ -52,19 +84,7 @@ int	main(int ac, char **av)
 		write_error("Initialization error");
 		return (1);
 	}
-	t_philo *temp;
-
-	temp = philos;
-	while (temp)
-	{
-		printf("philo : %d -- table : %p -- fork : %p --\
- next_fork : %p -- status: %d\n",
-			temp->id, temp->table, &temp->fork, temp->next_fork, temp->status);
-		temp = temp->next;
-	}
-	printf("time to die: %d -- time to eat : %d -- time to sleep : %d\n", table.t_die, table.t_eat, table.t_sleep);
-	printf("foods needed : %d\n", table.foods);
-	printf("------------------------\n");
-	printf("first philo : %d\n", table.philos->id);
+    if (create_philos(philos) == 1)
+        return (1);
  	return (0);
 }

@@ -10,6 +10,7 @@ SRCS		:=			\
 	utils/numbers.c 	\
 	utils/philos.c 		\
 	utils/init.c 		\
+	utils/routine.c 	\
 
 SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
 
