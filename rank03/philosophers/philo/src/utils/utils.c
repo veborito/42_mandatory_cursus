@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:34:46 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/21 16:07:38 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/21 16:55:15 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ long int	get_time(void)
 
 void	ms_sleep(long int time)
 {
-	long int	acc_time;
+	long int	start;
 
-	acc_time = get_time();
-	while (get_time() - acc_time < time)
+	start = get_time();
+	while (get_time() - start < time)
 		usleep(time / 10);
 }

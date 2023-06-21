@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 12:58:01 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/21 16:07:26 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/21 17:04:55 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct s_philo
 	int				id;
 	int				status;
 	pthread_t		philo;
-	pthread_mutex_t	lstmeal_m;
 	long int		lstmeal;
 	pthread_mutex_t	fork;
 	pthread_mutex_t	*next_fork;
@@ -49,6 +48,7 @@ typedef struct s_table
 	long int		t_die;
 	long int		t_sleep;
 	int				foods;
+	int				n_philo;
 }					t_table;
 
 // init

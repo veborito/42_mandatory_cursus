@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:11:00 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/21 14:23:03 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/21 17:05:55 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	init_table(t_table *table, t_philo **philos, char **av)
 	table->foods = INT_MAX;
 	if (av[5])
 		table->foods = my_atoi(av[5]);
+	table->n_philo = n_philo;
 	table->philos = *philos;
 	table->t_die = (long int)my_atoi(av[2]);
 	table->t_eat = (long int)my_atoi(av[3]);
