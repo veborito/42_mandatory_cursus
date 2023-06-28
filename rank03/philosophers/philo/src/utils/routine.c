@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 15:47:54 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/21 17:21:26 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/22 12:47:42 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,15 @@ void	*routine(void *arg)
 	}
 	if (pthread_mutex_init(&eat_m, NULL) != 0)
 		return (NULL);
+	if (philo->id % 2 == 0)
+		usleep(500);
 	while (eat < philo->table->foods)
 	{
-		if (philo->id % 2 == 0)
-			usleep(500);
 		pthread_mutex_lock(&philo->fork);
 		printf("%ld ms -- %d has taken a fork\n", get_time() - t1, philo->id);
 		pthread_mutex_lock(philo->next_fork);
 		printf("%ld ms -- %d has taken a fork\n", get_time() - t1, philo->id);
+		philo->status = EAT;
 		printf("%ld ms -- %d is eating\n", get_time() - t1, philo->id);
 		pthread_mutex_lock(&eat_m);
 		eat++;
@@ -50,8 +51,10 @@ void	*routine(void *arg)
 		pthread_mutex_unlock(&philo->fork);
 		pthread_mutex_unlock(philo->next_fork);
 		printf("%ld ms -- %d is sleeping\n", get_time() - t1, philo->id);
+		philo->status = SLEEPS;
 		ms_sleep(philo->table->t_sleep);
 		printf("%ld ms -- %d is thinking\n", get_time() - t1, philo->id);
+		philo->status = THINKS;
 	}
 	pthread_mutex_destroy(&eat_m);
 	return (NULL);

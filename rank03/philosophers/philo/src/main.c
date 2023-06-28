@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 12:57:34 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/21 12:25:25 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/22 12:15:42 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,8 @@
 int create_philos(t_philo *philos)
 {
     t_philo *temp;
-    int i;
     
     temp = philos;
-    i = -1;
     while (temp)
     {
         if (pthread_create(&philos->philo, 0, &routine, temp) == -1)
@@ -51,7 +49,6 @@ int create_philos(t_philo *philos)
         temp = temp->next;
     }
     temp = philos;
-    i = -1;
     usleep(10000);
     while (temp)
     {

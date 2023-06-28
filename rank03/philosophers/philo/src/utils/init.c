@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:11:00 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/21 17:05:55 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/22 12:45:07 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	init_table(t_table *table, t_philo **philos, char **av)
 	table->t_die = (long int)my_atoi(av[2]);
 	table->t_eat = (long int)my_atoi(av[3]);
 	table->t_sleep = (long int)my_atoi(av[4]);
+	if (pthread_mutex_init(&table->status_m, NULL) != 0)
+		return (1);
 	return (0);
 }
 

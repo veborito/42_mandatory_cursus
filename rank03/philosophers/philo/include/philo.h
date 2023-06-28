@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 12:58:01 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/21 17:04:55 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/22 12:45:20 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,16 @@
 
 // CONSTANTS
 # define INT_MAX 2147483647
-# define ALIVE 10
-# define DEAD 11
-# define SLEEPS 12
-# define THINKS 13
-# define EAT 14
+
+// ENUM
+enum state 
+{
+	ALIVE,
+	DEAD,
+	SLEEPS,
+	THINKS,
+	EAT,
+};
 
 // STRUCTS
 typedef struct s_philo
@@ -49,6 +54,8 @@ typedef struct s_table
 	long int		t_sleep;
 	int				foods;
 	int				n_philo;
+	pthread_mutex_t	status_m;
+	int				status_g;
 }					t_table;
 
 // init
