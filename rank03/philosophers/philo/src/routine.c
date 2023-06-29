@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 15:47:54 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/29 09:33:39 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/29 12:41:33 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 void	print_msg(t_philo *philo, char *msg)
 {
+	pthread_mutex_lock(&philo->table->status_m);
 	if (philo->table->status == FINISHED)
+	{
+		pthread_mutex_unlock(&philo->table->status_m);
 		return ;
+	}
+	pthread_mutex_unlock(&philo->table->status_m);
 	pthread_mutex_lock(&philo->print_m);
 	printf("%ld %d %s\n", get_time() - philo->table->t1, philo->id, msg);
 	pthread_mutex_unlock(&philo->print_m);
@@ -37,8 +42,7 @@ void	drop_forks(t_philo *philo)
 
 void	eat(t_philo *philo)
 {
-	if (philo->table->status == FINISHED)
-		return ;
+
 	take_forks(philo);
 	print_msg(philo, EAT);
 	pthread_mutex_lock(&philo->eat_m);
@@ -46,14 +50,14 @@ void	eat(t_philo *philo)
 	philo->meals++;
 	pthread_mutex_unlock(&philo->eat_m);
 	ms_sleep(philo->table->t_eat);
+	pthread_mutex_lock(&philo->eat_m);
 	philo->lstmeal = get_time() - philo->table->t1;
+	pthread_mutex_unlock(&philo->eat_m);
 	drop_forks(philo);
 }
 
 void	sleeps(t_philo *philo)
 {
-	if (philo->table->status == FINISHED)
-		return ;
 	print_msg(philo, SLEEPS);
 	philo->status = SLEEPING;
 	ms_sleep(philo->table->t_sleep);
@@ -61,8 +65,6 @@ void	sleeps(t_philo *philo)
 
 void	thinks(t_philo *philo)
 {
-	if (philo->table->status == FINISHED)
-		return ;
 	print_msg(philo, THINKS);
 	philo->status = THINKING;
 }
@@ -74,12 +76,17 @@ void	*check_philo(void *arg)
 	long int	time;
 
 	philo = (void *)arg;
+	if (philo->table->n_philo == 1)
+		return (NULL);
 	while (philo->table->status != FINISHED)
 	{
 		temp = philo;
 		while (temp)
 		{
+			pthread_mutex_lock(&temp->lock);
+			pthread_mutex_lock(&temp->eat_m);
 			time = (get_time() - temp->table->t1) - temp->lstmeal;
+			pthread_mutex_unlock(&temp->eat_m);
 			if (time >= temp->table->t_die)
 			{
 				print_msg(temp, DIED);
@@ -88,6 +95,7 @@ void	*check_philo(void *arg)
 				pthread_mutex_unlock(&temp->table->status_m);
 				break;
 			}
+			pthread_mutex_unlock(&temp->lock);
 			temp = temp->next;
 		}
 	}
@@ -99,6 +107,7 @@ void	*routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
+
 	if (philo->table->n_philo == 1)
 	{
 		pthread_mutex_lock(&philo->fork);
@@ -109,16 +118,22 @@ void	*routine(void *arg)
 		pthread_mutex_unlock(&philo->fork);
 		return (NULL);
 	}
-	if (philo->id % 2 == 0)
-		usleep(500);
-	while (philo->table->status != FINISHED)
+	while (1)
 	{
-		if (philo->table->status != FINISHED)
+		pthread_mutex_lock(&philo->table->status_m);
+		if(philo->table->status != FINISHED)
 		{
+			pthread_mutex_unlock(&philo->table->status_m);
 			eat(philo);
 			sleeps(philo);
 			thinks(philo);
 		}
+		else
+		{
+			pthread_mutex_unlock(&philo->table->status_m);
+			break ;
+		}
+
 	}
 	return (NULL);
 }

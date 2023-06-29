@@ -1,57 +1,85 @@
-NAME		:= philo
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/03/22 14:55:53 by vgroux            #+#    #+#              #
+#    Updated: 2023/06/29 11:53:58 by bverdeci         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-INCS		:= 		\
-	include			\
+GREENGREEN = \033[38;5;46m
+RED = \033[0;31m
+GREY = \033[38;5;240m
+RESET = \033[0m
 
-SRC_DIR		:= src
-SRCS		:=			\
-	main.c				\
-	utils/utils.c 		\
-	utils/numbers.c 	\
-	utils/philos.c 		\
-	utils/init.c 		\
-	utils/routine.c 	\
+NAME =     philo
 
-SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
+CC =         gcc
+CFLAGS =     -Wall -Wextra -Werror
+RM =         rm -rf
 
-BUILD_DIR	:= .build
-OBJS 		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
-DEPS		:= $(OBJS:.o=.d)
+SFLAGS = -fsanitize=thread 
 
-CC			:= gcc
-CFLAGS		:= -Wall -Wextra -Werror -pthread
-CPPFLAGS	:= $(addprefix -I , $(INCS)) -MMD -MP
- 
-RM 			:= rm -rf
-MAKEFLAGS	+= --no-print-directory
-DIR_DUP		= mkdir -p $(@D) 
+DIR_H = include/
+DIR_S =	src/
+DIR_O =	objs/
+DIR_SAN = san/
 
-all: $(NAME) 
+SRCS_LIST =	main.c 		\
+			utils.c 	\
+			numbers.c 	\
+			philos.c 	\
+			init.c 		\
+			routine.c 	\
+			
+			
+			
+			
 
-$(NAME): $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
-	$(info CREATED $(NAME))
+SRCS =		${addprefix ${DIR_S}, ${SRCS_LIST}}
 
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
-	$(DIR_DUP)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
-	$(info CREATED $@)
+OBJS =		${SRCS:${DIR_S}%.c=${DIR_O}%.o}
 
--include $(DEPS)
+SAN-OBJS =	${SRCS:${DIR_S}%.c=${DIR_SAN}%.o}
 
-debug:
-	$(CC) -fsanitize=address -g $(OBJS) -o $(NAME)
+${NAME}: ${OBJS}
+	@echo "$(RESET)[$(GREENGREEN)${NAME}$(RESET)]: ${NAME} objects were created${GREY}"
+	${CC} ${OBJS} -lpthread -o ${NAME}
+	@echo "$(RESET)[$(GREENGREEN)${NAME}$(RESET)]: ${NAME} created !"
+
+all: ${NAME}
+
+san: fclean ${SAN-OBJS}
+	${CC} ${SAN-OBJS} -lpthread -o ${NAME} ${SFLAGS}
+
+${DIR_O}%.o:${DIR_S}%.c
+	@printf "${GREY}"
+	@mkdir -p ${DIR_O}
+	${CC} ${CFLAGS} -I ${DIR_H} -o $@ -c $<
+
+${DIR_SAN}%.o:${DIR_S}%.c
+	@printf "${GREY}"
+	@mkdir -p ${DIR_SAN}
+	${CC} ${CFLAGS} ${SFLAGS} -I ${DIR_H} -o $@ -c $<
 
 clean:
-	$(RM) $(OBJS) $(DEPS) $(BUILD_DIR)
-	$(info CLEANING...)
+	@echo "[$(RED)${NAME}$(RESET)]: cleaning ${NAME} objects...${GREY}"
+	${RM} ${OBJS}
+	${RM} ${DIR_O}
+	${RM} ${DIR_SAN}
+	@echo "[$(RED)${NAME}$(RESET)]: ${NAME} objects were cleaned${GREY}"
 
-fclean:	clean
-	$(RM) $(NAME)
+fclean: clean
+	@echo "${RESET}[$(RED)${NAME}$(RESET)]: cleaning ${NAME}...${GREY}"
+	${RM} ${NAME}
+	@echo "${RESET}[$(RED)${NAME}$(RESET)]: ${NAME} executable was cleaned"
 
-re:
-	$(MAKE) fclean
-	$(MAKE) all
+printcompil:
+	@echo "$(RESET)[$(GREENGREEN)${NAME}$(RESET)]: ${NAME} objects compilation...${GREY}"
 
-.PHONY:	all clean fclean re
-.SILENT:
+re: fclean printcompil all
+
+.PHONY: all clean fclean re
