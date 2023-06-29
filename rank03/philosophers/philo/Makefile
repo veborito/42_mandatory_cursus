@@ -6,7 +6,7 @@
 #    By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 14:55:53 by vgroux            #+#    #+#              #
-#    Updated: 2023/06/29 11:53:58 by bverdeci         ###   ########.fr        #
+#    Updated: 2023/06/29 14:24:49 by bverdeci         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,9 @@ SRCS_LIST =	main.c 		\
 			philos.c 	\
 			init.c 		\
 			routine.c 	\
+			destroy.c 	\
+			actions.c 	\
+			checker.c 	\
 			
 			
 			

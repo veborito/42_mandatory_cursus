@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 12:58:01 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/29 09:25:11 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/29 14:18:55 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,10 @@ typedef struct s_table
 // init
 int			init_table(t_table *table, t_philo **philos, char **av);
 int			check_args(char **av);
+int			init_prog(int ac, char **av, t_philo **philos, t_table *table);
+
+// destroy
+void		destroy_all(t_philo **philos, t_table *table);
 
 // utils
 int			my_strlen(char *s);
@@ -87,8 +91,9 @@ void		ms_sleep(long int time);
 int			my_isdigit(int c);
 int			my_atoi(char *str);
 
-// list
+// philos
 int			add_philo(t_philo **philos, t_table *table, int i);
+int			create_philos(t_philo *philos);
 
 // routine
 void		*routine(void *arg);
@@ -101,7 +106,5 @@ void		print_msg(t_philo *philo, char *msg);
 void		eat(t_philo *philo);
 void		sleeps(t_philo *philo);
 void		thinks(t_philo *philo);
-
-
 
 #endif

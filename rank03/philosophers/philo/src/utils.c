@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:34:46 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/29 09:25:01 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/29 14:22:11 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ long int	get_time(void)
 	return (time_in_ms);
 }
 
-
 void	ms_sleep(long int time)
 {
 	long int	start;
@@ -51,4 +50,18 @@ void	ms_sleep(long int time)
 	start = get_time();
 	while (get_time() - start < time)
 		usleep(time / 10);
+}
+
+void	print_msg(t_philo *philo, char *msg)
+{
+	pthread_mutex_lock(&philo->table->status_m);
+	if (philo->table->status == FINISHED)
+	{
+		pthread_mutex_unlock(&philo->table->status_m);
+		return ;
+	}
+	pthread_mutex_unlock(&philo->table->status_m);
+	pthread_mutex_lock(&philo->print_m);
+	printf("%ld %d %s\n", get_time() - philo->table->t1, philo->id, msg);
+	pthread_mutex_unlock(&philo->print_m);
 }

@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:11:00 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/28 16:51:58 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/29 14:17:49 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,25 @@ int	check_args(char **av)
 			return (0);
 	}
 	return (1);
+}
+
+int	init_prog(int ac, char **av, t_philo **philos, t_table *table)
+{
+	if (ac < 5 || ac > 6)
+	{
+		write_error("Mauvais nombre d'arguments");
+		return (1);
+	}
+	if (!check_args(av))
+	{
+		write_error("Mauvais arguments");
+		return (1);
+	}
+	if (init_table(table, philos, av))
+	{
+		write_error("Initialization error");
+		return (1);
+	}
+	table->t1 = get_time();
+	return (0);
 }
