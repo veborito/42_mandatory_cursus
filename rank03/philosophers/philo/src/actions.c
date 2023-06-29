@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:51:20 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/29 14:22:51 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/29 14:39:28 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@ void	eat(t_philo *philo)
 	philo->meals++;
 	pthread_mutex_unlock(&philo->eat_m);
 	ms_sleep(philo->table->t_eat);
+	pthread_mutex_lock(&philo->eat_m);
+	if (philo->meals == philo->table->foods)
+	{
+		pthread_mutex_lock(&philo->table->done_eating_m);
+		philo->table->done_eating++;
+		pthread_mutex_unlock(&philo->table->done_eating_m);
+	}
+	pthread_mutex_unlock(&philo->eat_m);
 	pthread_mutex_lock(&philo->eat_m);
 	philo->lstmeal = get_time() - philo->table->t1;
 	pthread_mutex_unlock(&philo->eat_m);

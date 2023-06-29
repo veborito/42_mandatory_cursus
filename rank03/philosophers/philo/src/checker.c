@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:53:46 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/29 14:24:16 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/29 14:41:08 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,16 @@ void	*check_philo(void *arg)
 				break ;
 			}
 			pthread_mutex_unlock(&temp->lock);
+			pthread_mutex_lock(&philo->table->done_eating_m);
+			if (philo->table->done_eating == philo->table->n_philo)
+			{
+				pthread_mutex_unlock(&philo->table->done_eating_m);
+				pthread_mutex_lock(&temp->table->status_m);
+				temp->table->status = FINISHED;
+				pthread_mutex_unlock(&temp->table->status_m);
+				break ;
+			}
+			pthread_mutex_unlock(&philo->table->done_eating_m);
 			temp = temp->next;
 		}
 	}
