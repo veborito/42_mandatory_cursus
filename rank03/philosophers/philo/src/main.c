@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 12:57:34 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/22 12:15:42 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/29 09:34:28 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int create_philos(t_philo *philos)
         temp = temp->next;
     }
     temp = philos;
-    usleep(10000);
+	usleep(500);
     while (temp)
     {
         if (pthread_join(philos->philo, NULL) == -1)
@@ -61,8 +61,9 @@ int create_philos(t_philo *philos)
 
 int	main(int ac, char **av)
 {
-	t_table	table;
-	t_philo	*philos;
+	t_table		table;
+	t_philo		*philos;
+	pthread_t	super;
 
 	memset(&table, 0, sizeof(table));
 	philos = NULL;
@@ -81,7 +82,18 @@ int	main(int ac, char **av)
 		write_error("Initialization error");
 		return (1);
 	}
+	table.t1 = get_time();
+	if (table.n_philo > 1)
+	{
+		if (pthread_create(&super, 0, &check_philo, philos))
+			return (1);
+	}
     if (create_philos(philos) == 1)
         return (1);
+	if (table.n_philo > 1)
+	{
+		if (pthread_join(super, NULL))
+			return (1);
+	}
  	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philos.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bverdeci <bverdeci@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:10:49 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/21 17:01:50 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/28 16:39:11 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,18 @@ static t_philo	*create_philo(int i, t_table *table)
 	if (new)
 	{
 		new->id = i + 1;
+		new->meals = 0;
 		new->status = ALIVE;
 		new->table = table;
 		new->next = NULL;
 		new->next_fork = NULL;
 		if (pthread_mutex_init(&new->fork, NULL) != 0)
+			return (NULL);
+		if (pthread_mutex_init(&new->eat_m, NULL) != 0)
+			return (NULL);
+		if (pthread_mutex_init(&new->lock, NULL) != 0)
+			return (NULL);
+		if (pthread_mutex_init(&new->print_m, NULL) != 0)
 			return (NULL);
 	}
 	return (new);
