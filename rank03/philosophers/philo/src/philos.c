@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:10:49 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/29 14:16:43 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/30 09:19:02 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,24 @@ int	create_philos(t_philo *philos)
 	t_philo	*temp;
 
 	temp = philos;
+	if (temp->table->n_philo == 1)
+	{
+		if (pthread_create(&temp->philo, 0, &one_philo, temp) == -1)
+			return (1);
+		if (pthread_join(temp->philo, NULL) == -1)
+			return (1);
+		return (0);
+	}
 	while (temp)
 	{
-		if (pthread_create(&philos->philo, 0, &routine, temp) == -1)
+		if (pthread_create(&temp->philo, 0, &routine, temp) == -1)
 			return (1);
 		temp = temp->next;
-		ms_sleep(1);
 	}
 	temp = philos;
 	while (temp)
 	{
-		if (pthread_join(philos->philo, NULL) == -1)
+		if (pthread_join(temp->philo, NULL) == -1)
 			return (1);
 		temp = temp->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: bverdeci <bverdeci@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 12:58:01 by bverdeci          #+#    #+#             */
-/*   Updated: 2023/06/29 14:18:55 by bverdeci         ###   ########.fr       */
+/*   Updated: 2023/06/30 09:36:39 by bverdeci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define INT_MAX 2147483647
 
 // ENUM
-enum state 
+enum e_state
 {
 	ALIVE,
 	DEAD,
@@ -98,6 +98,7 @@ int			create_philos(t_philo *philos);
 // routine
 void		*routine(void *arg);
 void		*check_philo(void *arg);
+void		*one_philo(void *arg);
 
 // actions
 void		take_forks(t_philo *philo);
