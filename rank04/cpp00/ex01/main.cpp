@@ -30,25 +30,23 @@ int main( void )
   while (buff.compare("EXIT") != 0)
   {
     std::cout << "type a command : ";
-    std::cin >> buff; 
-    std::cout << std::endl;
+    std::getline(std::cin, buff); 
     if (buff.compare("ADD") == 0)
     {
       std::cout << "Fisrt Name: "; 
-      std::cin >> name;
+      std::getline(std::cin, name);
       std::cout << "Last Name: "; 
-      std::cin >> last_name;
+      std::getline(std::cin, last_name);
       std::cout << " Nickname: "; 
-      std::cin >> nick_name;
+      std::getline(std::cin, nick_name);
       std::cout << "Phone Number: "; 
-      std::cin >> phone_number;
+      std::getline(std::cin, phone_number);
       std::cout << "Darkest secret: "; 
-      std::cin >> darkest_secret;
+      std::getline(std::cin, darkest_secret);
       repertoire.add(create_contact(name, last_name, nick_name, phone_number, darkest_secret));
+      std::cout << "Premier contact " << repertoire.contacts[0].first_name << std::endl;
     }
   }
-
-  std::cout << "Dans la fonction main" << std::endl;
   return (0);
 }
 
