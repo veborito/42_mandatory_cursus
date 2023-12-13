@@ -1,29 +1,38 @@
 #include <iostream>
+#include <ostream>
 #include <string>
 #include "PhoneBook.class.hpp"
 
-Contact create_contact( String name, String last_name, String nick_name, 
-    String phone_number , String darkest_secret )
+Contact create_contact( std::string name, std::string last_name, std::string nick_name, 
+    std::string phone_number , std::string darkest_secret )
 {
-  Contact contact(name, last_name, nick_name, phone_number, darkest_secret);
+  Contact contact;
 
+  contact.first_name = name;
+  contact.last_name = last_name;
+  contact.phone_number = phone_number;
+  contact.nick_name = nick_name;
+  contact.darkest_secret = darkest_secret;
   return contact;
 }
 
 int main( void )
 {
-  PhoneBook repertoire;
-  std::string    buff;
-  String    name;
-  String    last_name;
-  String    nick_name;
-  String    phone_number;
-  String    darkest_secret;
+  Contact     contacts[8];  
+  PhoneBook   repertoire(contacts);
+  std::string buff;
+  std::string name;
+  std::string last_name;
+  std::string nick_name;
+  std::string phone_number;
+  std::string darkest_secret;
 
-  std::cin >> buff;
-  while (!buff.compare("EXIT"))
+  while (buff.compare("EXIT") != 0)
   {
-    if (buff.compare("ADD"))
+    std::cout << "type a command : ";
+    std::cin >> buff; 
+    std::cout << std::endl;
+    if (buff.compare("ADD") == 0)
     {
       std::cout << "Fisrt Name: "; 
       std::cin >> name;

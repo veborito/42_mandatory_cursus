@@ -6,10 +6,10 @@ class PhoneBook {
 
   public: 
    
-    Contact contacts[8];
+    Contact *contacts;
     int     index;
 
-    PhoneBook( void );
+    PhoneBook( Contact *rep_contacts );
     ~PhoneBook( void );
 
     void  add( Contact contact );

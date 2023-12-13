@@ -6,14 +6,13 @@ class Contact {
 
   public:
 
-   String first_name;
-   String last_name;
-   String nick_name;
-   String phone_number;
-   String darkest_secret;
+    std::string first_name;
+    std::string last_name;
+    std::string nick_name;
+    std::string phone_number;
+    std::string darkest_secret;
 
-   Contact( String f_name, String l_name, String n_name,
-       String p_num, String secret );
+   Contact( void );
    ~Contact( void );
 };
 
