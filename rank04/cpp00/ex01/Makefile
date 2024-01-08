@@ -6,8 +6,6 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
 
 SRC = 											\
 			main.cpp							\
-			Contact.class.cpp			\
-			PhoneBook.class.cpp
 
 all : $(TARGET)
 
