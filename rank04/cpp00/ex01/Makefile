@@ -8,6 +8,7 @@ SRC = 											\
 			main.cpp							\
 			PhoneBook.class.cpp					\
 			Contact.class.cpp					\
+			utils.cpp							\
 
 all : $(TARGET)
 

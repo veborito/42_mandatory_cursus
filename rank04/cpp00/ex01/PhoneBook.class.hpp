@@ -5,12 +5,13 @@
 
 class PhoneBook {
 public:
-    PhoneBook(int nb);
+    PhoneBook();
     ~PhoneBook();
 
-    Contact     getContact(int index) const;
-    int         getNbContacts() const;
+    Contact     getContact(int index) const; // pour debug
+    int         getNbContacts() const; // nombre de contact dans le repo !
     void        add();
+    void        search() const;
 private:
     Contact     _contacts[8];
     int         _nbContacts;
@@ -20,6 +21,7 @@ private:
                             std::string nickName, std::string phone,
                             std::string secret);
 
+    bool        _processInput() const;
 };
 
 #endif
