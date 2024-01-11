@@ -74,11 +74,12 @@ bool PhoneBook::_processInput() const {
             std::cout << "Cet index n'est pas valid !\n";
             return true;
         }
-        std::cout << this->getContact(index).getFirstName() << " | "
-                  <<  this->getContact(index).getLastName() << " | "
-                  << this->getContact(index).getNickName() << " | "
-                  << this->getContact(index).getPhone() << " | "
-                  << this->getContact(index).getSecret() << '\n';
+        std::cout 
+            << "First Name: "<< this->getContact(index).getFirstName() << "\n"
+            << "Last Name: "<<  this->getContact(index).getLastName() << "\n"
+            << "Nick Name: "<< this->getContact(index).getNickName() << "\n"
+            << "Phone Number: "<< this->getContact(index).getPhone() << "\n"
+            << "Darkest Secret: "<< this->getContact(index).getSecret() << '\n';
         return false;
     }
     std::cout << "Cet index n'est pas valid !\n";
@@ -95,6 +96,8 @@ void PhoneBook::search() const {
         formatString(this->getContact(i).getFirstName());
         std::cout << " | ";
         formatString(this->getContact(i).getLastName());
+        std::cout << " | ";
+        formatString(this->getContact(i).getNickName());
         std::cout << '\n';
     }
     int access = true;
