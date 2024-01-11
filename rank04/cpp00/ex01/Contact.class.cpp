@@ -22,3 +22,19 @@ void Contact::setContact(std::string firstName, std::string lastName,
 std::string Contact::getFirstName() const {
     return this->_firstName;
 }
+
+std::string Contact::getLastName() const {
+    return this->_lastName;
+}
+
+std::string Contact::getNickName() const {
+    return this->_nickName;
+}
+
+std::string Contact::getPhone() const {
+    return this->_phone;
+}
+
+std::string Contact::getSecret() const {
+    return this->_secret;
+}

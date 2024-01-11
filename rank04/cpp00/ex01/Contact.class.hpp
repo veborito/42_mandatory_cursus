@@ -10,6 +10,10 @@ public:
     void setContact(std::string firstName,std::string lastName,
                  std::string nickName, std::string phone, std::string secret);
     std::string getFirstName() const;
+    std::string getLastName() const;
+    std::string getNickName() const;
+    std::string getPhone() const;
+    std::string getSecret() const;
 private:
     std::string _firstName;
     std::string _lastName;

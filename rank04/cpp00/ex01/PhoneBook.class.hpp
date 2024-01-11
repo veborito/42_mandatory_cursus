@@ -8,13 +8,18 @@ public:
     PhoneBook(int nb);
     ~PhoneBook();
 
-    void    addContact(std::string firstName,std::string lastName,
-                       std::string nickName, std::string phone,
-                       std::string secret);
-    Contact getContact(int index) const;
+    Contact     getContact(int index) const;
+    int         getNbContacts() const;
+    void        add();
 private:
-    Contact _contacts[8];
-    int     _nbContacts;
+    Contact     _contacts[8];
+    int         _nbContacts;
+
+    std::string _fillContactInfo() const;
+    void        _addContact(std::string firstName,std::string lastName,
+                            std::string nickName, std::string phone,
+                            std::string secret);
+
 };
 
 #endif
