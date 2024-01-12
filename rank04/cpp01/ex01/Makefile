@@ -1,4 +1,4 @@
-TARGET = zombie
+TARGET = horde
 
 CXX = g++
 
@@ -7,8 +7,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
 SRC = 											\
 			main.cpp							\
 			Zombie.cpp							\
-			newZombie.cpp						\
-			randomChump.cpp						\
+			zombieHorde.cpp						\
 
 all : $(TARGET)
 
