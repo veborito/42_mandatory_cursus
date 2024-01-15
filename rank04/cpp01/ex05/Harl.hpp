@@ -4,15 +4,15 @@
 
 class Harl {
 private:
-    void _debug();
-    void _info();
-    void _warning();
-    void _error();
+    void _debug() const;
+    void _info() const;
+    void _warning() const;
+    void _error() const;
 public:
     Harl();
     ~Harl();
 
-    void complain(std::string level);
+    void complain(std::string level) const;
 };
 
 #endif
