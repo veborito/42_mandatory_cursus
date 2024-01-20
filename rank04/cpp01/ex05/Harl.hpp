@@ -12,7 +12,7 @@ public:
     Harl();
     ~Harl();
 
-    void complain(std::string level) const;
+    void complain(std::string const level) const;
 };
 
 #endif

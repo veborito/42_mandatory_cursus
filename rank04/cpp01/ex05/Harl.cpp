@@ -6,7 +6,7 @@ Harl::Harl() {}
 
 Harl::~Harl() {}
 
-void Harl::complain(std::string level) const {
+void Harl::complain(std::string const level) const {
     typedef void (Harl::*Messages)() const;
     std::string messages[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
     Messages mess[4] = {&Harl::_debug, &Harl::_info, 
