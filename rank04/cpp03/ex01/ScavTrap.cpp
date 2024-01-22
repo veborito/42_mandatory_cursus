@@ -26,6 +26,16 @@ ScavTrap::~ScavTrap() {
     std::cout << "ScavTrap Destructor called\n";
 }
 
+ScavTrap& ScavTrap::operator=(ScavTrap const& rhs) {
+    if (this != &rhs) {
+        this->_name = rhs.getName();
+        this->_hitPoints = rhs.getHitPoints();
+        this->_energyPoints = rhs.getEnergyPoints();
+        this->_attackDamage = rhs.getAttackDamage();
+    }
+    return *this;
+}
+
 void ScavTrap::attack(std::string const& target) {
     if (this->_hitPoints == 0) {
         std::cout << "ScavTrap " << this->_name << " is broken\n";

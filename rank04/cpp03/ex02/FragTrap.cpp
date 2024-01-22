@@ -26,6 +26,16 @@ FragTrap::~FragTrap() {
     std::cout << "FragTrap Destructor called\n";
 }
 
+FragTrap& FragTrap::operator=(FragTrap const& rhs) {
+    if (this != &rhs) {
+        this->_name = rhs.getName();
+        this->_hitPoints = rhs.getHitPoints();
+        this->_energyPoints = rhs.getEnergyPoints();
+        this->_attackDamage = rhs.getAttackDamage();
+    }
+    return *this;
+}
+
 void FragTrap::highFivesGuys() {
     if (this->_hitPoints == 0) {
         std::cout << "FragTrap " << this->_name << " is broken!\n";

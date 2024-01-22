@@ -21,11 +21,12 @@ ClapTrap::~ClapTrap() {
 }
 
 ClapTrap& ClapTrap::operator=(ClapTrap const& rhs) {
-    this->_name = rhs.getName();
-    this->_hitPoints = rhs.getHitPoints();
-    this->_energyPoints = rhs.getEnergyPoints();
-    this->_attackDamage = rhs.getAttackDamage();
-    
+    if (this != &rhs) {
+        this->_name = rhs.getName();
+        this->_hitPoints = rhs.getHitPoints();
+        this->_energyPoints = rhs.getEnergyPoints();
+        this->_attackDamage = rhs.getAttackDamage();
+    }
     return *this;
 }
 
