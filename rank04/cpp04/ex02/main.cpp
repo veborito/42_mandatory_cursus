@@ -1,44 +1,10 @@
 #include "Animal.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include <iostream>
 
 int main() {
-    std::cout << "DEFAULT TESTS\n";
-    const Animal* meta = new Animal();
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
-
-    std::cout << j->getType() << " " << std::endl;
-    std::cout << i->getType() << " " << std::endl;
-
-    i->makeSound(); //will output the cat sound!
-    j->makeSound();
-    meta->makeSound();
-
-    delete meta;
-    delete j;
-    delete i;
-    
-    std::cout << "-------- MES TESTS -------\n";
-
-    WrongAnimal const* wrongAnimal = new WrongAnimal();
-    WrongAnimal const* wrongCat = new WrongCat();
-
-    std::cout << wrongAnimal->getType() << '\n';
-    std::cout << wrongCat->getType() << '\n';
-
-    wrongCat->makeSound();
-    wrongAnimal->makeSound();
-
-    delete wrongAnimal;
-    delete wrongCat;
-     
-    std::cout << "-------- NOUVEAU TESTS -------\n";
-
-    Animal* animaux[10];
+    AAnimal* animaux[10];
 
     for(int i = 0; i < 10; ++i) {
         if (i < 5)
@@ -76,5 +42,8 @@ int main() {
     std::cout << otherCat->getBrain()->getIdeas()[0] << '\n';
     delete cat;
     delete otherCat;
+    
+    //std::scout << "Ne marche pas\n";
+    //AAnimal* animal = new AAnimal();
     return 0;
 }

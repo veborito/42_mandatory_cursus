@@ -2,29 +2,26 @@
 #include <iostream>
 #include <string>
 
-Animal::Animal() : m_type("Animal") {
-    std::cout << "Animal constructor called\n";
+AAnimal::AAnimal() : m_type("AAnimal") {
+    std::cout << "AAnimal constructor called\n";
 }
 
-Animal::Animal(Animal const& instance) {
-    std::cout << "Animal copy constructor called\n";
+AAnimal::AAnimal(AAnimal const& instance) {
+    std::cout << "AAnimal copy constructor called\n";
     *this = instance;
 }
 
-Animal::~Animal() {
-    std::cout << "Animal destructor called\n";
+AAnimal::~AAnimal() {
+    std::cout << "AAnimal destructor called\n";
 }
 
-Animal& Animal::operator=(Animal const& rhs) {
+AAnimal& AAnimal::operator=(AAnimal const& rhs) {
     if (this != &rhs)
         this->m_type = rhs.getType();
     return *this;
 }
 
-std::string Animal::getType() const {
+std::string AAnimal::getType() const {
     return this->m_type;
 }
 
-void Animal::makeSound() const {
-    std::cout << "Animal makes a sound\n";
-}
