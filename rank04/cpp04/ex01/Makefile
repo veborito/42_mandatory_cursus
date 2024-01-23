@@ -1,11 +1,17 @@
-TARGET = phonebook
+TARGET = animals 
 
 CXX = g++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
 
 SRC = 											\
-			test.cpp							\
+			main.cpp							\
+			Animal.cpp							\
+			WrongAnimal.cpp						\
+			Cat.cpp								\
+			WrongCat.cpp						\
+			Dog.cpp								\
+			Brain.cpp							\
 
 all : $(TARGET)
 

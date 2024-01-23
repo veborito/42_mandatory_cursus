@@ -11,6 +11,8 @@ void formatString(std::string s) {
 }
 
 bool isNum(std::string s) {
+    if (s == "")
+        return false;
     for (size_t i = 0; i < s.length(); i++) {
         if (!std::isdigit(s[i]))
             return false;
