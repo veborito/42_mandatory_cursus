@@ -14,8 +14,8 @@ void fileError(std::string filename) {
 
 void copyFile(std::ifstream *ifs, std::ofstream *ofs) {
     std::string line;
-    std::getline(*ifs, line, '\0');
-    *ofs << line << '\n';
+    while(std::getline(*ifs, line))
+        *ofs << line << '\n';
     exit(0);
 }
 
@@ -25,14 +25,16 @@ void replace(std::ifstream *ifs, std::ofstream *ofs, std::string strToErase,
         copyFile(ifs, ofs);
     std::string line;
     size_t pos;
-    std::getline(*ifs, line, '\0');
-    pos = line.find(strToErase);
-    while (pos != std::string::npos) {
-        line.erase(pos, strToErase.length());
-        line.insert(pos, strToInsert);
+
+    while(std::getline(*ifs, line)) {
         pos = line.find(strToErase);
+        while (pos != std::string::npos) {
+            line.erase(pos, strToErase.length());
+            line.insert(pos, strToInsert);
+            pos = line.find(strToErase);
+        }
+        *ofs << line << '\n';
     }
-    *ofs << line;
 }
 
 int main(int ac, char *av[]) {

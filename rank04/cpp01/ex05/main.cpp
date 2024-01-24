@@ -1,25 +1,16 @@
 #include "Harl.hpp"
-#include <sstream>
 #include <string>
 #include <iostream>
 
-void tests(int numOfTests, std::string tests) {
-    std::string* cases = new std::string [numOfTests];
-    std::stringstream s(tests);
-    int i = 0;
-    while(std::getline(s, cases[i], ' ') and i < numOfTests)
-        i++;
-    Harl harl;
-    for(int i = 0; i < numOfTests; ++i) {
-        std::cout << i << ' ';
-        harl.complain(cases[i]);
-    }
-}
-
 int main() {
-    tests(5, "SALAM INFO DEBUG WARNING ERROR .");
-    Harl empty;
-    std::cout << "Empty string test: ";
-    empty.complain("");
+    Harl harl;
+    std::string mess;
+    while (true) {
+        std::cout << "Make Harl complain (DEBUG, INFO, ERROR, WARNING, (q to quit): ";
+        getline(std::cin>>std::ws, mess);
+        if (mess == "q")
+            break;
+        harl.complain(mess);
+    }
     return 0;
 }
