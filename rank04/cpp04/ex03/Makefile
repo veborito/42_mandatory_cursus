@@ -1,4 +1,4 @@
-TARGET = ref
+TARGET = interface
 
 CXX = g++
 

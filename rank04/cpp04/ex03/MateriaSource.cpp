@@ -27,9 +27,7 @@ MateriaSource& MateriaSource::operator=(MateriaSource const& rhs) {
 void MateriaSource::learnMateria(AMateria* m) {
     for (int i = 0; i < 4; ++i) {
         if (this->_materias[i] == nullptr) {
-            std::cout << "HERE\n";
             this->_materias[i] = m;
-            std::cout << this->_materias[i]->getType() << '\n';
             return;
         }
     }
