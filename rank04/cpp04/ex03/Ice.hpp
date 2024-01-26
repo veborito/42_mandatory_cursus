@@ -1,10 +1,10 @@
 #ifndef ICE_H
 #define ICE_H
 
-#include "AMateria.hpp"
 #include "ICharacter.hpp"
+#include "AMateria.hpp"
 
-class Ice : AMateria {
+class Ice : public AMateria {
 public :
     Ice();
     Ice(Ice const& instance);

@@ -1,10 +1,10 @@
-#ifndef ICE_H
-#define ICE_H
+#ifndef CURE_H
+#define CURE_H
 
-#include "AMateria.hpp"
 #include "ICharacter.hpp"
+#include "AMateria.hpp"
 
-class Cure : AMateria {
+class Cure : public AMateria {
 public :
     Cure();
     Cure(Cure const& instance);

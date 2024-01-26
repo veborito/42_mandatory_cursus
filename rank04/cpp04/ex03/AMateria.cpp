@@ -24,6 +24,7 @@ std::string const& AMateria::getType() const {
 }
 
 void AMateria::use(ICharacter& target) {
-    std::cout << this->_type << "I don't know do something ?\n";
+    std::cout << this->_type << "I don't know do something ? To "
+              << target.getName() << '\n';
 }
 

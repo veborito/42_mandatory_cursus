@@ -7,6 +7,10 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
 SRC = 											\
 			main.cpp							\
 			AMateria.cpp						\
+			MateriaSource.cpp					\
+			Character.cpp						\
+			Ice.cpp								\
+			Cure.cpp							\
 
 all : $(TARGET)
 
