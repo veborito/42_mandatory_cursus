@@ -13,35 +13,35 @@ int main() {
         Bureaucrat bob("bob", 1000);
         std::cout << "comment va ton pantalon\n";
     } catch (std::exception &e) {
-        std::cout << "Man qu'est-ce que t'as foutu\n";
+        std::cerr << e.what() << '\n';
     }
     try {
         Bureaucrat jack("jack", 0);
         std::cout << "comment va ton pantalon\n";
-        std::cout << jack << '\n'; 
+        std::cout << jack << '\n';
     } catch (std::exception &e) {
-        std::cout << "Man qu'est-ce que t'as foutu\n";
+        std::cerr << e.what() << '\n';
     }
     try {
         boris.incrementGrade();
         std::cout << "comment va ton pantalon\n";
     } catch (std::exception &e) {
-        std::cout << "Man qu'est-ce que t'as foutu\n";
+        std::cerr << e.what() << '\n';
     }
     try {
         carmelle.decrementGrade();
         std::cout << "comment va ton pantalon\n";
     } catch (std::exception &e) {
-        std::cout << "Man qu'est-ce que t'as foutu\n";
+        std::cerr << e.what() << '\n';
     }
     try {
-        std::cout << mily << '\n'; 
+        std::cout << mily << '\n';
         mily.decrementGrade();
-        std::cout << mily << '\n'; 
+        std::cout << mily << '\n';
         mily.incrementGrade();
-        std::cout << mily << '\n'; 
+        std::cout << mily << '\n';
     } catch (std::exception &e) {
-        std::cout << "Man qu'est-ce que t'as foutu\n";
+        std::cerr << e.what() << '\n';
     }
     return 0;
 }

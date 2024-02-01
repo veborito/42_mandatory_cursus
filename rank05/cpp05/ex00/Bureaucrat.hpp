@@ -13,7 +13,7 @@ class Bureaucrat {
 
     Bureaucrat &operator=(Bureaucrat const &rhs);
 
-    std::string const getName() const;
+    std::string getName() const;
     int getGrade() const;
     void incrementGrade();
     void decrementGrade();
