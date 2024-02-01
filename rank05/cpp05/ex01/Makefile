@@ -7,6 +7,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
 SRC = 											\
 			main.cpp							\
 			Bureaucrat.cpp						\
+			Form.cpp							\
 
 all : $(TARGET)
 

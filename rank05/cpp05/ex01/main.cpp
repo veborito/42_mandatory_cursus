@@ -3,45 +3,45 @@
 #include <string>
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main() {
     Bureaucrat boris("Boris", 1);
     Bureaucrat carmelle("Carmelle", 150);
     Bureaucrat mily("Mily", 10);
+    Bureaucrat malia(mily);
+    Form f1("relou", 100);
+    Form f2("relou2", 1);
+    Form f3("relou3", 75);
+    Form f4(f3);
 
+    std::cout << malia << '\n';
+    std::cout << f4 << '\n';
     try {
-        Bureaucrat bob("bob", 1000);
-        std::cout << "comment va ton pantalon\n";
+        Form mauvais("relou", 200);
     } catch (std::exception &e) {
-        std::cout << "Man qu'est-ce que t'as foutu\n";
+        std::cout << e.what() << '\n';
     }
     try {
-        Bureaucrat jack("jack", 0);
-        std::cout << "comment va ton pantalon\n";
-        std::cout << jack << '\n'; 
+        Form mauvais2("relou", 0);
     } catch (std::exception &e) {
-        std::cout << "Man qu'est-ce que t'as foutu\n";
+        std::cout << e.what() << '\n';
     }
     try {
-        boris.incrementGrade();
-        std::cout << "comment va ton pantalon\n";
+        boris.signForm(f1);
+        carmelle.signForm(f1);
     } catch (std::exception &e) {
-        std::cout << "Man qu'est-ce que t'as foutu\n";
+        std::cout << e.what() << '\n';
     }
     try {
-        carmelle.decrementGrade();
-        std::cout << "comment va ton pantalon\n";
+        carmelle.signForm(f2);
     } catch (std::exception &e) {
-        std::cout << "Man qu'est-ce que t'as foutu\n";
+        std::cout << e.what() << '\n';
     }
     try {
-        std::cout << mily << '\n'; 
-        mily.decrementGrade();
-        std::cout << mily << '\n'; 
-        mily.incrementGrade();
-        std::cout << mily << '\n'; 
+        mily.signForm(f3);
     } catch (std::exception &e) {
-        std::cout << "Man qu'est-ce que t'as foutu\n";
+        std::cout << e.what() << '\n';
     }
     return 0;
 }

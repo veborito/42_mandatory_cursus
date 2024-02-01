@@ -4,6 +4,8 @@
 #include <exception>
 #include <string>
 
+class Form;
+
 class Bureaucrat {
    public:
     Bureaucrat();
@@ -13,10 +15,11 @@ class Bureaucrat {
 
     Bureaucrat &operator=(Bureaucrat const &rhs);
 
-    std::string const getName() const;
+    std::string getName() const;
     int getGrade() const;
     void incrementGrade();
     void decrementGrade();
+    void signForm(Form &form) const;
 
     class GradeTooHighException : public std::exception {
        public:
