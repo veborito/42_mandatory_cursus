@@ -20,28 +20,16 @@ int main() {
     try {
         Form mauvais("relou", 200);
     } catch (std::exception &e) {
-        std::cout << e.what() << '\n';
+        std::cerr << e.what() << '\n';
     }
     try {
         Form mauvais2("relou", 0);
     } catch (std::exception &e) {
-        std::cout << e.what() << '\n';
+        std::cerr << e.what() << '\n';
     }
-    try {
-        boris.signForm(f1);
-        carmelle.signForm(f1);
-    } catch (std::exception &e) {
-        std::cout << e.what() << '\n';
-    }
-    try {
-        carmelle.signForm(f2);
-    } catch (std::exception &e) {
-        std::cout << e.what() << '\n';
-    }
-    try {
-        mily.signForm(f3);
-    } catch (std::exception &e) {
-        std::cout << e.what() << '\n';
-    }
+    boris.signForm(f1);
+    carmelle.signForm(f1);
+    carmelle.signForm(f2);
+    mily.signForm(f3);
     return 0;
 }
