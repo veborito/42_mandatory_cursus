@@ -1,6 +1,8 @@
 #include "ScalarConverter.hpp"
+#include <iostream>
 
 int main() {
+
     ScalarConverter::convert("42.0f");
     ScalarConverter::convert("-42.0f");
     ScalarConverter::convert("-42.012f");

@@ -7,7 +7,7 @@ class ScalarConverter {
    public:
     ScalarConverter();
     ScalarConverter(ScalarConverter const &instance);
-    ~ScalarConverter();
+    virtual ~ScalarConverter();
 
     virtual ScalarConverter &operator=(ScalarConverter const &rhs) = 0;
 

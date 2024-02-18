@@ -1,9 +1,10 @@
 #include "ScalarConverter.hpp"
-#include "utils.hpp"
 
 #include <exception>
 #include <iostream>
 #include <string>
+
+#include "utils.hpp"
 
 ScalarConverter::ScalarConverter() {}
 ScalarConverter::ScalarConverter(ScalarConverter const &instance) {
@@ -12,8 +13,7 @@ ScalarConverter::ScalarConverter(ScalarConverter const &instance) {
 ScalarConverter::~ScalarConverter() {}
 
 void ScalarConverter::convert(std::string const &literal) {
-    if (!edge_case(literal))
-        return ;
+    if (!edge_case(literal)) return;
     switch (get_type(find_type(literal))) {
         case 0: {
             char c = literal[0];
@@ -49,4 +49,3 @@ void ScalarConverter::convert(std::string const &literal) {
         }
     }
 }
-

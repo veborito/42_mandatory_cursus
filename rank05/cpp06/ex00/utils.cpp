@@ -1,7 +1,7 @@
 #include <iomanip>
 #include <iostream>
 #include <limits>
-#include <exceptions>
+#include <exception>
 
 #include  "utils.hpp"
 
