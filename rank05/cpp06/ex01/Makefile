@@ -1,4 +1,4 @@
-TARGET = converter
+TARGET = serializer 
 
 CXX = g++
 
@@ -6,8 +6,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
 
 SRC = 										\
 		main.cpp							\
-		ScalarConverter.cpp					\
-		utils.cpp							\
+		Serializer.cpp						\
 
 all : $(TARGET)
 
