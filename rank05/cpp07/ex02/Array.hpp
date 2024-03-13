@@ -4,14 +4,15 @@
 template <typename T>
 class Array {
    public:
-    Array<T>();
-    Array<T>(unsigned int n);
-    Array<T>(Array<T> const &instance);
+    Array();
+    Array(unsigned int n);
+    Array(Array<T> const &instance);
     ~Array();
 
-    Array<T> const &operator=(Array<T> const & rhs);
+    Array &operator=(Array<T> const & rhs);
+    T &operator[](unsigned int idx);
 
-    unsigned int size();
+    unsigned int size() const;
    private:
     T *arr;
     unsigned int arr_size;
