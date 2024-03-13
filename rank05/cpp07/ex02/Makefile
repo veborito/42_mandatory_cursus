@@ -1,4 +1,4 @@
-TARGET = converter
+TARGET = array
 
 CXX = g++
 
@@ -6,6 +6,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
 
 SRC = 										\
 		main.cpp							\
+		Array.cpp							\
 
 all : $(TARGET)
 
