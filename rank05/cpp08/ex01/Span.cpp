@@ -29,7 +29,7 @@ void Span::addNumber(int number) {
 }
 
 unsigned int Span::shortestSpan() {
-    if (!this->m_span or this->m_span->empty())
+    if (!this->m_span or this->m_size < 2)
         throw Span::SmallSpanException();
     std::set<int> s;
     copy(this->m_span->begin(), this->m_span->end(),
@@ -46,18 +46,18 @@ unsigned int Span::shortestSpan() {
 }
 
 unsigned int Span::longestSpan() {
-    if (!this->m_span or this->m_span->empty())
+    if (!this->m_span or this->m_size < 2)
         throw Span::SmallSpanException();
-    std::set<int> s;
-    copy(this->m_span->begin(), this->m_span->end(), std::inserter(s, s.end()));
-    std::set<int>::reverse_iterator end = s.rbegin();
-    std::set<int>::iterator start = s.begin();
+	std::sort(this->m_span->begin(), this->m_span->end());
+    std::vector<int>::reverse_iterator end = this->m_span->rbegin();
+    std::vector<int>::iterator start = this->m_span->begin();
     return std::abs(*end - *start);
 }
 
 void Span::fillSpan(unsigned int n) {
     if (!this->m_span or n > this->m_max_size)
         throw Span::TooManyElementsException();
+	this->m_size = n;
     std::srand(std::time(0));
     std::generate(this->m_span->begin(), this->m_span->end(),
                   randomIntGenerator);
