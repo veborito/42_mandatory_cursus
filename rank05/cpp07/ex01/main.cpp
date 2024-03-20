@@ -20,9 +20,7 @@ int main(void) {
                                                      print<std::string>);
     std::cout << '\n';
     iter<int, int (*)(int &)>(intArr, 5, addOne<int>);
-    for (int i = 0; i < 5; i++) {
-        std::cout << intArr[i] << ' ';
-    }
+	iter<int, void (*)(int const &)>(intArr, 5, print);
     std::cout << '\n';
     return 0;
 }
