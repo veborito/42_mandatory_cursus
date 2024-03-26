@@ -1,4 +1,4 @@
-TARGET = btc 
+TARGET = RPN 
 
 CXX = g++
 
