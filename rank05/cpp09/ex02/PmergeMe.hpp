@@ -5,9 +5,12 @@
 #include <vector>
 #include <deque>
 #include <utility>
+#include <sys/time.h>
+
 
 class PmergeMe {
    public:
+
     PmergeMe();
     PmergeMe(std::vector<int> vec);
     PmergeMe(PmergeMe const &instance);
@@ -15,14 +18,10 @@ class PmergeMe {
 
     PmergeMe &operator=(PmergeMe const &rhs);
 
-    void m_createPairsV();
-    void m_createPairsD();
-    void m_createBig();
-    void m_createBigD();
-    void m_createSmall();
-    void m_createSmallD();
-    void insertionSortV();
-    void insertionSortD();
+    std::vector<int> const &getVector() const;
+
+    void sort();
+
 
    private:
     std::vector<int> m_vector;
@@ -31,20 +30,30 @@ class PmergeMe {
     std::deque< std::pair<int, int> > m_pairsD;
     std::vector<int> m_big;
     std::vector<int> m_small;
-    std::vector<int> m_bigD;
-    std::vector<int> m_smallD;
+    std::deque<int> m_bigD;
+    std::deque<int> m_smallD;
+
+    void m_createPairsV();
+    void m_createPairsD();
+    void m_createBig();
+    void m_createBigD();
+    void m_createSmall();
+    void m_createSmallD();
+    void m_insertionSortV();
+    void m_insertionSortD();
 };
 
 template <typename T>
 void print(T &arr);
-template <typename T>
-int binarySearch(T &arr, int num);
-template <typename T>
-void insert(T &arr, T &arr2);
-template <typename T>
-void insertionSort(T &arr);
-template <typename T>
-void mergeSort(T &arr, int start, int end);
+
+int binarySearchV(std::vector<int> &arr, int num);
+void binaryInsertionSortV(std::vector<int> &arr, std::vector<int> &arr2);
+void mergeSortV(std::vector<int> &arr, int start, int end);
+
+int binarySearchD(std::deque<int> &arr, int num);
+void binaryInsertionSortD(std::deque<int> &arr, std::deque<int> &arr2);
+void mergeSortD(std::deque<int> &arr, int start, int end);
+
 std::ostream &operator<<(std::ostream &o, PmergeMe const &instance);
 
 #endif 
