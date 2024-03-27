@@ -1,4 +1,4 @@
-TARGET = btc 
+TARGET = PmergeMe 
 
 CXX = g++
 
@@ -6,7 +6,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
 
 SRC = 										\
 		main.cpp							\
-		BitcoinExchange.cpp					\
+		PmergeMe.cpp						\
 
 all : $(TARGET)
 
