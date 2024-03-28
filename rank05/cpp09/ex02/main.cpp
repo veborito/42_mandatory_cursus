@@ -1,8 +1,6 @@
-#include <cctype>
-#include <deque>
 #include <vector>
 #include <set>
-#include <sys/time.h>
+#include <iomanip>
 
 #include "PmergeMe.hpp"
 
@@ -37,6 +35,31 @@ int main(int argc, char *argv[]) {
     std::cout << "Before : ";
     print(vec);
     std::cout << '\n';
+    if (argc == 2) {
+        clock_t start_1 = clock();
+
+        clock_t end_1 = clock();
+        std::vector<int> vector;
+        vector.push_back(vec.front());
+        clock_t start_2 = clock();
+        std::deque<int> deque;
+        deque.push_back(vec.front());
+        clock_t end_2 = clock();
+        std::cout << "After: " << vector.front() << '\n';
+        double time_taken = static_cast<double>(end_1 - start_1) 
+                            / static_cast<double>(CLOCKS_PER_SEC);
+        double time_taken_2 = static_cast<double>(end_2 - start_2)
+                              / static_cast<double>(CLOCKS_PER_SEC);
+        std::cout << "Time to process a range of " << 1 
+                  << " element with std::vector : "
+                  << std::fixed << std::left << std::setw(10) << std::setfill('0')
+                  << time_taken << std::setprecision(8)  << " sec\n";
+        std::cout << "Time to process a range of " << 1 
+                  << " element with std::deque  : "
+                  << std::fixed << std::setw(10) << std::setfill('0')
+                  << time_taken_2 << std::setprecision(8) << " sec\n";
+        return 0;
+    }
     PmergeMe s(vec);
     s.sort();
     return 0;
